@@ -1,185 +1,503 @@
 <!DOCTYPE html>
-<html lang="ta"><head><meta charset="utf-8">
+<html lang="ta">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="GK Payments">
-<title>GK Textiles - Payments</title>
+<meta name="theme-color" content="#14163a">
+<title>GK Textiles</title>
+<link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@400;600;800&family=Noto+Sans+Devanagari:wght@600;800&display=swap" rel="stylesheet">
 <style>
+:root{--bg:#14163a;--card:#1e2150;--line:#2f3376;--ink:#f4f2ff;--mute:#a9acd6;--gold:#ffb627;--red:#ff6b4a;--ok:#3ddc97}
 *{box-sizing:border-box;margin:0}
-body{font-family:system-ui,sans-serif;background:#0f172a;color:#f1f5f9;min-height:100vh;padding:18px;text-align:center}
-.card{background:#1e293b;border-radius:16px;padding:18px;margin:12px auto;max-width:440px}
-h1{font-size:17px;opacity:.85;font-weight:600}
-.shop{font-size:22px;font-weight:800;color:#f87171;margin-bottom:4px}
-input,button{font-size:18px;padding:12px;border-radius:10px;border:0;width:100%;margin-top:12px}
-button{background:#22c55e;color:#04210f;font-weight:700}
-#big{font-size:56px;font-weight:800;color:#22c55e}
-#ta{font-size:18px;margin-top:4px}
-#flash{animation:f 1.2s}
-@keyframes f{0%,60%{background:#166534}100%{background:#1e293b}}
-.two{display:flex;gap:10px;max-width:440px;margin:12px auto}.two .card{flex:1;margin:0}
-.two b{font-size:24px;display:block;margin-top:6px}
-.day{display:flex;justify-content:space-between;text-align:left;margin-top:14px;padding-bottom:4px;border-bottom:2px solid #334155;font-weight:700;color:#93c5fd}
-.row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #334155;font-size:17px;text-align:left}
-.row b{flex:1}.row span{opacity:.7;font-size:15px}
-.x{width:auto;margin:0;padding:4px 10px;background:#475569;color:#f1f5f9;font-size:14px}
-.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:6px}
-.dot.on{background:#22c55e}
-small{opacity:.7}#err{color:#fca5a5}
-</style></head><body>
+html,body{background:var(--bg);color:var(--ink);font-family:'Mukta Malar','Noto Sans Devanagari',system-ui,sans-serif}
+body{min-height:100vh;padding:0 0 env(safe-area-inset-bottom,0)}
+.loom{height:10px;background:repeating-linear-gradient(90deg,#ffb627 0 12px,#e4572e 12px 24px,#17bebb 24px 36px,#14163a 36px 40px)}
+main{max-width:520px;margin:0 auto;padding:16px 16px 40px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+h1{font-size:26px;font-weight:800}
+.tools{display:flex;gap:8px}
+.tools button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;min-width:48px;height:44px;font-size:16px;font-weight:600;font-family:inherit;padding:0 12px}
+.live{font-size:14px;color:var(--mute);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--ok)}
+.dot.off{background:var(--red)}
+.last{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:22px 18px;text-align:center}
+.last .lbl{font-size:20px;color:var(--mute)}
+.last .amt{font-size:72px;font-weight:800;color:var(--gold);line-height:1.1;margin:6px 0}
+.last .ago{font-size:26px;font-weight:600}
+.last .at{font-size:18px;color:var(--mute);margin-top:2px}
+.last.pulse{animation:pulse 1.6s ease-out 2}
+@keyframes pulse{0%{background:#2c7a57;border-color:var(--ok)}100%{background:var(--card);border-color:var(--line)}}
+.say{width:100%;margin-top:12px;background:var(--gold);color:#241a00;border:0;border-radius:16px;height:56px;font-size:20px;font-weight:800;font-family:inherit}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.stat{background:var(--card);border-radius:18px;padding:14px;text-align:center}
+.stat .lbl{font-size:17px;color:var(--mute)}
+.stat .v{font-size:30px;font-weight:800;margin-top:2px}
+.hist{background:var(--card);border-radius:18px;padding:14px 16px}
+.hist h2{font-size:19px;font-weight:600;text-align:center;color:var(--mute);margin-bottom:6px}
+.day{display:flex;justify-content:space-between;font-weight:800;font-size:19px;color:#9cc8ff;border-bottom:1px solid var(--line);padding:12px 0 6px}
+.row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #2a2d68;font-size:19px}
+.row .a{font-weight:800;flex:1}
+.row .t{color:var(--mute);font-size:16px}
+.row button{background:#2d3170;border:0;color:var(--mute);border-radius:10px;width:38px;height:38px;font-size:18px}
+.empty{text-align:center;color:var(--mute);padding:18px 0;font-size:18px}
+#gate{position:fixed;inset:0;background:var(--bg);z-index:9;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:18px;padding:24px;text-align:center}
+#gate h2{font-size:30px;font-weight:800}
+#gate p{font-size:20px;color:var(--mute);max-width:340px;line-height:1.5}
+#gate button{background:var(--gold);color:#241a00;border:0;border-radius:20px;height:70px;width:100%;max-width:340px;font-size:26px;font-weight:800;font-family:inherit}
+#gate .skip{background:none;color:var(--mute);height:44px;font-size:17px;font-weight:600}
+button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.last.pulse{animation:none}}
 
-<div id="login" class="card">
-  <div class="shop">GK Textiles</div>
-  <h1>🔒 Payment Alerts</h1>
-  <input id="pin" type="password" inputmode="numeric" placeholder="PIN">
-  <button onclick="start()">Start</button>
-  <button onclick="startDemo()" style="background:#334155;color:#f1f5f9">Test mode (DB illama)</button>
-  <small id="err"></small>
+.pg{display:none;padding-bottom:110px}.pg.on{display:block}
+nav{position:fixed;left:0;right:0;bottom:0;background:#0f1130;border-top:1px solid var(--line);display:flex;gap:6px;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+nav button{flex:1;background:none;border:0;color:var(--mute);font-size:15px;font-weight:600;font-family:inherit;padding:6px 0;border-radius:12px}
+nav button span{display:block;font-size:24px}
+nav button.on{color:var(--gold);background:var(--card)}
+.disp{background:var(--card);border-radius:18px;padding:16px;text-align:right;margin-bottom:12px}
+.disp .ex{font-size:20px;color:var(--mute);min-height:28px;word-break:break-all}
+.disp .rs{font-size:46px;font-weight:800;color:var(--gold)}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.keys button{height:68px;border-radius:18px;border:0;background:var(--card);color:var(--ink);font-size:26px;font-weight:700;font-family:inherit}
+.keys .op{background:#2d3170;color:var(--gold)}
+.keys .eq{background:var(--gold);color:#241a00}
+.keys .cl{color:var(--red)}
+.field{width:100%;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;height:50px;padding:0 12px;font-size:18px;font-weight:600;font-family:inherit}
+.add{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.add .wide{grid-column:1/3}
+.bl{display:flex;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #2a2d68;font-size:19px}
+.bl .n{flex:1}.bl .s{display:block;color:var(--mute);font-size:15px}
+.bl button{background:#2d3170;border:0;color:var(--mute);border-radius:10px;width:38px;height:38px;font-size:18px}
+.tot{display:flex;justify-content:space-between;align-items:center;font-size:20px;padding:8px 0}
+.tot.big{font-size:30px;font-weight:800;color:var(--gold)}
+@media print{nav,#p-pay,#p-calc,.noprint,#gate,.loom{display:none!important}#p-bill{display:block!important}html,body{background:#fff!important}#p-bill *{color:#000!important;background:transparent!important;border-color:#999!important}.field{border:0!important;padding:0!important}#bl button{display:none}}
+
+.mics{display:grid;gap:12px;margin-bottom:10px}
+.mic{border:0;border-radius:22px;min-height:104px;font-family:inherit;font-size:28px;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff}
+.mic span{font-size:34px}.mic small{font-size:16px;font-weight:600;opacity:.9}
+.mic.hi{background:#d6452a}.mic.ta{background:#0f8f8c}
+.mic.live{outline:4px solid #fff;outline-offset:3px}
+.trst{text-align:center;color:var(--mute);font-size:18px;min-height:26px;margin:4px 0 8px}
+.bub{background:var(--card);border-radius:18px;padding:12px 14px;margin:10px 0;border-left:6px solid var(--gold)}
+.bub.tohi{border-left-color:#17bebb}
+.bub .src{color:var(--mute);font-size:17px}
+.bub .out{font-size:32px;font-weight:800;line-height:1.3;margin:4px 0}
+.bub button{background:#2d3170;border:0;color:var(--ink);border-radius:12px;height:44px;padding:0 16px;font-size:17px;font-family:inherit;font-weight:600}
+.phr{display:grid;gap:8px;margin-top:8px}
+.phr button{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:14px;padding:10px 12px;text-align:left;font-family:inherit;font-size:19px;font-weight:600}
+.phr small{display:block;color:var(--gold);font-size:18px;margin-top:2px}
+.sec{font-size:18px;color:var(--mute);text-align:center;margin:18px 0 4px}
+@media print{#p-tr{display:none!important}}
+</style>
+</head>
+<body>
+<div class="loom"></div>
+
+<div id="gate">
+  <h2>GK Textiles</h2>
+  <p>பணம் வந்ததும் குரலில் சொல்ல அனுமதி தரவும்.<br><span style="font-size:17px">Allow voice announcements for new payments.</span></p>
+  <button id="go">தொடங்கு / Start</button>
+  <button class="skip" id="skip">ஒலி இல்லாமல் / Without sound</button>
 </div>
 
-<div id="app" hidden>
-  <div class="shop">GK Textiles</div>
-  <div class="card" id="flash">
-    <h1><span class="dot" id="dot"></span>Last payment</h1>
-    <div id="big">—</div>
-    <div id="ta"></div>
-    <small id="when">Waiting...</small>
+<main id="p-pay" class="pg on">
+  <header>
+    <h1>GK Textiles</h1>
+    <div class="tools">
+      <button id="snd" aria-label="Sound">🔊</button>
+      <button id="lng" aria-label="Language">த</button>
+    </div>
+  </header>
+  <div class="live"><span class="dot" id="dot"></span><span id="livetxt">Live</span></div>
+
+  <section class="last" id="last">
+    <div class="lbl">கடைசி பணம் / Last payment</div>
+    <div class="amt" id="amt">—</div>
+    <div class="ago" id="ago"></div>
+    <div class="at" id="at"></div>
+  </section>
+  <button class="say" id="say">🔊 மீண்டும் சொல் / Repeat</button>
+
+  <div class="stats">
+    <div class="stat"><div class="lbl">இன்று / Today</div><div class="v" id="today">₹0</div></div>
+    <div class="stat"><div class="lbl">இந்த மாதம் / Month</div><div class="v" id="month">₹0</div></div>
   </div>
-  <button id="fake" hidden onclick="fake()" style="max-width:440px">➕ Test payment</button>
-  <div class="two">
-    <div class="card"><h1>இன்று / Today</h1><b id="today">₹0</b></div>
-    <div class="card"><h1>இந்த மாதம்</h1><b id="month">₹0</b></div>
+
+  <section class="hist">
+    <h2>கடந்த 7 நாட்கள் / History</h2>
+    <div id="hist"></div>
+  </section>
+</main>
+
+<main id="p-calc" class="pg">
+  <header><h1>கணக்கு / Calculator</h1></header>
+  <div class="disp"><div class="ex" id="cex"></div><div class="rs" id="crs">0</div></div>
+  <div class="keys" id="keys"></div>
+</main>
+
+<main id="p-bill" class="pg">
+  <header><h1>பில் / Bill</h1><div class="tools noprint"><button id="bclr" aria-label="Clear bill">🗑</button></div></header>
+  <input class="field" id="bcust" placeholder="வாடிக்கையாளர் / Customer name">
+  <div class="add noprint">
+    <input class="field wide" id="bn" placeholder="பொருள் / Item">
+    <input class="field" id="bq" type="number" inputmode="decimal" placeholder="அளவு / Qty (m)">
+    <input class="field" id="bp" type="number" inputmode="decimal" placeholder="விலை / Rate ₹">
+    <button class="say wide" id="badd" style="margin:0">+ சேர் / Add</button>
   </div>
-  <div class="card"><h1>History (7 days)</h1><div id="list"></div></div>
-</div>
+  <div id="bl"></div>
+  <div class="tot"><span>மொத்தம் / Subtotal</span><b id="bsub">₹0</b></div>
+  <div class="tot"><span>தள்ளுபடி / Discount ₹</span><input class="field" id="bdisc" type="number" inputmode="decimal" style="width:120px;text-align:right" placeholder="0"></div>
+  <div class="tot big"><span>மொத்த தொகை / Total</span><b id="btot">₹0</b></div>
+  <div class="add noprint">
+    <button class="say" id="bwa" style="margin:0">WhatsApp</button>
+    <button class="say" id="bpr" style="margin:0;background:#2d3170;color:var(--ink)">🖨 Print</button>
+  </div>
+</main>
+
+<main id="p-tr" class="pg">
+  <header><h1>மொழி / भाषा</h1></header>
+  <div class="mics">
+    <button class="mic hi" id="mhi"><span>🎤</span>हिंदी बोलें<small>ஹிந்தி → தமிழ்</small></button>
+    <button class="mic ta" id="mta"><span>🎤</span>தமிழ் பேசுங்கள்<small>தமிழ் → हिंदी</small></button>
+  </div>
+  <div class="trst" id="trst">மைக் அழுத்தி பேசுங்கள்</div>
+  <div class="add">
+    <input class="field wide" id="trin" placeholder="Type / டைப் செய்யவும் / टाइप करें">
+    <button class="say" id="trt" style="margin:0;height:50px;font-size:17px">→ தமிழ்</button>
+    <button class="say" id="trh" style="margin:0;height:50px;font-size:17px">→ हिंदी</button>
+  </div>
+  <div id="trlog"></div>
+  <div class="sec">விரைவு வாக்கியங்கள் / तुरंत वाक्य</div>
+  <div class="phr" id="phr"></div>
+</main>
+
+<nav>
+  <button class="on" data-p="p-pay"><span>💰</span>பணம்</button>
+  <button data-p="p-calc"><span>🧮</span>கணக்கு</button>
+  <button data-p="p-bill"><span>🧾</span>பில்</button>
+  <button data-p="p-tr"><span>🗣</span>மொழி</button>
+</nav>
 
 <script>
-/* ====== FILL THESE ====== */
-const DB  = "https://gkshop-613b0-default-rtdb.firebaseio.com";
-const KEY = "shop_x7k29q";    // same secret name as in Firebase rules + Shortcut URL
-const PIN = "1234";           // labour PIN
-/* ======================== */
+const DB='https://gkshop-613b0-default-rtdb.firebaseio.com/shop_x7k29q';
+const POLL=4000;
+const CH='-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
+const $=id=>document.getElementById(id);
+const rs=n=>'₹'+n.toLocaleString('en-IN');
 
-const base = DB.replace(/\/+$/,"");
-const items = {}, seen = new Set();
-const B64 = "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
-let ac;
-
-const idTime = id => { let t=0; for(const c of id.slice(0,8)) t=t*64+B64.indexOf(c); return t; };
-const amt = m => { const r=/(?:\brs\.?|\binr|₹)\s*([\d,]+(?:\.\d+)?)/i.exec(String(m==null?"":m)); return r?parseFloat(r[1].replace(/,/g,"")):null; };
-const fmt = n => "₹" + n.toLocaleString("en-IN");
-const tm = ms => new Date(ms).toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
-
-function beep(){
-  try{ ac.resume&&ac.resume(); [880,1175].forEach((f,i)=>{
-    const o=ac.createOscillator(), g=ac.createGain();
-    o.frequency.value=f; o.connect(g); g.connect(ac.destination);
-    const s=ac.currentTime+i*.25; g.gain.setValueAtTime(.4,s); g.gain.exponentialRampToValueAtTime(.001,s+.22);
-    o.start(s); o.stop(s+.25);
-  }); }catch(e){}
+// Firebase push keys start with a timestamp, so no extra field is needed.
+const keyTime=k=>{let t=0;for(let i=0;i<8;i++)t=t*64+CH.indexOf(k[i]);return t};
+function parseAmt(m){
+  m=String(m||'');
+  const r=/(?:rs\.?|inr|₹)\s*([\d,]+(?:\.\d{1,2})?)/i.exec(m)||/([\d,]+(?:\.\d{1,2})?)\s*(?:rs|rupees)/i.exec(m);
+  return r?parseFloat(r[1].replace(/,/g,'')):null;
 }
-function speak(a){
-  try{
-    const ta = speechSynthesis.getVoices().some(v=>v.lang.startsWith("ta"));
-    const u = new SpeechSynthesisUtterance(ta ? (a?`${a} ரூபாய் வந்தது`:"பணம் வந்தது") : (a?`${a} rupees received`:"Payment received"));
-    u.lang = ta ? "ta-IN" : "en-IN"; speechSynthesis.speak(u);
-  }catch(e){}
+
+let items=[],known=null,soundOn=false,lang=localStorage.getItem('gk_lang')||'ta',ac=null,wl=null;
+
+const fmtTime=t=>new Date(t).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true});
+const dayKey=t=>{const d=new Date(t);return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()};
+function dayLabel(t){
+  const now=Date.now();
+  if(dayKey(t)===dayKey(now))return 'இன்று / Today';
+  if(dayKey(t)===dayKey(now-864e5))return 'நேற்று / Yesterday';
+  return new Date(t).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+}
+function ago(t,l){
+  const m=Math.max(0,Math.floor((Date.now()-t)/6e4));
+  if(l==='ta'){
+    if(m<1)return 'இப்போது';
+    if(m<60)return m+' நிமிடத்திற்கு முன்';
+    if(m<1440)return Math.floor(m/60)+' மணி நேரத்திற்கு முன்';
+    return Math.floor(m/1440)+' நாட்களுக்கு முன்';
+  }
+  if(m<1)return 'just now';
+  if(m<60)return m+(m===1?' minute ago':' minutes ago');
+  if(m<1440){const h=Math.floor(m/60);return h+(h===1?' hour ago':' hours ago')}
+  const d=Math.floor(m/1440);return d+(d===1?' day ago':' days ago');
 }
 
 function render(){
-  const ids = Object.keys(items).sort((a,b)=>idTime(b)-idTime(a));
-  const n = new Date(), d0 = new Date(n.getFullYear(),n.getMonth(),n.getDate()).getTime(), m0 = new Date(n.getFullYear(),n.getMonth(),1).getTime();
-  let td=0, mo=0; const g={};
-  ids.forEach(id=>{
-    const t=idTime(id), a=items[id].a||0;
-    if(t>=d0) td+=a; if(t>=m0) mo+=a;
-    const k = new Date(t).toLocaleDateString("en-IN",{day:"numeric",month:"short"});
-    (g[k]=g[k]||{s:0,r:[]}); g[k].s+=a; g[k].r.push(id);
+  const paid=items.filter(i=>i.a!=null);
+  const last=paid[paid.length-1];
+  if(last){
+    $('amt').textContent=rs(last.a);
+    $('ago').textContent=ago(last.t,lang);
+    $('at').textContent=dayLabel(last.t)+', '+fmtTime(last.t);
+  }else{
+    $('amt').textContent='—';$('ago').textContent='பணம் எதுவும் இல்லை / No payments yet';$('at').textContent='';
+  }
+  const now=new Date(),td=dayKey(now),mo=now.getFullYear()+'-'+now.getMonth();
+  let today=0,month=0;
+  paid.forEach(i=>{const d=new Date(i.t);if(dayKey(i.t)===td)today+=i.a;if(d.getFullYear()+'-'+d.getMonth()===mo)month+=i.a});
+  $('today').textContent=rs(today);$('month').textContent=rs(month);
+
+  const cutoff=Date.now()-7*864e5,groups={};
+  items.filter(i=>i.t>=cutoff).slice().reverse().forEach(i=>{(groups[dayKey(i.t)]=groups[dayKey(i.t)]||[]).push(i)});
+  const keys=Object.keys(groups);
+  $('hist').innerHTML=keys.length?keys.map(k=>{
+    const g=groups[k],sum=g.reduce((s,i)=>s+(i.a||0),0);
+    return '<div class="day"><span>'+dayLabel(g[0].t)+'</span><span>'+rs(sum)+'</span></div>'+
+      g.map(i=>'<div class="row"><span class="a">'+(i.a!=null?rs(i.a):'?')+'</span><span class="t">'+fmtTime(i.t)+
+      '</span><button data-k="'+i.k+'" aria-label="Delete">✕</button></div>').join('');
+  }).join(''):'<div class="empty">இன்னும் பணம் வரவில்லை / Nothing yet</div>';
+}
+
+/* ---------- sound ---------- */
+function chime(){
+  if(!ac)return;
+  [660,880,1100].forEach((f,i)=>{
+    const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime+i*.18;
+    o.frequency.value=f;o.type='sine';o.connect(g);g.connect(ac.destination);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.5,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+.4);
+    o.start(t);o.stop(t+.45);
   });
-  document.getElementById("today").textContent = fmt(td);
-  document.getElementById("month").textContent = fmt(mo);
-  document.getElementById("list").innerHTML = Object.entries(g).slice(0,7).map(([k,v])=>
-    `<div class="day"><span>${k}</span><span>${fmt(v.s)}</span></div>` +
-    v.r.map(id=>`<div class="row"><b>${items[id].a?fmt(items[id].a):"?"}</b><span>${tm(idTime(id))}</span><button class="x" onclick="del('${id}')">✕</button></div>`).join("")
-  ).join("") || "<small>No payments yet</small>";
-  if(ids[0]){
-    const l = items[ids[0]];
-    document.getElementById("big").textContent = l.a?fmt(l.a):"Payment";
-    document.getElementById("ta").textContent = l.a?`${fmt(l.a)} வந்துவிட்டது ✅`:"";
-    document.getElementById("when").textContent = tm(idTime(ids[0]));
-  } else {
-    document.getElementById("big").textContent = "—";
-    document.getElementById("ta").textContent = "";
-  }
 }
+function speak(ta,en){
+  if(!soundOn||!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const voices=speechSynthesis.getVoices();
+  const taV=voices.find(v=>v.lang.toLowerCase().replace('_','-').startsWith('ta'));
+  const enV=voices.find(v=>v.lang.toLowerCase().replace('_','-')==='en-in')||voices.find(v=>v.lang.toLowerCase().startsWith('en'));
+  let text,voice,l;
+  if(lang==='ta'&&taV){text=ta;voice=taV;l='ta-IN'}else{text=en;voice=enV;l='en-IN'}
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=l;if(voice)u.voice=voice;u.rate=.9;u.volume=1;
+  speechSynthesis.speak(u);
+}
+const spoken=a=>Number.isInteger(a)?String(a):a.toFixed(2);
+function announceLast(){
+  const paid=items.filter(i=>i.a!=null),last=paid[paid.length-1];
+  if(!last){speak('இன்னும் பணம் வரவில்லை','No payments yet');return}
+  speak('கடைசியாக '+spoken(last.a)+' ரூபாய் வந்தது, '+ago(last.t,'ta')+'.',
+        'Last payment, '+spoken(last.a)+' rupees, '+ago(last.t,'en')+'.');
+}
+function announceNew(a){
+  chime();
+  setTimeout(()=>speak('புதிய பணம், '+spoken(a)+' ரூபாய் வந்தது.','New payment. '+spoken(a)+' rupees received.'),700);
+}
+async function keepAwake(){
+  try{if('wakeLock' in navigator)wl=await navigator.wakeLock.request('screen')}catch(e){}
+}
+function refreshTools(){
+  $('snd').textContent=soundOn?'🔊':'🔇';
+  $('lng').textContent=lang==='ta'?'த':'EN';
+}
+async function enable(){
+  soundOn=true;
+  try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();await ac.resume()}catch(e){}
+  $('gate').style.display='none';
+  keepAwake();refreshTools();
+  speechSynthesis.getVoices();
+  setTimeout(()=>{chime();setTimeout(announceLast,600)},100);
+}
+$('go').onclick=enable;
+$('skip').onclick=()=>{$('gate').style.display='none';refreshTools()};
+$('say').onclick=async()=>{
+  if(!soundOn){soundOn=true;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();await ac.resume()}catch(e){}refreshTools();keepAwake()}
+  announceLast();
+};
+$('snd').onclick=()=>{soundOn=!soundOn;if(!soundOn)speechSynthesis.cancel();else keepAwake();refreshTools()};
+$('lng').onclick=()=>{lang=lang==='ta'?'en':'ta';localStorage.setItem('gk_lang',lang);refreshTools();render()};
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(soundOn)keepAwake();load()}});
 
-function add(id, rec, notify){
-  if(!rec || seen.has(id)) return;
-  seen.add(id);
-  const raw = (typeof rec==="object") ? (rec.msg!=null ? rec.msg : JSON.stringify(rec)) : rec;
-  items[id] = {a: amt(raw), m: raw};
-  if(notify){
-    const f=document.getElementById("flash"); f.style.animation="none"; void f.offsetWidth; f.style.animation="";
-    beep(); setTimeout(()=>speak(items[id].a),600);
-    if(navigator.vibrate) navigator.vibrate(300);
-  }
-}
+/* ---------- data ---------- */
+$('hist').onclick=async e=>{
+  const b=e.target.closest('button[data-k]');
+  if(!b||!confirm('இதை நீக்கவா? / Delete this entry?'))return;
+  try{await fetch(DB+'/'+b.dataset.k+'.json',{method:'DELETE'});items=items.filter(i=>i.k!==b.dataset.k);render()}catch(err){alert('Delete failed')}
+};
 
-let demo=false;
-function mkId(){ let t=Date.now(),o=""; for(let i=0;i<8;i++){o=B64[t%64]+o;t=Math.floor(t/64);} return o+Math.random().toString(36).slice(2,8); }
-function fake(){
-  const a=[50,120,200,350,500,1250][Math.floor(Math.random()*6)];
-  add(mkId(),{msg:`Rs.${a}.00 credited to A/c XX1234`},true); render();
-}
-function startDemo(){
-  if(document.getElementById("pin").value!==PIN){ document.getElementById("err").textContent="Wrong PIN"; return; }
-  demo=true; ac=new (window.AudioContext||window.webkitAudioContext)(); beep();
-  document.getElementById("login").hidden=true; document.getElementById("app").hidden=false;
-  document.getElementById("fake").hidden=false; render();
-}
-async function del(id){
-  if(demo){ delete items[id]; render(); return; }
-  if(!confirm("Intha payment-ah delete pannalaama?")) return;
-  try{ await fetch(`${base}/${KEY}/${id}.json`,{method:"DELETE"}); }catch(e){ alert("Delete aagala"); }
-}
-
-let es, ready=false;
-function connect(){
-  try{ es && es.close(); }catch(e){}
-  es = new EventSource(`${base}/${KEY}.json`);
-  const dot = document.getElementById("dot");
-  es.onopen = ()=>dot.classList.add("on");
-  es.onerror = ()=>dot.classList.remove("on");
-  es.addEventListener("put", e=>{
-    const {path,data} = JSON.parse(e.data);
-    if(path==="/"){
-      Object.keys(items).forEach(k=>{ if(!data||!(k in data)){ delete items[k]; seen.delete(k);} });
-      Object.entries(data||{}).forEach(([id,r])=>add(id,r,ready));
-      ready=true;
-    } else {
-      const id = path.slice(1).split("/")[0];
-      if(data===null){ delete items[id]; } else add(id,data,true);
-    }
+async function load(){
+  try{
+    const url=DB+'.json?orderBy='+encodeURIComponent('"$key"')+'&limitToLast=300';
+    const r=await fetch(url,{cache:'no-store'});
+    if(!r.ok)throw 0;
+    const data=await r.json()||{};
+    items=Object.keys(data).map(k=>{
+      const v=data[k],m=(v&&typeof v==='object')?v.msg:v;
+      return {k,t:keyTime(k),m,a:parseAmt(m)};
+    }).sort((x,y)=>x.t-y.t);
+    $('dot').classList.remove('off');$('livetxt').textContent='Live';
+    const fresh=known?items.filter(i=>!known.has(i.k)):[];
+    known=new Set(items.map(i=>i.k));
     render();
-  });
-}
-document.addEventListener("visibilitychange", async()=>{
-  if(document.visibilityState==="visible" && ac){
-    try{ ac.resume(); }catch(e){}
-    try{ await navigator.wakeLock.request("screen"); }catch(e){}
-    if(!demo) connect();
+    const newPaid=fresh.filter(i=>i.a!=null);
+    if(newPaid.length){
+      const total=newPaid.reduce((s,i)=>s+i.a,0);
+      const c=$('last');c.classList.remove('pulse');void c.offsetWidth;c.classList.add('pulse');
+      announceNew(total);
+      if(navigator.vibrate)navigator.vibrate([300,150,300]);
+    }
+  }catch(e){
+    $('dot').classList.add('off');$('livetxt').textContent='Offline — reconnecting…';
   }
+}
+/* ---------- tabs ---------- */
+document.querySelector('nav').onclick=e=>{
+  const b=e.target.closest('button[data-p]');if(!b)return;
+  document.querySelectorAll('.pg').forEach(m=>m.classList.toggle('on',m.id===b.dataset.p));
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  window.scrollTo(0,0);
+};
+
+/* ---------- calculator ---------- */
+let ce='';
+function calc(e){
+  const x=e.replace(/[+×÷−.]+$/,'').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');
+  if(!x||!/^[\d+\-*/.() ]+$/.test(x))return null;
+  try{const v=Function('"use strict";return ('+x+')')();return isFinite(v)?Math.round(v*1e6)/1e6:null}catch(err){return null}
+}
+function cshow(){
+  $('cex').textContent=ce;
+  const v=calc(ce);$('crs').textContent=v==null?'0':v.toLocaleString('en-IN');
+}
+function press(k){
+  if(k==='C')ce='';
+  else if(k==='⌫')ce=ce.slice(0,-1);
+  else if(k==='='){const v=calc(ce);if(v!=null)ce=String(v)}
+  else{
+    if('+×÷−'.includes(k)&&/[+×÷−]$/.test(ce))ce=ce.slice(0,-1);
+    if(ce===''&&'×÷%'.includes(k))return;
+    ce+=k;
+  }
+  cshow();
+}
+[['C','⌫','%','÷'],['7','8','9','×'],['4','5','6','−'],['1','2','3','+'],['00','0','.','=']].flat().forEach(k=>{
+  const b=document.createElement('button');b.textContent=k;
+  b.className=k==='='?'eq':'÷×−+%'.includes(k)?'op':k==='C'?'cl':'';
+  b.onclick=()=>press(k);$('keys').appendChild(b);
 });
 
-async function start(){
-  const err = document.getElementById("err");
-  if(!base){ err.textContent="Database link blank-ah irukku. Code-la DB-la paste pannunga."; return; }
-  if(document.getElementById("pin").value!==PIN){ err.textContent="Wrong PIN"; return; }
-  ac = new (window.AudioContext||window.webkitAudioContext)();
-  beep();
-  try{ await navigator.wakeLock.request("screen"); }catch(e){}
-  document.getElementById("login").hidden=true;
-  document.getElementById("app").hidden=false;
-  render(); connect();
+/* ---------- bill ---------- */
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'₹'+(Math.round(n*100)/100).toLocaleString('en-IN');
+let bill={c:'',d:0,i:[]};
+try{bill=Object.assign(bill,JSON.parse(localStorage.getItem('gk_bill')||'{}'))}catch(e){}
+const bsave=()=>{try{localStorage.setItem('gk_bill',JSON.stringify(bill))}catch(e){}};
+function btotals(){
+  const sub=bill.i.reduce((s,x)=>s+x.q*x.p,0);
+  $('bsub').textContent=money(sub);
+  $('btot').textContent=money(Math.max(0,sub-(+bill.d||0)));
+  return sub;
 }
+function brender(){
+  $('bl').innerHTML=bill.i.length?bill.i.map((x,n)=>
+    '<div class="bl"><div class="n">'+esc(x.n)+'<span class="s">'+x.q+' × ₹'+x.p+'</span></div><b>'+money(x.q*x.p)+
+    '</b><button class="noprint" data-n="'+n+'" aria-label="Remove">✕</button></div>'
+  ).join(''):'<div class="empty">பொருள் சேர்க்கவும் / Add items</div>';
+  btotals();
+}
+$('bcust').value=bill.c;$('bdisc').value=bill.d||'';
+$('bcust').oninput=e=>{bill.c=e.target.value;bsave()};
+$('bdisc').oninput=e=>{bill.d=+e.target.value||0;bsave();btotals()};
+$('badd').onclick=()=>{
+  const n=$('bn').value.trim()||'Item',q=parseFloat($('bq').value),p=parseFloat($('bp').value);
+  if(!(q>0)||!(p>=0)){alert('அளவு, விலை உள்ளிடவும் / Enter qty and rate');return}
+  bill.i.push({n,q,p});bsave();brender();
+  $('bn').value='';$('bq').value='';$('bp').value='';$('bn').focus();
+};
+$('bl').onclick=e=>{
+  const b=e.target.closest('button[data-n]');if(!b)return;
+  bill.i.splice(+b.dataset.n,1);bsave();brender();
+};
+$('bclr').onclick=()=>{
+  if(!confirm('பில்லை அழிக்கவா? / Clear this bill?'))return;
+  bill={c:'',d:0,i:[]};bsave();$('bcust').value='';$('bdisc').value='';brender();
+};
+$('bwa').onclick=()=>{
+  if(!bill.i.length)return;
+  const sub=btotals(),tot=Math.max(0,sub-(+bill.d||0));
+  let t='*GK Textiles*\n'+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+  if(bill.c)t+='\nCustomer: '+bill.c;
+  t+='\n\n'+bill.i.map((x,n)=>(n+1)+'. '+x.n+'  '+x.q+' × ₹'+x.p+' = '+money(x.q*x.p)).join('\n');
+  t+='\n\nSubtotal: '+money(sub);
+  if(bill.d)t+='\nDiscount: -'+money(+bill.d);
+  t+='\n*Total: '+money(tot)+'*\n\nநன்றி! Thank you!';
+  window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
+};
+$('bpr').onclick=()=>window.print();
+cshow();brender();
+
+/* ---------- Hindi <-> Tamil ---------- */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const LC={hi:'hi-IN',ta:'ta-IN'};
+let rec=null,trlog=[];
+function tts(text,l){
+  if(!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);u.lang=LC[l];u.rate=.85;
+  const v=speechSynthesis.getVoices().find(x=>x.lang.toLowerCase().replace('_','-').startsWith(l));
+  if(v)u.voice=v;
+  speechSynthesis.speak(u);
+}
+async function translate(text,from,to){
+  try{
+    const r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl='+from+'&tl='+to+'&dt=t&q='+encodeURIComponent(text));
+    const j=await r.json(),out=j[0].map(x=>x[0]).join('');
+    if(out)return out;
+  }catch(e){}
+  try{
+    const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text)+'&langpair='+from+'|'+to);
+    const j=await r.json();return j.responseData.translatedText||null;
+  }catch(e){return null}
+}
+function trrender(){
+  $('trlog').innerHTML=trlog.map((b,i)=>
+    '<div class="bub '+(b.to==='hi'?'tohi':'')+'"><div class="src">'+esc(b.src)+'</div><div class="out">'+esc(b.out)+
+    '</div><button data-i="'+i+'">🔊 மீண்டும் / फिर से</button></div>').join('');
+}
+function addBubble(src,out,to){
+  trlog.unshift({src,out,to});trlog=trlog.slice(0,8);trrender();
+}
+async function handle(text,from,to){
+  $('trst').textContent='மொழிபெயர்க்கிறது… / अनुवाद हो रहा है…';
+  const out=await translate(text,from,to);
+  if(!out){$('trst').textContent='⚠ Internet check pannunga / इंटरनेट जाँचें';return}
+  $('trst').textContent='மைக் அழுத்தி பேசுங்கள்';
+  addBubble(text,out,to);tts(out,to);
+}
+function listen(from,to,btn){
+  if(!SR){alert('இந்த browser-ல் மைக் வேலை செய்யாது. Chrome பயன்படுத்தவும் / Use Chrome');return}
+  if(rec){try{rec.stop()}catch(e){}return}
+  speechSynthesis.cancel();
+  const r=new SR();rec=r;r.lang=LC[from];r.interimResults=false;r.maxAlternatives=1;
+  btn.classList.add('live');
+  $('trst').textContent=from==='hi'?'सुन रहा हूँ… / கேட்கிறேன்…':'கேட்கிறேன்… பேசுங்கள்';
+  let got=false;
+  r.onresult=e=>{got=true;handle(e.results[0][0].transcript,from,to)};
+  r.onerror=e=>{$('trst').textContent=e.error==='not-allowed'?'⚠ Mic allow pannunga / माइक की अनुमति दें':'⚠ சரியாக கேட்கவில்லை, மீண்டும் முயற்சிக்கவும் / फिर बोलें'};
+  r.onend=()=>{btn.classList.remove('live');rec=null;if(!got&&$('trst').textContent.startsWith('கேட்'))$('trst').textContent='மைக் அழுத்தி பேசுங்கள்'};
+  try{r.start()}catch(e){rec=null;btn.classList.remove('live')}
+}
+$('mhi').onclick=()=>listen('hi','ta',$('mhi'));
+$('mta').onclick=()=>listen('ta','hi',$('mta'));
+$('trt').onclick=()=>{const t=$('trin').value.trim();if(t){handle(t,'hi','ta');$('trin').value=''}};
+$('trh').onclick=()=>{const t=$('trin').value.trim();if(t){handle(t,'ta','hi');$('trin').value=''}};
+$('trlog').onclick=e=>{const b=e.target.closest('button[data-i]');if(b){const x=trlog[+b.dataset.i];tts(x.out,x.to)}};
+
+const PH=[
+ ['வணக்கம், என்ன வேண்டும்?','नमस्ते, आपको क्या चाहिए?'],
+ ['கொஞ்சம் பொறுங்கள்','थोड़ा रुकिए'],
+ ['இது ஒரு மீட்டர் விலை','यह एक मीटर का दाम है'],
+ ['வேறு நிறம் வேண்டுமா?','कोई और रंग चाहिए?'],
+ ['வேறு சைஸ் வேண்டுமா?','कोई और साइज़ चाहिए?'],
+ ['இதுதான் கடைசி விலை','यही आख़िरी दाम है'],
+ ['பில் போடட்டுமா?','बिल बना दूँ?'],
+ ['GPay மூலம் பணம் அனுப்புங்கள்','कृपया GPay से पैसे भेजिए'],
+ ['பணம் வந்துவிட்டது, நன்றி','पैसे आ गए, धन्यवाद'],
+ ['நன்றி, மீண்டும் வாருங்கள்','धन्यवाद, फिर आइए']
+];
+$('phr').innerHTML=PH.map((p,i)=>'<button data-p="'+i+'">'+esc(p[0])+'<small>'+esc(p[1])+'</small></button>').join('');
+$('phr').onclick=e=>{
+  const b=e.target.closest('button[data-p]');if(!b)return;
+  const p=PH[+b.dataset.p];addBubble(p[0],p[1],'hi');tts(p[1],'hi');
+};
+if('speechSynthesis' in window)speechSynthesis.getVoices();
+
+refreshTools();render();load();
+setInterval(load,POLL);
+setInterval(render,30000);
 </script>
-</body></html>
+</body>
+</html>
+
