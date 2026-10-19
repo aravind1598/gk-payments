@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ta"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="GK Payments">
+<title>GK Textiles - Payments</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,sans-serif;background:#0f172a;color:#f1f5f9;min-height:100vh;padding:18px;text-align:center}
+.card{background:#1e293b;border-radius:16px;padding:18px;margin:12px auto;max-width:440px}
+h1{font-size:17px;opacity:.85;font-weight:600}
+.shop{font-size:22px;font-weight:800;color:#f87171;margin-bottom:4px}
+input,button{font-size:18px;padding:12px;border-radius:10px;border:0;width:100%;margin-top:12px}
+button{background:#22c55e;color:#04210f;font-weight:700}
+#big{font-size:56px;font-weight:800;color:#22c55e}
+#ta{font-size:18px;margin-top:4px}
+#flash{animation:f 1.2s}
+@keyframes f{0%,60%{background:#166534}100%{background:#1e293b}}
+.two{display:flex;gap:10px;max-width:440px;margin:12px auto}.two .card{flex:1;margin:0}
+.two b{font-size:24px;display:block;margin-top:6px}
+.day{display:flex;justify-content:space-between;text-align:left;margin-top:14px;padding-bottom:4px;border-bottom:2px solid #334155;font-weight:700;color:#93c5fd}
+.row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #334155;font-size:17px;text-align:left}
+.row b{flex:1}.row span{opacity:.7;font-size:15px}
+.x{width:auto;margin:0;padding:4px 10px;background:#475569;color:#f1f5f9;font-size:14px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444;margin-right:6px}
+.dot.on{background:#22c55e}
+small{opacity:.7}#err{color:#fca5a5}
+</style></head><body>
+
+<div id="login" class="card">
+  <div class="shop">GK Textiles</div>
+  <h1>🔒 Payment Alerts</h1>
+  <input id="pin" type="password" inputmode="numeric" placeholder="PIN">
+  <button onclick="start()">Start</button>
+  <button onclick="startDemo()" style="background:#334155;color:#f1f5f9">Test mode (DB illama)</button>
+  <small id="err"></small>
+</div>
+
+<div id="app" hidden>
+  <div class="shop">GK Textiles</div>
+  <div class="card" id="flash">
+    <h1><span class="dot" id="dot"></span>Last payment</h1>
+    <div id="big">—</div>
+    <div id="ta"></div>
+    <small id="when">Waiting...</small>
+  </div>
+  <button id="fake" hidden onclick="fake()" style="max-width:440px">➕ Test payment</button>
+  <div class="two">
+    <div class="card"><h1>இன்று / Today</h1><b id="today">₹0</b></div>
+    <div class="card"><h1>இந்த மாதம்</h1><b id="month">₹0</b></div>
+  </div>
+  <div class="card"><h1>History (7 days)</h1><div id="list"></div></div>
+</div>
+
+<script>
+/* ====== FILL THESE ====== */
+const DB  = "https://gkshop-613b0-default-rtdb.firebaseio.com";
+const KEY = "shop_x7k29q";    // same secret name as in Firebase rules + Shortcut URL
+const PIN = "1234";           // labour PIN
+/* ======================== */
+
+const base = DB.replace(/\/+$/,"");
+const items = {}, seen = new Set();
+const B64 = "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
+let ac;
+
+const idTime = id => { let t=0; for(const c of id.slice(0,8)) t=t*64+B64.indexOf(c); return t; };
+const amt = m => { const r=/(?:\brs\.?|\binr|₹)\s*([\d,]+(?:\.\d+)?)/i.exec(String(m==null?"":m)); return r?parseFloat(r[1].replace(/,/g,"")):null; };
+const fmt = n => "₹" + n.toLocaleString("en-IN");
+const tm = ms => new Date(ms).toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
+
+function beep(){
+  try{ ac.resume&&ac.resume(); [880,1175].forEach((f,i)=>{
+    const o=ac.createOscillator(), g=ac.createGain();
+    o.frequency.value=f; o.connect(g); g.connect(ac.destination);
+    const s=ac.currentTime+i*.25; g.gain.setValueAtTime(.4,s); g.gain.exponentialRampToValueAtTime(.001,s+.22);
+    o.start(s); o.stop(s+.25);
+  }); }catch(e){}
+}
+function speak(a){
+  try{
+    const ta = speechSynthesis.getVoices().some(v=>v.lang.startsWith("ta"));
+    const u = new SpeechSynthesisUtterance(ta ? (a?`${a} ரூபாய் வந்தது`:"பணம் வந்தது") : (a?`${a} rupees received`:"Payment received"));
+    u.lang = ta ? "ta-IN" : "en-IN"; speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+function render(){
+  const ids = Object.keys(items).sort((a,b)=>idTime(b)-idTime(a));
+  const n = new Date(), d0 = new Date(n.getFullYear(),n.getMonth(),n.getDate()).getTime(), m0 = new Date(n.getFullYear(),n.getMonth(),1).getTime();
+  let td=0, mo=0; const g={};
+  ids.forEach(id=>{
+    const t=idTime(id), a=items[id].a||0;
+    if(t>=d0) td+=a; if(t>=m0) mo+=a;
+    const k = new Date(t).toLocaleDateString("en-IN",{day:"numeric",month:"short"});
+    (g[k]=g[k]||{s:0,r:[]}); g[k].s+=a; g[k].r.push(id);
+  });
+  document.getElementById("today").textContent = fmt(td);
+  document.getElementById("month").textContent = fmt(mo);
+  document.getElementById("list").innerHTML = Object.entries(g).slice(0,7).map(([k,v])=>
+    `<div class="day"><span>${k}</span><span>${fmt(v.s)}</span></div>` +
+    v.r.map(id=>`<div class="row"><b>${items[id].a?fmt(items[id].a):"?"}</b><span>${tm(idTime(id))}</span><button class="x" onclick="del('${id}')">✕</button></div>`).join("")
+  ).join("") || "<small>No payments yet</small>";
+  if(ids[0]){
+    const l = items[ids[0]];
+    document.getElementById("big").textContent = l.a?fmt(l.a):"Payment";
+    document.getElementById("ta").textContent = l.a?`${fmt(l.a)} வந்துவிட்டது ✅`:"";
+    document.getElementById("when").textContent = tm(idTime(ids[0]));
+  } else {
+    document.getElementById("big").textContent = "—";
+    document.getElementById("ta").textContent = "";
+  }
+}
+
+function add(id, rec, notify){
+  if(!rec || seen.has(id)) return;
+  seen.add(id);
+  const raw = (typeof rec==="object") ? (rec.msg!=null ? rec.msg : JSON.stringify(rec)) : rec;
+  items[id] = {a: amt(raw), m: raw};
+  if(notify){
+    const f=document.getElementById("flash"); f.style.animation="none"; void f.offsetWidth; f.style.animation="";
+    beep(); setTimeout(()=>speak(items[id].a),600);
+    if(navigator.vibrate) navigator.vibrate(300);
+  }
+}
+
+let demo=false;
+function mkId(){ let t=Date.now(),o=""; for(let i=0;i<8;i++){o=B64[t%64]+o;t=Math.floor(t/64);} return o+Math.random().toString(36).slice(2,8); }
+function fake(){
+  const a=[50,120,200,350,500,1250][Math.floor(Math.random()*6)];
+  add(mkId(),{msg:`Rs.${a}.00 credited to A/c XX1234`},true); render();
+}
+function startDemo(){
+  if(document.getElementById("pin").value!==PIN){ document.getElementById("err").textContent="Wrong PIN"; return; }
+  demo=true; ac=new (window.AudioContext||window.webkitAudioContext)(); beep();
+  document.getElementById("login").hidden=true; document.getElementById("app").hidden=false;
+  document.getElementById("fake").hidden=false; render();
+}
+async function del(id){
+  if(demo){ delete items[id]; render(); return; }
+  if(!confirm("Intha payment-ah delete pannalaama?")) return;
+  try{ await fetch(`${base}/${KEY}/${id}.json`,{method:"DELETE"}); }catch(e){ alert("Delete aagala"); }
+}
+
+let es, ready=false;
+function connect(){
+  try{ es && es.close(); }catch(e){}
+  es = new EventSource(`${base}/${KEY}.json`);
+  const dot = document.getElementById("dot");
+  es.onopen = ()=>dot.classList.add("on");
+  es.onerror = ()=>dot.classList.remove("on");
+  es.addEventListener("put", e=>{
+    const {path,data} = JSON.parse(e.data);
+    if(path==="/"){
+      Object.keys(items).forEach(k=>{ if(!data||!(k in data)){ delete items[k]; seen.delete(k);} });
+      Object.entries(data||{}).forEach(([id,r])=>add(id,r,ready));
+      ready=true;
+    } else {
+      const id = path.slice(1).split("/")[0];
+      if(data===null){ delete items[id]; } else add(id,data,true);
+    }
+    render();
+  });
+}
+document.addEventListener("visibilitychange", async()=>{
+  if(document.visibilityState==="visible" && ac){
+    try{ ac.resume(); }catch(e){}
+    try{ await navigator.wakeLock.request("screen"); }catch(e){}
+    if(!demo) connect();
+  }
+});
+
+async function start(){
+  const err = document.getElementById("err");
+  if(!base){ err.textContent="Database link blank-ah irukku. Code-la DB-la paste pannunga."; return; }
+  if(document.getElementById("pin").value!==PIN){ err.textContent="Wrong PIN"; return; }
+  ac = new (window.AudioContext||window.webkitAudioContext)();
+  beep();
+  try{ await navigator.wakeLock.request("screen"); }catch(e){}
+  document.getElementById("login").hidden=true;
+  document.getElementById("app").hidden=false;
+  render(); connect();
+}
+</script>
+</body></html>
