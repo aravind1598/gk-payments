@@ -1,503 +1,497 @@
 <!DOCTYPE html>
-<html lang="ta">
-<head>
-<meta charset="utf-8">
+<html lang="ta"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#14163a">
-<title>GK Textiles</title>
+<meta name="theme-color" content="#14163a"><link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes"><title>GK Textiles</title>
 <link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@400;600;800&family=Noto+Sans+Devanagari:wght@600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#14163a;--card:#1e2150;--line:#2f3376;--ink:#f4f2ff;--mute:#a9acd6;--gold:#ffb627;--red:#ff6b4a;--ok:#3ddc97}
+:root{--bg:#14163a;--card:#1e2150;--line:#2f3376;--ink:#f4f2ff;--mute:#a9acd6;--gold:#ffb627;--red:#ff6b4a;--ok:#3ddc97;--b2:#2d3170}
 *{box-sizing:border-box;margin:0}
 html,body{background:var(--bg);color:var(--ink);font-family:'Mukta Malar','Noto Sans Devanagari',system-ui,sans-serif}
-body{min-height:100vh;padding:0 0 env(safe-area-inset-bottom,0)}
+body{min-height:100vh;padding-top:env(safe-area-inset-top,0)}
 .loom{height:10px;background:repeating-linear-gradient(90deg,#ffb627 0 12px,#e4572e 12px 24px,#17bebb 24px 36px,#14163a 36px 40px)}
 main{max-width:520px;margin:0 auto;padding:16px 16px 40px}
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 h1{font-size:26px;font-weight:800}
 .tools{display:flex;gap:8px}
-.tools button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;min-width:48px;height:44px;font-size:16px;font-weight:600;font-family:inherit;padding:0 12px}
+button{font-family:inherit}
+.tools button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;min-width:48px;height:44px;font-size:16px;font-weight:600;padding:0 12px}
 .live{font-size:14px;color:var(--mute);margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.dot{width:10px;height:10px;border-radius:50%;background:var(--ok)}
-.dot.off{background:var(--red)}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--ok)}.dot.off{background:var(--red)}
 .last{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:22px 18px;text-align:center}
 .last .lbl{font-size:20px;color:var(--mute)}
 .last .amt{font-size:72px;font-weight:800;color:var(--gold);line-height:1.1;margin:6px 0}
-.last .ago{font-size:26px;font-weight:600}
-.last .at{font-size:18px;color:var(--mute);margin-top:2px}
+.last .ago{font-size:26px;font-weight:600}.last .at{font-size:18px;color:var(--mute)}
 .last.pulse{animation:pulse 1.6s ease-out 2}
 @keyframes pulse{0%{background:#2c7a57;border-color:var(--ok)}100%{background:var(--card);border-color:var(--line)}}
-.say{width:100%;margin-top:12px;background:var(--gold);color:#241a00;border:0;border-radius:16px;height:56px;font-size:20px;font-weight:800;font-family:inherit}
+.say{width:100%;margin-top:12px;background:var(--gold);color:#241a00;border:0;border-radius:16px;height:56px;font-size:20px;font-weight:800}
+.say.alt{background:var(--b2);color:var(--ink)}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
 .stat{background:var(--card);border-radius:18px;padding:14px;text-align:center}
-.stat .lbl{font-size:17px;color:var(--mute)}
-.stat .v{font-size:30px;font-weight:800;margin-top:2px}
-.hist{background:var(--card);border-radius:18px;padding:14px 16px}
-.hist h2{font-size:19px;font-weight:600;text-align:center;color:var(--mute);margin-bottom:6px}
+.stat .lbl{font-size:17px;color:var(--mute)}.stat .v{font-size:30px;font-weight:800}
+.card{background:var(--card);border-radius:18px;padding:14px 16px;margin-bottom:12px}
+.card h2{font-size:19px;font-weight:600;text-align:center;color:var(--mute);margin-bottom:6px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:120px;padding-top:8px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:12px;color:var(--mute)}
+.bar i{display:block;width:100%;background:var(--gold);border-radius:6px 6px 0 0;min-height:3px}
+.bar b{font-size:11px;color:var(--ink)}
 .day{display:flex;justify-content:space-between;font-weight:800;font-size:19px;color:#9cc8ff;border-bottom:1px solid var(--line);padding:12px 0 6px}
 .row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #2a2d68;font-size:19px}
-.row .a{font-weight:800;flex:1}
-.row .t{color:var(--mute);font-size:16px}
-.row button{background:#2d3170;border:0;color:var(--mute);border-radius:10px;width:38px;height:38px;font-size:18px}
+.row .a{font-weight:800;flex:1}.row .t{color:var(--mute);font-size:16px}
+.row button,.bl button{background:var(--b2);border:0;color:var(--mute);border-radius:10px;width:38px;height:38px;font-size:18px}
 .empty{text-align:center;color:var(--mute);padding:18px 0;font-size:18px}
 #gate{position:fixed;inset:0;background:var(--bg);z-index:9;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:18px;padding:24px;text-align:center}
-#gate h2{font-size:30px;font-weight:800}
-#gate p{font-size:20px;color:var(--mute);max-width:340px;line-height:1.5}
-#gate button{background:var(--gold);color:#241a00;border:0;border-radius:20px;height:70px;width:100%;max-width:340px;font-size:26px;font-weight:800;font-family:inherit}
+#gate h2{font-size:30px;font-weight:800}#gate p{font-size:20px;color:var(--mute);max-width:340px;line-height:1.5}
+#gate button{background:var(--gold);color:#241a00;border:0;border-radius:20px;height:70px;width:100%;max-width:340px;font-size:26px;font-weight:800}
 #gate .skip{background:none;color:var(--mute);height:44px;font-size:17px;font-weight:600}
 button:focus-visible{outline:3px solid #fff;outline-offset:2px}
-@media(prefers-reduced-motion:reduce){.last.pulse{animation:none}}
-
 .pg{display:none;padding-bottom:110px}.pg.on{display:block}
 nav{position:fixed;left:0;right:0;bottom:0;background:#0f1130;border-top:1px solid var(--line);display:flex;gap:6px;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
-nav button{flex:1;background:none;border:0;color:var(--mute);font-size:15px;font-weight:600;font-family:inherit;padding:6px 0;border-radius:12px}
-nav button span{display:block;font-size:24px}
-nav button.on{color:var(--gold);background:var(--card)}
+nav button{flex:1;background:none;border:0;color:var(--mute);font-size:15px;font-weight:600;padding:6px 0;border-radius:12px}
+nav button span{display:block;font-size:24px}nav button.on{color:var(--gold);background:var(--card)}
 .disp{background:var(--card);border-radius:18px;padding:16px;text-align:right;margin-bottom:12px}
-.disp .ex{font-size:20px;color:var(--mute);min-height:28px;word-break:break-all}
-.disp .rs{font-size:46px;font-weight:800;color:var(--gold)}
+.disp .ex{font-size:20px;color:var(--mute);min-height:28px;word-break:break-all}.disp .rs{font-size:46px;font-weight:800;color:var(--gold)}
 .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.keys button{height:68px;border-radius:18px;border:0;background:var(--card);color:var(--ink);font-size:26px;font-weight:700;font-family:inherit}
-.keys .op{background:#2d3170;color:var(--gold)}
-.keys .eq{background:var(--gold);color:#241a00}
-.keys .cl{color:var(--red)}
+.keys button{height:68px;border-radius:18px;border:0;background:var(--card);color:var(--ink);font-size:26px;font-weight:700}
+.keys .op{background:var(--b2);color:var(--gold)}.keys .eq{background:var(--gold);color:#241a00}.keys .cl{color:var(--red)}
 .field{width:100%;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;height:50px;padding:0 12px;font-size:18px;font-weight:600;font-family:inherit}
-.add{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
-.add .wide{grid-column:1/3}
+.add{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.add .wide{grid-column:1/3}
 .bl{display:flex;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #2a2d68;font-size:19px}
 .bl .n{flex:1}.bl .s{display:block;color:var(--mute);font-size:15px}
-.bl button{background:#2d3170;border:0;color:var(--mute);border-radius:10px;width:38px;height:38px;font-size:18px}
 .tot{display:flex;justify-content:space-between;align-items:center;font-size:20px;padding:8px 0}
 .tot.big{font-size:30px;font-weight:800;color:var(--gold)}
-@media print{nav,#p-pay,#p-calc,.noprint,#gate,.loom{display:none!important}#p-bill{display:block!important}html,body{background:#fff!important}#p-bill *{color:#000!important;background:transparent!important;border-color:#999!important}.field{border:0!important;padding:0!important}#bl button{display:none}}
-
+@media print{nav,#p-pay,#p-calc,#p-tr,.noprint,#gate,.loom{display:none!important}#p-bill{display:block!important}html,body{background:#fff!important}#p-bill *{color:#000!important;background:transparent!important;border-color:#999!important}.field{border:0!important;padding:0!important}}
 .mics{display:grid;gap:12px;margin-bottom:10px}
-.mic{border:0;border-radius:22px;min-height:104px;font-family:inherit;font-size:28px;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff}
+.mic{border:0;border-radius:22px;min-height:104px;font-size:28px;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#fff}
 .mic span{font-size:34px}.mic small{font-size:16px;font-weight:600;opacity:.9}
 .mic.hi{background:#d6452a}.mic.ta{background:#0f8f8c}
-.mic.live{outline:4px solid #fff;outline-offset:3px}
-.trst{text-align:center;color:var(--mute);font-size:18px;min-height:26px;margin:4px 0 8px}
+.mic.live{outline:4px solid #fff;outline-offset:3px;animation:bl 1.2s infinite}
+@keyframes bl{50%{filter:brightness(1.3)}}
+.trst{text-align:center;color:var(--mute);font-size:18px;min-height:26px;margin:4px 0}
+.trlive{text-align:center;font-size:24px;font-weight:600;min-height:34px;color:#fff;margin-bottom:6px}
+.opt{display:flex;justify-content:center;gap:10px;margin:6px 0 10px}
+.opt button{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;height:44px;padding:0 14px;font-size:16px;font-weight:600}
+.opt button.on{border-color:var(--gold);color:var(--gold)}
 .bub{background:var(--card);border-radius:18px;padding:12px 14px;margin:10px 0;border-left:6px solid var(--gold)}
 .bub.tohi{border-left-color:#17bebb}
-.bub .src{color:var(--mute);font-size:17px}
-.bub .out{font-size:32px;font-weight:800;line-height:1.3;margin:4px 0}
-.bub button{background:#2d3170;border:0;color:var(--ink);border-radius:12px;height:44px;padding:0 16px;font-size:17px;font-family:inherit;font-weight:600}
-.phr{display:grid;gap:8px;margin-top:8px}
-.phr button{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:14px;padding:10px 12px;text-align:left;font-family:inherit;font-size:19px;font-weight:600}
+.bub .src{color:var(--mute);font-size:17px}.bub .out{font-size:32px;font-weight:800;line-height:1.3;margin:4px 0}
+.bub:first-child .out{font-size:38px}
+.bub button{background:var(--b2);border:0;color:var(--ink);border-radius:12px;height:44px;padding:0 16px;font-size:17px;font-weight:600;margin-right:6px}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px}
+.cats button{flex:none;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:20px;height:40px;padding:0 14px;font-size:16px;font-weight:600}
+.cats button.on{background:var(--gold);color:#241a00}
+.phr{display:grid;gap:8px;margin-top:4px}
+.phr button{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:14px;padding:10px 12px;text-align:left;font-size:19px;font-weight:600}
 .phr small{display:block;color:var(--gold);font-size:18px;margin-top:2px}
 .sec{font-size:18px;color:var(--mute);text-align:center;margin:18px 0 4px}
-@media print{#p-tr{display:none!important}}
-</style>
-</head>
-<body>
+.verd{border-radius:22px;padding:22px 16px;text-align:center;background:var(--card);border:2px solid var(--line);margin-bottom:12px}
+.verd .ic{font-size:64px}.verd .tt{font-size:30px;font-weight:800;margin:4px 0}.verd .sb{font-size:20px;color:var(--mute)}
+.verd.ok{background:#1d6b4a;border-color:var(--ok)}.verd.no{background:#8a2b1c;border-color:var(--red)}.verd.wt{background:#6b5311;border-color:var(--gold)}
+.verd.ok .sb,.verd.no .sb,.verd.wt .sb{color:#fff}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.pick label{display:flex;align-items:center;justify-content:center;background:var(--gold);color:#241a00;border-radius:16px;height:64px;font-size:19px;font-weight:800;text-align:center;line-height:1.1}
+.pick label.g{background:var(--b2);color:var(--ink)}.pick input{display:none}
+.pend{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #2a2d68;font-size:20px}
+.pend b{flex:1}.pend span{color:var(--mute);font-size:15px}
+.pend button{background:var(--b2);border:0;color:var(--mute);border-radius:10px;width:38px;height:38px;font-size:18px}
+[hidden]{display:none!important}
+.verd.or{background:#7a4310;border-color:#ff9a3d}.verd.wn{background:#6d1d4d;border-color:#ff4fa3}
+.verd .src{margin-top:8px;font-size:15px;font-weight:600;background:#0004;border-radius:10px;padding:6px 10px;color:#fff}
+.verd .ln{text-align:left;margin-top:10px;font-size:17px;line-height:1.55;color:#fff}
+.card h2 em{font-size:13px;font-style:normal;background:#ff9a3d33;color:#ffb627;border-radius:8px;padding:2px 8px;margin-left:6px}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #2a2d68;font-size:17px}.kv span{color:var(--mute)}.kv b{text-align:right;word-break:break-all}
+.hr{padding:10px 0;border-bottom:1px solid #2a2d68;font-size:17px}.hr .h1{display:flex;justify-content:space-between;font-weight:800}.hr small{display:block;color:var(--mute);font-size:14px}
+.bd{border-radius:8px;padding:1px 8px;font-size:13px;font-weight:800;color:#fff}.bd.ok{background:#1d8a5c}.bd.no{background:#c0392b}.bd.or{background:#d9822b}.bd.wn{background:#b02a76}
+.sheetbg{position:fixed;inset:0;background:#000b;z-index:20;display:flex;align-items:flex-end}
+.sheet{background:var(--bg);width:100%;max-width:520px;margin:0 auto;border-radius:24px 24px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:92vh;overflow:auto;border:1px solid var(--line)}
+.sheet h2{font-size:24px;font-weight:800}.sheet p{color:var(--mute);font-size:16px;margin:4px 0 8px}
+.pi{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #2a2d68;font-size:19px;font-weight:600}.pi>span{font-size:28px}
+.pi .t{flex:1}.pi small{display:block;color:var(--mute);font-size:14px;font-weight:400}
+.pi button{background:var(--gold);color:#241a00;border:0;border-radius:12px;height:42px;padding:0 16px;font-size:16px;font-weight:800}
+.pi .okk{color:var(--ok);font-weight:800;font-size:16px}
+</style></head><body>
 <div class="loom"></div>
-
-<div id="gate">
-  <h2>GK Textiles</h2>
-  <p>பணம் வந்ததும் குரலில் சொல்ல அனுமதி தரவும்.<br><span style="font-size:17px">Allow voice announcements for new payments.</span></p>
-  <button id="go">தொடங்கு / Start</button>
-  <button class="skip" id="skip">ஒலி இல்லாமல் / Without sound</button>
-</div>
+<div id="gate"><h2>GK Textiles</h2>
+<p>பணம் வந்ததும் குரலில் சொல்ல அனுமதி தரவும்.<br><span style="font-size:17px">Allow voice announcements for new payments.</span></p>
+<button id="go">தொடங்கு / Start</button><button class="skip" id="skip">ஒலி இல்லாமல் / Without sound</button></div>
 
 <main id="p-pay" class="pg on">
-  <header>
-    <h1>GK Textiles</h1>
-    <div class="tools">
-      <button id="snd" aria-label="Sound">🔊</button>
-      <button id="lng" aria-label="Language">த</button>
-    </div>
-  </header>
-  <div class="live"><span class="dot" id="dot"></span><span id="livetxt">Live</span></div>
-
-  <section class="last" id="last">
-    <div class="lbl">கடைசி பணம் / Last payment</div>
-    <div class="amt" id="amt">—</div>
-    <div class="ago" id="ago"></div>
-    <div class="at" id="at"></div>
-  </section>
-  <button class="say" id="say">🔊 மீண்டும் சொல் / Repeat</button>
-
-  <div class="stats">
-    <div class="stat"><div class="lbl">இன்று / Today</div><div class="v" id="today">₹0</div></div>
-    <div class="stat"><div class="lbl">இந்த மாதம் / Month</div><div class="v" id="month">₹0</div></div>
-  </div>
-
-  <section class="hist">
-    <h2>கடந்த 7 நாட்கள் / History</h2>
-    <div id="hist"></div>
-  </section>
+<header><h1>GK Textiles</h1><div class="tools"><button id="perm" aria-label="Permissions">🔐</button><button id="inst" style="display:none">📲</button><button id="snd">🔊</button><button id="lng">த</button></div></header>
+<div class="live"><span class="dot" id="dot"></span><span id="livetxt">Live</span></div>
+<section class="last" id="last"><div class="lbl">கடைசி பணம் / Last payment</div><div class="amt" id="amt">—</div><div class="ago" id="ago"></div><div class="at" id="at"></div></section>
+<button class="say" id="say">🔊 மீண்டும் சொல் / Repeat</button>
+<div class="stats"><div class="stat"><div class="lbl">இன்று / Today</div><div class="v" id="today">₹0</div></div>
+<div class="stat"><div class="lbl">இந்த மாதம் / Month</div><div class="v" id="month">₹0</div></div></div>
+<section class="card"><h2>7 நாள் வரைபடம் / 7-day chart</h2><div class="bars" id="bars"></div></section>
+<section class="card"><h2>கடந்த 7 நாட்கள் / History</h2><div id="hist"></div>
+<button class="say alt" id="csv">⬇ CSV</button></section>
 </main>
 
-<main id="p-calc" class="pg">
-  <header><h1>கணக்கு / Calculator</h1></header>
-  <div class="disp"><div class="ex" id="cex"></div><div class="rs" id="crs">0</div></div>
-  <div class="keys" id="keys"></div>
-</main>
+<main id="p-calc" class="pg"><header><h1>கணக்கு / Calculator</h1></header>
+<div class="disp"><div class="ex" id="cex"></div><div class="rs" id="crs">0</div></div><div class="keys" id="keys"></div></main>
 
-<main id="p-bill" class="pg">
-  <header><h1>பில் / Bill</h1><div class="tools noprint"><button id="bclr" aria-label="Clear bill">🗑</button></div></header>
-  <input class="field" id="bcust" placeholder="வாடிக்கையாளர் / Customer name">
-  <div class="add noprint">
-    <input class="field wide" id="bn" placeholder="பொருள் / Item">
-    <input class="field" id="bq" type="number" inputmode="decimal" placeholder="அளவு / Qty (m)">
-    <input class="field" id="bp" type="number" inputmode="decimal" placeholder="விலை / Rate ₹">
-    <button class="say wide" id="badd" style="margin:0">+ சேர் / Add</button>
-  </div>
-  <div id="bl"></div>
-  <div class="tot"><span>மொத்தம் / Subtotal</span><b id="bsub">₹0</b></div>
-  <div class="tot"><span>தள்ளுபடி / Discount ₹</span><input class="field" id="bdisc" type="number" inputmode="decimal" style="width:120px;text-align:right" placeholder="0"></div>
-  <div class="tot big"><span>மொத்த தொகை / Total</span><b id="btot">₹0</b></div>
-  <div class="add noprint">
-    <button class="say" id="bwa" style="margin:0">WhatsApp</button>
-    <button class="say" id="bpr" style="margin:0;background:#2d3170;color:var(--ink)">🖨 Print</button>
-  </div>
-</main>
+<main id="p-bill" class="pg"><header><h1>பில் / Bill</h1><div class="tools noprint"><button id="bclr">🗑</button></div></header>
+<input class="field" id="bcust" placeholder="வாடிக்கையாளர் / Customer name" style="margin-bottom:8px"><input class="field" id="bph" type="tel" inputmode="numeric" placeholder="📱 மொபைல் எண் / Mobile (WhatsApp)">
+<div class="add noprint"><input class="field wide" id="bn" placeholder="பொருள் / Item">
+<input class="field" id="bq" type="number" inputmode="decimal" placeholder="அளவு / Qty (m)">
+<input class="field" id="bp" type="number" inputmode="decimal" placeholder="விலை / Rate ₹">
+<button class="say wide" id="badd" style="margin:0">+ சேர் / Add</button></div>
+<div id="bl"></div>
+<div class="tot"><span>மொத்தம் / Subtotal</span><b id="bsub">₹0</b></div>
+<div class="tot"><span>தள்ளுபடி / Discount ₹</span><input class="field" id="bdisc" type="number" inputmode="decimal" style="width:120px;text-align:right" placeholder="0"></div>
+<div class="tot"><span>GST %</span><input class="field" id="bgst" type="number" inputmode="decimal" style="width:120px;text-align:right" placeholder="0"></div>
+<div class="tot big"><span>மொத்த தொகை / Total</span><b id="btot">₹0</b></div>
+<div class="add noprint"><button class="say" id="bwa" style="margin:0">WhatsApp</button><button class="say alt" id="bpr" style="margin:0">🖨 Print</button></div></main>
 
-<main id="p-tr" class="pg">
-  <header><h1>மொழி / भाषा</h1></header>
-  <div class="mics">
-    <button class="mic hi" id="mhi"><span>🎤</span>हिंदी बोलें<small>ஹிந்தி → தமிழ்</small></button>
-    <button class="mic ta" id="mta"><span>🎤</span>தமிழ் பேசுங்கள்<small>தமிழ் → हिंदी</small></button>
-  </div>
-  <div class="trst" id="trst">மைக் அழுத்தி பேசுங்கள்</div>
-  <div class="add">
-    <input class="field wide" id="trin" placeholder="Type / டைப் செய்யவும் / टाइप करें">
-    <button class="say" id="trt" style="margin:0;height:50px;font-size:17px">→ தமிழ்</button>
-    <button class="say" id="trh" style="margin:0;height:50px;font-size:17px">→ हिंदी</button>
-  </div>
-  <div id="trlog"></div>
-  <div class="sec">விரைவு வாக்கியங்கள் / तुरंत वाक्य</div>
-  <div class="phr" id="phr"></div>
-</main>
+<main id="p-tr" class="pg"><header><h1>மொழி / भाषा</h1></header>
+<div class="mics">
+<button class="mic hi" id="mhi"><span>🎤</span>हिंदी बोलें<small>ஹிந்தி → தமிழ் (நேரடி / live)</small></button>
+<button class="mic ta" id="mta"><span>🎤</span>தமிழ் பேசுங்கள்<small>தமிழ் → हिंदी (live)</small></button></div>
+<div class="trlive" id="trlive"></div><div class="trst" id="trst">மைக் அழுத்தி பேசுங்கள்</div>
+<div class="opt"><button id="spk" class="on">🔊 குரல் / Voice</button><button id="stp">⏹ Stop</button></div>
+<div class="add"><input class="field wide" id="trin" placeholder="Type / டைப் செய்யவும் / टाइप करें">
+<button class="say" id="trt" style="margin:0;height:50px;font-size:17px">हिंदी → தமிழ்</button>
+<button class="say" id="trh" style="margin:0;height:50px;font-size:17px">தமிழ் → हिंदी</button></div>
+<div id="trlog"></div>
+<div class="sec">விரைவு வாக்கியங்கள் / तुरंत वाक्य (→ हिंदी)</div>
+<div class="cats" id="cats"></div><div class="phr" id="phr"></div></main>
 
-<nav>
-  <button class="on" data-p="p-pay"><span>💰</span>பணம்</button>
-  <button data-p="p-calc"><span>🧮</span>கணக்கு</button>
-  <button data-p="p-bill"><span>🧾</span>பில்</button>
-  <button data-p="p-tr"><span>🗣</span>மொழி</button>
-</nav>
+<main id="p-ck" class="pg"><header><h1>பணம் சரிபார் / Verify</h1><div class="tools"><button id="ckset">⚙</button></div></header>
+<button class="say" id="scanbtn" style="height:72px;font-size:24px;margin:0 0 10px">📷 Scan Payment</button>
+<div class="pick" id="pick" hidden><label>📷 Camera<input type="file" id="fcam" accept="image/*" capture="environment"></label><label class="g">🖼 Upload screenshot<input type="file" id="fgal" accept="image/*"></label></div>
+<div class="trst" id="ckst"></div>
+<div class="verd" id="verd"><div class="ic">🔍</div><div class="tt">Scan customer's payment screen</div><div class="sb">Screenshot is never proof. Money counts only when your bank/provider confirms it.</div></div>
+<section class="card" id="det" hidden></section>
+<div class="add"><input class="field" id="ckamt" type="number" inputmode="decimal" placeholder="Claimed amount ₹"><button class="say alt" id="ckgo" style="margin:0;height:50px;font-size:17px">↻ Check again</button></div>
+<section class="card" id="cfg" hidden><h2>⚙ Settings</h2>
+<input class="field" id="s_rn" placeholder="Your receiver name (Eg: GK Textiles)" style="margin-bottom:8px">
+<input class="field" id="s_rid" placeholder="Your UPI ID (Eg: gk@oksbi)" style="margin-bottom:8px">
+<select class="field" id="ckwin"><option value="15">Match credits within 15 min</option><option value="30" selected>30 min</option><option value="60">60 min</option></select></section>
+<section class="card"><h2>காத்திருக்கும் / Waiting for credit</h2><div id="pend"></div></section>
+<section class="card"><h2>History / வரலாறு</h2><input class="field" id="hq" placeholder="🔎 Search amount, ID, result…" style="margin-bottom:8px"><div id="hl"></div>
+<div class="add"><button class="say alt" id="hcsv" style="margin:0;height:46px;font-size:16px">⬇ CSV</button><button class="say alt" id="hclr" style="margin:0;height:46px;font-size:16px">🗑 Clear</button></div></section></main>
+<div class="sheetbg" id="perms" hidden><div class="sheet"><h2>🔐 அனுமதிகள் / Permissions</h2>
+<p>ஒவ்வொன்றுக்கும் "Allow" தட்டவும். / Tap Allow for each.</p><div id="plist"></div>
+<p style="margin-top:10px">App மூடியிருந்தாலும் notification வர, உங்கள் server விவரம்:</p>
+<input class="field" id="s_api" placeholder="Server URL (https://…)" style="margin-bottom:8px">
+<input class="field" id="s_tok" type="password" placeholder="Server token" style="margin-bottom:6px">
+<div class="empty" id="pmsg" style="font-size:15px;padding:6px 0"></div>
+<button class="say" id="pall" style="margin-top:4px">✔ எல்லாம் அனுமதி / Allow all</button>
+<button class="say alt" id="pclose">பிறகு / Later</button></div></div>
+<nav><button class="on" data-p="p-pay"><span>💰</span>பணம்</button><button data-p="p-calc"><span>🧮</span>கணக்கு</button><button data-p="p-bill"><span>🧾</span>பில்</button><button data-p="p-tr"><span>🗣</span>மொழி</button><button data-p="p-ck"><span>📷</span>ஸ்கேன்</button></nav>
 
 <script>
-const DB='https://gkshop-613b0-default-rtdb.firebaseio.com/shop_x7k29q';
-const POLL=4000;
+const DB='https://gkshop-613b0-default-rtdb.firebaseio.com/shop_x7k29q',POLL=4000;
 const CH='-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
-const $=id=>document.getElementById(id);
-const rs=n=>'₹'+n.toLocaleString('en-IN');
-
-// Firebase push keys start with a timestamp, so no extra field is needed.
+const $=id=>document.getElementById(id),rs=n=>'₹'+n.toLocaleString('en-IN');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const keyTime=k=>{let t=0;for(let i=0;i<8;i++)t=t*64+CH.indexOf(k[i]);return t};
-function parseAmt(m){
-  m=String(m||'');
-  const r=/(?:rs\.?|inr|₹)\s*([\d,]+(?:\.\d{1,2})?)/i.exec(m)||/([\d,]+(?:\.\d{1,2})?)\s*(?:rs|rupees)/i.exec(m);
-  return r?parseFloat(r[1].replace(/,/g,'')):null;
-}
-
-let items=[],known=null,soundOn=false,lang=localStorage.getItem('gk_lang')||'ta',ac=null,wl=null;
-
+function parseAmt(m){m=String(m||'');const r=/(?:rs\.?|inr|₹)\s*([\d,]+(?:\.\d{1,2})?)/i.exec(m)||/([\d,]+(?:\.\d{1,2})?)\s*(?:rs|rupees)/i.exec(m);return r?parseFloat(r[1].replace(/,/g,'')):null}
+const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+let items=[],known=null,soundOn=false,lang=ls.get('gk_lang')||'ta',ac=null,wl=null;
 const fmtTime=t=>new Date(t).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true});
 const dayKey=t=>{const d=new Date(t);return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()};
-function dayLabel(t){
-  const now=Date.now();
-  if(dayKey(t)===dayKey(now))return 'இன்று / Today';
-  if(dayKey(t)===dayKey(now-864e5))return 'நேற்று / Yesterday';
-  return new Date(t).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
-}
-function ago(t,l){
-  const m=Math.max(0,Math.floor((Date.now()-t)/6e4));
-  if(l==='ta'){
-    if(m<1)return 'இப்போது';
-    if(m<60)return m+' நிமிடத்திற்கு முன்';
-    if(m<1440)return Math.floor(m/60)+' மணி நேரத்திற்கு முன்';
-    return Math.floor(m/1440)+' நாட்களுக்கு முன்';
-  }
-  if(m<1)return 'just now';
-  if(m<60)return m+(m===1?' minute ago':' minutes ago');
-  if(m<1440){const h=Math.floor(m/60);return h+(h===1?' hour ago':' hours ago')}
-  const d=Math.floor(m/1440);return d+(d===1?' day ago':' days ago');
-}
+function dayLabel(t){const n=Date.now();if(dayKey(t)===dayKey(n))return 'இன்று / Today';if(dayKey(t)===dayKey(n-864e5))return 'நேற்று / Yesterday';return new Date(t).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}
+function ago(t,l){const m=Math.max(0,Math.floor((Date.now()-t)/6e4));
+if(l==='ta'){if(m<1)return 'இப்போது';if(m<60)return m+' நிமிடத்திற்கு முன்';if(m<1440)return Math.floor(m/60)+' மணி நேரத்திற்கு முன்';return Math.floor(m/1440)+' நாட்களுக்கு முன்'}
+if(m<1)return 'just now';if(m<60)return m+(m===1?' minute ago':' minutes ago');if(m<1440){const h=Math.floor(m/60);return h+(h===1?' hour ago':' hours ago')}const d=Math.floor(m/1440);return d+(d===1?' day ago':' days ago')}
 
 function render(){
-  const paid=items.filter(i=>i.a!=null);
-  const last=paid[paid.length-1];
-  if(last){
-    $('amt').textContent=rs(last.a);
-    $('ago').textContent=ago(last.t,lang);
-    $('at').textContent=dayLabel(last.t)+', '+fmtTime(last.t);
-  }else{
-    $('amt').textContent='—';$('ago').textContent='பணம் எதுவும் இல்லை / No payments yet';$('at').textContent='';
-  }
-  const now=new Date(),td=dayKey(now),mo=now.getFullYear()+'-'+now.getMonth();
-  let today=0,month=0;
-  paid.forEach(i=>{const d=new Date(i.t);if(dayKey(i.t)===td)today+=i.a;if(d.getFullYear()+'-'+d.getMonth()===mo)month+=i.a});
-  $('today').textContent=rs(today);$('month').textContent=rs(month);
+const paid=items.filter(i=>i.a!=null),last=paid[paid.length-1];
+if(last){$('amt').textContent=rs(last.a);$('ago').textContent=ago(last.t,lang);$('at').textContent=dayLabel(last.t)+', '+fmtTime(last.t)}
+else{$('amt').textContent='—';$('ago').textContent='பணம் எதுவும் இல்லை / No payments yet';$('at').textContent=''}
+const now=new Date(),td=dayKey(now),mo=now.getFullYear()+'-'+now.getMonth();let today=0,month=0;
+paid.forEach(i=>{const d=new Date(i.t);if(dayKey(i.t)===td)today+=i.a;if(d.getFullYear()+'-'+d.getMonth()===mo)month+=i.a});
+$('today').textContent=rs(today);if(window.renderPend)renderPend();$('month').textContent=rs(month);
+const days=[];for(let k=6;k>=0;k--){const t=Date.now()-k*864e5;days.push({t,s:paid.filter(i=>dayKey(i.t)===dayKey(t)).reduce((s,i)=>s+i.a,0)})}
+const mx=Math.max(1,...days.map(d=>d.s));
+$('bars').innerHTML=days.map(d=>'<div class="bar"><b>'+(d.s?Math.round(d.s/100)/10+'k':'')+'</b><i style="height:'+Math.round(d.s/mx*80)+'%"></i>'+new Date(d.t).toLocaleDateString('en-IN',{weekday:'short'})+'</div>').join('');
+const cutoff=Date.now()-7*864e5,groups={};
+items.filter(i=>i.t>=cutoff).slice().reverse().forEach(i=>{(groups[dayKey(i.t)]=groups[dayKey(i.t)]||[]).push(i)});
+const keys=Object.keys(groups);
+$('hist').innerHTML=keys.length?keys.map(k=>{const g=groups[k],sum=g.reduce((s,i)=>s+(i.a||0),0);
+return '<div class="day"><span>'+dayLabel(g[0].t)+'</span><span>'+rs(sum)+'</span></div>'+g.map(i=>'<div class="row"><span class="a">'+(i.a!=null?rs(i.a):'?')+'</span><span class="t">'+fmtTime(i.t)+'</span><button data-k="'+i.k+'" aria-label="Delete">✕</button></div>').join('')}).join(''):'<div class="empty">இன்னும் பணம் வரவில்லை / Nothing yet</div>';
+}
+$('csv').onclick=()=>{const rows=['Date,Time,Amount'].concat(items.filter(i=>i.a!=null).map(i=>new Date(i.t).toLocaleDateString('en-IN')+','+fmtTime(i.t)+','+i.a));
+const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'}));a.download='gk-payments.csv';a.click()};
 
-  const cutoff=Date.now()-7*864e5,groups={};
-  items.filter(i=>i.t>=cutoff).slice().reverse().forEach(i=>{(groups[dayKey(i.t)]=groups[dayKey(i.t)]||[]).push(i)});
-  const keys=Object.keys(groups);
-  $('hist').innerHTML=keys.length?keys.map(k=>{
-    const g=groups[k],sum=g.reduce((s,i)=>s+(i.a||0),0);
-    return '<div class="day"><span>'+dayLabel(g[0].t)+'</span><span>'+rs(sum)+'</span></div>'+
-      g.map(i=>'<div class="row"><span class="a">'+(i.a!=null?rs(i.a):'?')+'</span><span class="t">'+fmtTime(i.t)+
-      '</span><button data-k="'+i.k+'" aria-label="Delete">✕</button></div>').join('');
-  }).join(''):'<div class="empty">இன்னும் பணம் வரவில்லை / Nothing yet</div>';
-}
-
-/* ---------- sound ---------- */
-function chime(){
-  if(!ac)return;
-  [660,880,1100].forEach((f,i)=>{
-    const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime+i*.18;
-    o.frequency.value=f;o.type='sine';o.connect(g);g.connect(ac.destination);
-    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.5,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+.4);
-    o.start(t);o.stop(t+.45);
-  });
-}
-function speak(ta,en){
-  if(!soundOn||!('speechSynthesis' in window))return;
-  speechSynthesis.cancel();
-  const voices=speechSynthesis.getVoices();
-  const taV=voices.find(v=>v.lang.toLowerCase().replace('_','-').startsWith('ta'));
-  const enV=voices.find(v=>v.lang.toLowerCase().replace('_','-')==='en-in')||voices.find(v=>v.lang.toLowerCase().startsWith('en'));
-  let text,voice,l;
-  if(lang==='ta'&&taV){text=ta;voice=taV;l='ta-IN'}else{text=en;voice=enV;l='en-IN'}
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang=l;if(voice)u.voice=voice;u.rate=.9;u.volume=1;
-  speechSynthesis.speak(u);
-}
+/* sound */
+function chime(){if(!ac)return;[660,880,1100].forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime+i*.18;o.frequency.value=f;o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.5,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+.4);o.start(t);o.stop(t+.45)})}
+const vfind=l=>speechSynthesis.getVoices().find(v=>v.lang.toLowerCase().replace('_','-').startsWith(l));
+function speak(ta,en){if(!soundOn||!('speechSynthesis' in window))return;speechSynthesis.cancel();
+const taV=vfind('ta'),enV=speechSynthesis.getVoices().find(v=>v.lang.toLowerCase().replace('_','-')==='en-in')||vfind('en');
+let text,voice,l;if(lang==='ta'&&taV){text=ta;voice=taV;l='ta-IN'}else{text=en;voice=enV;l='en-IN'}
+const u=new SpeechSynthesisUtterance(text);u.lang=l;if(voice)u.voice=voice;u.rate=.9;speechSynthesis.speak(u)}
 const spoken=a=>Number.isInteger(a)?String(a):a.toFixed(2);
-function announceLast(){
-  const paid=items.filter(i=>i.a!=null),last=paid[paid.length-1];
-  if(!last){speak('இன்னும் பணம் வரவில்லை','No payments yet');return}
-  speak('கடைசியாக '+spoken(last.a)+' ரூபாய் வந்தது, '+ago(last.t,'ta')+'.',
-        'Last payment, '+spoken(last.a)+' rupees, '+ago(last.t,'en')+'.');
-}
-function announceNew(a){
-  chime();
-  setTimeout(()=>speak('புதிய பணம், '+spoken(a)+' ரூபாய் வந்தது.','New payment. '+spoken(a)+' rupees received.'),700);
-}
-async function keepAwake(){
-  try{if('wakeLock' in navigator)wl=await navigator.wakeLock.request('screen')}catch(e){}
-}
-function refreshTools(){
-  $('snd').textContent=soundOn?'🔊':'🔇';
-  $('lng').textContent=lang==='ta'?'த':'EN';
-}
-async function enable(){
-  soundOn=true;
-  try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();await ac.resume()}catch(e){}
-  $('gate').style.display='none';
-  keepAwake();refreshTools();
-  speechSynthesis.getVoices();
-  setTimeout(()=>{chime();setTimeout(announceLast,600)},100);
-}
-$('go').onclick=enable;
-$('skip').onclick=()=>{$('gate').style.display='none';refreshTools()};
-$('say').onclick=async()=>{
-  if(!soundOn){soundOn=true;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();await ac.resume()}catch(e){}refreshTools();keepAwake()}
-  announceLast();
-};
+function announceLast(){const p=items.filter(i=>i.a!=null),l=p[p.length-1];if(!l){speak('இன்னும் பணம் வரவில்லை','No payments yet');return}
+speak('கடைசியாக '+spoken(l.a)+' ரூபாய் வந்தது, '+ago(l.t,'ta')+'.','Last payment, '+spoken(l.a)+' rupees, '+ago(l.t,'en')+'.')}
+function announceNew(a,cf){chime();setTimeout(()=>speak('புதிய பணம், '+spoken(a)+' ரூபாய் வந்தது.'+(cf?' காத்திருந்த பணம் உறுதியானது.':''),'New payment. '+spoken(a)+' rupees received.'+(cf?' Waiting payment confirmed.':'')),700)}
+async function keepAwake(){try{if('wakeLock' in navigator)wl=await navigator.wakeLock.request('screen')}catch(e){}}
+function refreshTools(){$('snd').textContent=soundOn?'🔊':'🔇';$('lng').textContent=lang==='ta'?'த':'EN'}
+async function initAudio(){soundOn=true;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();await ac.resume()}catch(e){}keepAwake();refreshTools();speechSynthesis.getVoices()}
+$('go').onclick=async()=>{await initAudio();$('gate').style.display='none';setTimeout(()=>{chime();setTimeout(announceLast,600)},100);if(!ls.get('gk_pseen'))setTimeout(openPerms,900)};
+$('skip').onclick=()=>{$('gate').style.display='none';refreshTools();if(!ls.get('gk_pseen'))openPerms()};
+$('say').onclick=async()=>{if(!soundOn)await initAudio();announceLast()};
 $('snd').onclick=()=>{soundOn=!soundOn;if(!soundOn)speechSynthesis.cancel();else keepAwake();refreshTools()};
-$('lng').onclick=()=>{lang=lang==='ta'?'en':'ta';localStorage.setItem('gk_lang',lang);refreshTools();render()};
+$('lng').onclick=()=>{lang=lang==='ta'?'en':'ta';ls.set('gk_lang',lang);refreshTools();render()};
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(soundOn)keepAwake();load()}});
+$('hist').onclick=async e=>{const b=e.target.closest('button[data-k]');if(!b||!confirm('இதை நீக்கவா? / Delete this entry?'))return;
+try{await fetch(DB+'/'+b.dataset.k+'.json',{method:'DELETE'});items=items.filter(i=>i.k!==b.dataset.k);render()}catch(err){alert('Delete failed')}};
+async function load(){try{
+const r=await fetch(DB+'.json?orderBy='+encodeURIComponent('"$key"')+'&limitToLast=300',{cache:'no-store'});if(!r.ok)throw 0;
+const data=await r.json()||{};
+items=Object.keys(data).map(k=>{const v=data[k],m=(v&&typeof v==='object')?v.msg:v;return{k,t:keyTime(k),m,a:parseAmt(m)}}).sort((x,y)=>x.t-y.t);
+$('dot').classList.remove('off');$('livetxt').textContent='Live';
+const fresh=known?items.filter(i=>!known.has(i.k)):[];known=new Set(items.map(i=>i.k));render();
+const np=fresh.filter(i=>i.a!=null);
+if(np.length){const cf=checkPending(np),tot=np.reduce((s,i)=>s+i.a,0),c=$('last');c.classList.remove('pulse');void c.offsetWidth;c.classList.add('pulse');announceNew(tot,cf);if(document.hidden)np.forEach(notifyPay);if(navigator.vibrate)navigator.vibrate([300,150,300])}
+}catch(e){$('dot').classList.add('off');$('livetxt').textContent='Offline — reconnecting…'}}
 
-/* ---------- data ---------- */
-$('hist').onclick=async e=>{
-  const b=e.target.closest('button[data-k]');
-  if(!b||!confirm('இதை நீக்கவா? / Delete this entry?'))return;
-  try{await fetch(DB+'/'+b.dataset.k+'.json',{method:'DELETE'});items=items.filter(i=>i.k!==b.dataset.k);render()}catch(err){alert('Delete failed')}
-};
+/* tabs */
+document.querySelector('nav').onclick=e=>{const b=e.target.closest('button[data-p]');if(!b)return;
+if(b.dataset.p!=='p-tr')stopLive();
+document.querySelectorAll('.pg').forEach(m=>m.classList.toggle('on',m.id===b.dataset.p));
+document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));scrollTo(0,0)};
 
-async function load(){
-  try{
-    const url=DB+'.json?orderBy='+encodeURIComponent('"$key"')+'&limitToLast=300';
-    const r=await fetch(url,{cache:'no-store'});
-    if(!r.ok)throw 0;
-    const data=await r.json()||{};
-    items=Object.keys(data).map(k=>{
-      const v=data[k],m=(v&&typeof v==='object')?v.msg:v;
-      return {k,t:keyTime(k),m,a:parseAmt(m)};
-    }).sort((x,y)=>x.t-y.t);
-    $('dot').classList.remove('off');$('livetxt').textContent='Live';
-    const fresh=known?items.filter(i=>!known.has(i.k)):[];
-    known=new Set(items.map(i=>i.k));
-    render();
-    const newPaid=fresh.filter(i=>i.a!=null);
-    if(newPaid.length){
-      const total=newPaid.reduce((s,i)=>s+i.a,0);
-      const c=$('last');c.classList.remove('pulse');void c.offsetWidth;c.classList.add('pulse');
-      announceNew(total);
-      if(navigator.vibrate)navigator.vibrate([300,150,300]);
-    }
-  }catch(e){
-    $('dot').classList.add('off');$('livetxt').textContent='Offline — reconnecting…';
-  }
-}
-/* ---------- tabs ---------- */
-document.querySelector('nav').onclick=e=>{
-  const b=e.target.closest('button[data-p]');if(!b)return;
-  document.querySelectorAll('.pg').forEach(m=>m.classList.toggle('on',m.id===b.dataset.p));
-  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
-  window.scrollTo(0,0);
-};
-
-/* ---------- calculator ---------- */
+/* calculator */
 let ce='';
-function calc(e){
-  const x=e.replace(/[+×÷−.]+$/,'').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');
-  if(!x||!/^[\d+\-*/.() ]+$/.test(x))return null;
-  try{const v=Function('"use strict";return ('+x+')')();return isFinite(v)?Math.round(v*1e6)/1e6:null}catch(err){return null}
-}
-function cshow(){
-  $('cex').textContent=ce;
-  const v=calc(ce);$('crs').textContent=v==null?'0':v.toLocaleString('en-IN');
-}
-function press(k){
-  if(k==='C')ce='';
-  else if(k==='⌫')ce=ce.slice(0,-1);
-  else if(k==='='){const v=calc(ce);if(v!=null)ce=String(v)}
-  else{
-    if('+×÷−'.includes(k)&&/[+×÷−]$/.test(ce))ce=ce.slice(0,-1);
-    if(ce===''&&'×÷%'.includes(k))return;
-    ce+=k;
-  }
-  cshow();
-}
-[['C','⌫','%','÷'],['7','8','9','×'],['4','5','6','−'],['1','2','3','+'],['00','0','.','=']].flat().forEach(k=>{
-  const b=document.createElement('button');b.textContent=k;
-  b.className=k==='='?'eq':'÷×−+%'.includes(k)?'op':k==='C'?'cl':'';
-  b.onclick=()=>press(k);$('keys').appendChild(b);
-});
+function calc(e){const x=e.replace(/[+×÷−.]+$/,'').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');
+if(!x||!/^[\d+\-*/.() ]+$/.test(x))return null;try{const v=Function('"use strict";return ('+x+')')();return isFinite(v)?Math.round(v*1e6)/1e6:null}catch(err){return null}}
+function cshow(){$('cex').textContent=ce;const v=calc(ce);$('crs').textContent=v==null?'0':v.toLocaleString('en-IN')}
+function press(k){if(k==='C')ce='';else if(k==='⌫')ce=ce.slice(0,-1);else if(k==='='){const v=calc(ce);if(v!=null)ce=String(v)}
+else{if('+×÷−'.includes(k)&&/[+×÷−]$/.test(ce))ce=ce.slice(0,-1);if(ce===''&&'×÷%'.includes(k))return;ce+=k}cshow()}
+[['C','⌫','%','÷'],['7','8','9','×'],['4','5','6','−'],['1','2','3','+'],['00','0','.','=']].flat().forEach(k=>{const b=document.createElement('button');b.textContent=k;b.className=k==='='?'eq':'÷×−+%'.includes(k)?'op':k==='C'?'cl':'';b.onclick=()=>press(k);$('keys').appendChild(b)});
 
-/* ---------- bill ---------- */
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* bill */
 const money=n=>'₹'+(Math.round(n*100)/100).toLocaleString('en-IN');
-let bill={c:'',d:0,i:[]};
-try{bill=Object.assign(bill,JSON.parse(localStorage.getItem('gk_bill')||'{}'))}catch(e){}
-const bsave=()=>{try{localStorage.setItem('gk_bill',JSON.stringify(bill))}catch(e){}};
-function btotals(){
-  const sub=bill.i.reduce((s,x)=>s+x.q*x.p,0);
-  $('bsub').textContent=money(sub);
-  $('btot').textContent=money(Math.max(0,sub-(+bill.d||0)));
-  return sub;
-}
-function brender(){
-  $('bl').innerHTML=bill.i.length?bill.i.map((x,n)=>
-    '<div class="bl"><div class="n">'+esc(x.n)+'<span class="s">'+x.q+' × ₹'+x.p+'</span></div><b>'+money(x.q*x.p)+
-    '</b><button class="noprint" data-n="'+n+'" aria-label="Remove">✕</button></div>'
-  ).join(''):'<div class="empty">பொருள் சேர்க்கவும் / Add items</div>';
-  btotals();
-}
-$('bcust').value=bill.c;$('bdisc').value=bill.d||'';
+let bill={c:'',ph:'',d:0,g:0,i:[]};
+try{bill=Object.assign(bill,JSON.parse(ls.get('gk_bill')||'{}'))}catch(e){}
+const bsave=()=>ls.set('gk_bill',JSON.stringify(bill));
+function btotals(){const sub=bill.i.reduce((s,x)=>s+x.q*x.p,0),net=Math.max(0,sub-(+bill.d||0)),tot=net*(1+(+bill.g||0)/100);
+$('bsub').textContent=money(sub);$('btot').textContent=money(tot);return{sub,tot}}
+function brender(){$('bl').innerHTML=bill.i.length?bill.i.map((x,n)=>'<div class="bl"><div class="n">'+esc(x.n)+'<span class="s">'+x.q+' × ₹'+x.p+'</span></div><b>'+money(x.q*x.p)+'</b><button class="noprint" data-n="'+n+'">✕</button></div>').join(''):'<div class="empty">பொருள் சேர்க்கவும் / Add items</div>';btotals()}
+$('bcust').value=bill.c;$('bph').value=bill.ph||'';$('bph').oninput=e=>{bill.ph=e.target.value;bsave()};$('bdisc').value=bill.d||'';$('bgst').value=bill.g||'';
 $('bcust').oninput=e=>{bill.c=e.target.value;bsave()};
 $('bdisc').oninput=e=>{bill.d=+e.target.value||0;bsave();btotals()};
-$('badd').onclick=()=>{
-  const n=$('bn').value.trim()||'Item',q=parseFloat($('bq').value),p=parseFloat($('bp').value);
-  if(!(q>0)||!(p>=0)){alert('அளவு, விலை உள்ளிடவும் / Enter qty and rate');return}
-  bill.i.push({n,q,p});bsave();brender();
-  $('bn').value='';$('bq').value='';$('bp').value='';$('bn').focus();
-};
-$('bl').onclick=e=>{
-  const b=e.target.closest('button[data-n]');if(!b)return;
-  bill.i.splice(+b.dataset.n,1);bsave();brender();
-};
-$('bclr').onclick=()=>{
-  if(!confirm('பில்லை அழிக்கவா? / Clear this bill?'))return;
-  bill={c:'',d:0,i:[]};bsave();$('bcust').value='';$('bdisc').value='';brender();
-};
-$('bwa').onclick=()=>{
-  if(!bill.i.length)return;
-  const sub=btotals(),tot=Math.max(0,sub-(+bill.d||0));
-  let t='*GK Textiles*\n'+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
-  if(bill.c)t+='\nCustomer: '+bill.c;
-  t+='\n\n'+bill.i.map((x,n)=>(n+1)+'. '+x.n+'  '+x.q+' × ₹'+x.p+' = '+money(x.q*x.p)).join('\n');
-  t+='\n\nSubtotal: '+money(sub);
-  if(bill.d)t+='\nDiscount: -'+money(+bill.d);
-  t+='\n*Total: '+money(tot)+'*\n\nநன்றி! Thank you!';
-  window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
-};
-$('bpr').onclick=()=>window.print();
-cshow();brender();
+$('bgst').oninput=e=>{bill.g=+e.target.value||0;bsave();btotals()};
+$('badd').onclick=()=>{const n=$('bn').value.trim()||'Item',q=parseFloat($('bq').value),p=parseFloat($('bp').value);
+if(!(q>0)||!(p>=0)){alert('அளவு, விலை உள்ளிடவும் / Enter qty and rate');return}
+bill.i.push({n,q,p});bsave();brender();$('bn').value=$('bq').value=$('bp').value='';$('bn').focus()};
+$('bl').onclick=e=>{const b=e.target.closest('button[data-n]');if(!b)return;bill.i.splice(+b.dataset.n,1);bsave();brender()};
+$('bclr').onclick=()=>{if(!confirm('பில்லை அழிக்கவா? / Clear this bill?'))return;bill={c:'',ph:'',d:0,g:0,i:[]};bsave();$('bcust').value=$('bph').value=$('bdisc').value=$('bgst').value='';brender()};
+$('bwa').onclick=()=>{if(!bill.i.length)return;const{sub,tot}=btotals();
+let t='*GK Textiles*\n'+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+if(bill.c)t+='\nCustomer: '+bill.c;
+t+='\n\n'+bill.i.map((x,n)=>(n+1)+'. '+x.n+'  '+x.q+' × ₹'+x.p+' = '+money(x.q*x.p)).join('\n')+'\n\nSubtotal: '+money(sub);
+if(bill.d)t+='\nDiscount: -'+money(+bill.d);if(bill.g)t+='\nGST '+bill.g+'%';
+t+='\n*Total: '+money(tot)+'*\n\nநன்றி! Thank you!';let n=(bill.ph||'').replace(/\D/g,'').replace(/^0+/,'');
+ if(n.length===10)n='91'+n;
+ if(n&&!(n.length>=11&&n.length<=15)){alert('சரியான மொபைல் எண் உள்ளிடவும் / Enter a valid mobile number');return}
+ location.href='https://wa.me/'+(n?n:'')+'?text='+encodeURIComponent(t)};
+$('bpr').onclick=()=>print();cshow();brender();
 
-/* ---------- Hindi <-> Tamil ---------- */
-const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-const LC={hi:'hi-IN',ta:'ta-IN'};
-let rec=null,trlog=[];
-function tts(text,l){
-  if(!('speechSynthesis' in window))return;
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);u.lang=LC[l];u.rate=.85;
-  const v=speechSynthesis.getVoices().find(x=>x.lang.toLowerCase().replace('_','-').startsWith(l));
-  if(v)u.voice=v;
-  speechSynthesis.speak(u);
-}
+/* Hindi <-> Tamil live translator */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition,LC={hi:'hi-IN',ta:'ta-IN'};
+let rec=null,live=null,busy=false,autoSpeak=true,trlog=[];
+const IDLE='மைக் அழுத்தி பேசுங்கள்';
+function speakThen(text,l,cb){
+ if(!('speechSynthesis' in window)){cb&&cb();return}
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=LC[l];u.rate=.9;const v=vfind(l);if(v)u.voice=v;
+ let done=false;const fin=()=>{if(!done){done=true;clearTimeout(tm);cb&&cb()}};
+ const tm=setTimeout(fin,Math.max(3000,text.length*160));u.onend=fin;u.onerror=fin;speechSynthesis.speak(u)}
 async function translate(text,from,to){
-  try{
-    const r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl='+from+'&tl='+to+'&dt=t&q='+encodeURIComponent(text));
-    const j=await r.json(),out=j[0].map(x=>x[0]).join('');
-    if(out)return out;
-  }catch(e){}
-  try{
-    const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text)+'&langpair='+from+'|'+to);
-    const j=await r.json();return j.responseData.translatedText||null;
-  }catch(e){return null}
-}
-function trrender(){
-  $('trlog').innerHTML=trlog.map((b,i)=>
-    '<div class="bub '+(b.to==='hi'?'tohi':'')+'"><div class="src">'+esc(b.src)+'</div><div class="out">'+esc(b.out)+
-    '</div><button data-i="'+i+'">🔊 மீண்டும் / फिर से</button></div>').join('');
-}
-function addBubble(src,out,to){
-  trlog.unshift({src,out,to});trlog=trlog.slice(0,8);trrender();
-}
+ try{const r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl='+from+'&tl='+to+'&dt=t&q='+encodeURIComponent(text));const j=await r.json(),o=j[0].map(x=>x[0]).join('');if(o)return o}catch(e){}
+ try{const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text)+'&langpair='+from+'|'+to);const j=await r.json();return j.responseData.translatedText||null}catch(e){return null}}
+function trrender(){$('trlog').innerHTML=trlog.map((b,i)=>'<div class="bub '+(b.to==='hi'?'tohi':'')+'"><div class="src">'+esc(b.src)+'</div><div class="out">'+esc(b.out)+'</div><button data-i="'+i+'">🔊</button><button data-c="'+i+'">📋</button></div>').join('')}
+function addBubble(src,out,to){trlog.unshift({src,out,to});trlog=trlog.slice(0,10);trrender()}
 async function handle(text,from,to){
-  $('trst').textContent='மொழிபெயர்க்கிறது… / अनुवाद हो रहा है…';
-  const out=await translate(text,from,to);
-  if(!out){$('trst').textContent='⚠ Internet check pannunga / इंटरनेट जाँचें';return}
-  $('trst').textContent='மைக் அழுத்தி பேசுங்கள்';
-  addBubble(text,out,to);tts(out,to);
-}
-function listen(from,to,btn){
-  if(!SR){alert('இந்த browser-ல் மைக் வேலை செய்யாது. Chrome பயன்படுத்தவும் / Use Chrome');return}
-  if(rec){try{rec.stop()}catch(e){}return}
-  speechSynthesis.cancel();
-  const r=new SR();rec=r;r.lang=LC[from];r.interimResults=false;r.maxAlternatives=1;
-  btn.classList.add('live');
-  $('trst').textContent=from==='hi'?'सुन रहा हूँ… / கேட்கிறேன்…':'கேட்கிறேன்… பேசுங்கள்';
-  let got=false;
-  r.onresult=e=>{got=true;handle(e.results[0][0].transcript,from,to)};
-  r.onerror=e=>{$('trst').textContent=e.error==='not-allowed'?'⚠ Mic allow pannunga / माइक की अनुमति दें':'⚠ சரியாக கேட்கவில்லை, மீண்டும் முயற்சிக்கவும் / फिर बोलें'};
-  r.onend=()=>{btn.classList.remove('live');rec=null;if(!got&&$('trst').textContent.startsWith('கேட்'))$('trst').textContent='மைக் அழுத்தி பேசுங்கள்'};
-  try{r.start()}catch(e){rec=null;btn.classList.remove('live')}
-}
-$('mhi').onclick=()=>listen('hi','ta',$('mhi'));
-$('mta').onclick=()=>listen('ta','hi',$('mta'));
+ $('trst').textContent='மொழிபெயர்க்கிறது… / अनुवाद हो रहा है…';
+ const out=await translate(text,from,to);
+ if(!out){$('trst').textContent='⚠ இணையம் சரிபார்க்கவும் / इंटरनेट जाँचें';return}
+ $('trst').textContent=live?'கேட்கிறேன்… / सुन रहा हूँ…':IDLE;addBubble(text,out,to);
+ if(!autoSpeak)return;
+ if(live){busy=true;try{rec&&rec.stop()}catch(e){}speakThen(out,to,()=>{busy=false;startRec()})}
+ else speakThen(out,to)}
+function setBtns(){$('mhi').classList.toggle('live',!!live&&live.from==='hi');$('mta').classList.toggle('live',!!live&&live.from==='ta')}
+function stopLive(){live=null;busy=false;try{rec&&rec.stop()}catch(e){}rec=null;setBtns();$('trlive').textContent='';$('trst').textContent=IDLE}
+function startRec(){
+ if(!live||busy||rec)return;
+ const r=new SR();rec=r;r.lang=LC[live.from];r.continuous=true;r.interimResults=true;r.maxAlternatives=1;
+ r.onresult=e=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const res=e.results[i];
+  if(res.isFinal){const t=res[0].transcript.trim();if(t&&live){$('trlive').textContent='';handle(t,live.from,live.to)}}else interim+=res[0].transcript}
+  if(interim)$('trlive').textContent=interim};
+ r.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){$('trst').textContent='⚠ மைக் அனுமதி தரவும் / माइक की अनुमति दें';stopLive()}};
+ r.onend=()=>{if(rec===r)rec=null;if(live&&!busy)setTimeout(startRec,300)};
+ try{r.start();$('trst').textContent=live.from==='hi'?'सुन रहा हूँ… / கேட்கிறேன்…':'கேட்கிறேன்… பேசுங்கள்'}catch(e){rec=null}}
+function toggle(from,to){
+ if(!SR){alert('Chrome பயன்படுத்தவும் / Use Chrome');return}
+ if(live&&live.from===from){stopLive();return}
+ stopLive();speechSynthesis.cancel();live={from,to};setBtns();startRec()}
+$('mhi').onclick=()=>toggle('hi','ta');$('mta').onclick=()=>toggle('ta','hi');
+$('stp').onclick=()=>{stopLive();speechSynthesis.cancel()};
+$('spk').onclick=()=>{autoSpeak=!autoSpeak;$('spk').classList.toggle('on',autoSpeak);$('spk').textContent=(autoSpeak?'🔊':'🔇')+' குரல் / Voice'};
 $('trt').onclick=()=>{const t=$('trin').value.trim();if(t){handle(t,'hi','ta');$('trin').value=''}};
 $('trh').onclick=()=>{const t=$('trin').value.trim();if(t){handle(t,'ta','hi');$('trin').value=''}};
-$('trlog').onclick=e=>{const b=e.target.closest('button[data-i]');if(b){const x=trlog[+b.dataset.i];tts(x.out,x.to)}};
+$('trlog').onclick=e=>{const s=e.target.closest('button[data-i]'),c=e.target.closest('button[data-c]');
+ if(s){const x=trlog[+s.dataset.i];speakThen(x.out,x.to)}
+ if(c){navigator.clipboard&&navigator.clipboard.writeText(trlog[+c.dataset.c].out)}};
 
-const PH=[
- ['வணக்கம், என்ன வேண்டும்?','नमस्ते, आपको क्या चाहिए?'],
- ['கொஞ்சம் பொறுங்கள்','थोड़ा रुकिए'],
- ['இது ஒரு மீட்டர் விலை','यह एक मीटर का दाम है'],
- ['வேறு நிறம் வேண்டுமா?','कोई और रंग चाहिए?'],
- ['வேறு சைஸ் வேண்டுமா?','कोई और साइज़ चाहिए?'],
- ['இதுதான் கடைசி விலை','यही आख़िरी दाम है'],
- ['பில் போடட்டுமா?','बिल बना दूँ?'],
- ['GPay மூலம் பணம் அனுப்புங்கள்','कृपया GPay से पैसे भेजिए'],
- ['பணம் வந்துவிட்டது, நன்றி','पैसे आ गए, धन्यवाद'],
- ['நன்றி, மீண்டும் வாருங்கள்','धन्यवाद, फिर आइए']
-];
-$('phr').innerHTML=PH.map((p,i)=>'<button data-p="'+i+'">'+esc(p[0])+'<small>'+esc(p[1])+'</small></button>').join('');
-$('phr').onclick=e=>{
-  const b=e.target.closest('button[data-p]');if(!b)return;
-  const p=PH[+b.dataset.p];addBubble(p[0],p[1],'hi');tts(p[1],'hi');
-};
-if('speechSynthesis' in window)speechSynthesis.getVoices();
+const PH={
+'வணக்கம்':[['வணக்கம், என்ன வேண்டும்?','नमस्ते, आपको क्या चाहिए?'],['வாங்க, உட்காருங்கள்','आइए, बैठिए'],['கொஞ்சம் பொறுங்கள்','थोड़ा रुकिए'],['நன்றி, மீண்டும் வாருங்கள்','धन्यवाद, फिर आइए'],['மன்னிக்கவும், புரியவில்லை','माफ़ कीजिए, समझ नहीं आया'],['மெதுவாக சொல்லுங்கள்','धीरे बोलिए'],['மீண்டும் சொல்லுங்கள்','फिर से बोलिए'],['நீங்கள் எந்த ஊர்?','आप कहाँ से हैं?']],
+'துணி':[['இது பருத்தி துணி','यह सूती कपड़ा है'],['இது பட்டு துணி','यह रेशमी कपड़ा है'],['இது சேலை','यह साड़ी है'],['இது வேட்டி','यह धोती है'],['இது சட்டை துணி','यह शर्ट का कपड़ा है'],['இது புதிய டிசைன்','यह नया डिज़ाइन है'],['நல்ல தரமான துணி','अच्छी क्वालिटी का कपड़ा है'],['இந்த துணி நிறம் போகாது','इस कपड़े का रंग नहीं जाता'],['துவைத்தால் சுருங்காது','धोने पर सिकुड़ता नहीं है'],['கையால் நெய்தது','हाथ से बुना हुआ है']],
+'விலை':[['இது ஒரு மீட்டர் விலை','यह एक मीटर का दाम है'],['இது ஒரு சேலை விலை','यह एक साड़ी का दाम है'],['இதுதான் கடைசி விலை','यही आख़िरी दाम है'],['விலை குறைக்க முடியாது','दाम कम नहीं हो सकता'],['கொஞ்சம் குறைத்து தருகிறேன்','थोड़ा कम कर दूँगा'],['மொத்தமாக வாங்கினால் தள்ளுபடி','थोक में लेंगे तो छूट मिलेगी'],['இது நிலையான விலை','यह फिक्स रेट है'],['எத்தனை மீட்டர் வேண்டும்?','कितने मीटर चाहिए?'],['எத்தனை வேண்டும்?','कितना चाहिए?']],
+'நிறம்/சைஸ்':[['வேறு நிறம் வேண்டுமா?','कोई और रंग चाहिए?'],['வேறு சைஸ் வேண்டுமா?','कोई और साइज़ चाहिए?'],['சிவப்பு','लाल'],['நீலம்','नीला'],['பச்சை','हरा'],['மஞ்சள்','पीला'],['கருப்பு','काला'],['வெள்ளை','सफ़ेद'],['இந்த நிறம் இல்லை','यह रंग नहीं है'],['இந்த சைஸ் இல்லை','यह साइज़ नहीं है'],['நாளை வரும்','कल आएगा'],['இதைப் பாருங்கள்','यह देखिए']],
+'பணம்':[['பில் போடட்டுமா?','बिल बना दूँ?'],['GPay மூலம் பணம் அனுப்புங்கள்','कृपया GPay से पैसे भेजिए'],['QR ஸ்கேன் செய்யுங்கள்','QR स्कैन कीजिए'],['பணம் வந்துவிட்டது, நன்றி','पैसे आ गए, धन्यवाद'],['பணம் இன்னும் வரவில்லை','पैसे अभी नहीं आए'],['ரொக்கமா, GPay-யா?','कैश या GPay?'],['மீதி சில்லறை தருகிறேன்','बाकी छुट्टे वापस देता हूँ'],['கடன் கிடையாது','उधार नहीं मिलेगा'],['மொத்தம் இவ்வளவு ஆகிறது','कुल इतना हुआ'],['பை வேண்டுமா?','थैला चाहिए?'],['மாற்றி தர மாட்டோம்','वापसी नहीं होगी, एक्सचेंज होगा']]};
+let cat=Object.keys(PH)[0];
+function phr(){
+ $('cats').innerHTML=Object.keys(PH).map(k=>'<button data-c="'+k+'" class="'+(k===cat?'on':'')+'">'+k+'</button>').join('');
+ $('phr').innerHTML=PH[cat].map((p,i)=>'<button data-p="'+i+'">'+esc(p[0])+'<small>'+esc(p[1])+'</small></button>').join('')}
+$('cats').onclick=e=>{const b=e.target.closest('button[data-c]');if(b){cat=b.dataset.c;phr()}};
+$('phr').onclick=e=>{const b=e.target.closest('button[data-p]');if(!b)return;const p=PH[cat][+b.dataset.p];addBubble(p[0],p[1],'hi');speakThen(p[1],'hi')};
+phr();if('speechSynthesis' in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{}}
 
-refreshTools();render();load();
-setInterval(load,POLL);
-setInterval(render,30000);
-</script>
-</body>
-</html>
+/* Smart UPI payment verification */
+const jg=(k,d)=>{try{return JSON.parse(ls.get(k))||d}catch(e){return d}};
+let claimed=jg('gk_claim',[]),utrs=jg('gk_utr',[]),pend=jg('gk_pend',[]),vh=jg('gk_vh',[]),lastD=null;
+const sv=()=>{ls.set('gk_claim',JSON.stringify(claimed.slice(-300)));ls.set('gk_utr',JSON.stringify(utrs.slice(-300)));ls.set('gk_pend',JSON.stringify(pend));ls.set('gk_vh',JSON.stringify(vh.slice(0,500)))};
+const mask=x=>String(x||'').replace(/\d{6,}/g,m=>m.slice(0,2)+'••••'+m.slice(-2));
+const flat=x=>String(x||'').toLowerCase().replace(/[\s.\-_']/g,'');
+['rn','rid','api','tok'].forEach(k=>{const e=$('s_'+k);e.value=ls.get('gk_'+k)||'';e.oninput=()=>ls.set('gk_'+k,e.value.trim())});
+$('ckset').onclick=()=>$('cfg').hidden=!$('cfg').hidden;
+$('scanbtn').onclick=()=>$('pick').hidden=!$('pick').hidden;
+function buzz(){if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type='sawtooth';o.frequency.value=170;o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.4,ac.currentTime);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+.7);o.start();o.stop(ac.currentTime+.75)}
+async function show(v){const e=$('verd');e.className='verd '+v.c;
+ e.innerHTML='<div class="ic">'+v.ic+'</div><div class="tt">'+esc(v.tt)+'</div><div class="sb">'+esc(v.sb)+'</div><div class="src">'+esc(v.src)+'</div>'+(v.lines.length?'<div class="ln">'+v.lines.map(esc).join('<br>')+'</div>':'');
+ if(!soundOn)await initAudio();if(v.c==='ok')chime();else buzz();
+ setTimeout(()=>speak(v.ta,v.en),v.c==='ok'?700:800);if(navigator.vibrate)navigator.vibrate(v.c==='ok'?[200]:[400,150,400])}
+function renderPend(){const now=Date.now();pend=pend.filter(p=>now-p.t<36e5);
+ $('pend').innerHTML=pend.length?pend.map((p,i)=>'<div class="pend"><b>'+rs(p.a)+'</b><span>'+Math.floor((now-p.t)/6e4)+' min</span><button data-x="'+i+'">✕</button></div>').join(''):'<div class="empty">None</div>'}
+$('pend').onclick=e=>{const b=e.target.closest('button[data-x]');if(b){pend.splice(+b.dataset.x,1);sv();renderPend()}};
+function log(r){vh.unshift(r);sv();renderHist()}
+const BD={ok:'GREEN',no:'RED',or:'ORANGE',wn:'WARNING'};
+function renderHist(){const q=($('hq').value||'').toLowerCase();
+ const L=vh.filter(r=>!q||JSON.stringify(r).toLowerCase().includes(q));
+ $('hl').innerHTML=L.length?L.slice(0,60).map(r=>'<div class="hr"><div class="h1"><span>Claimed '+rs(r.claimed||0)+(r.verified!=null?' • Verified '+rs(r.verified):'')+'</span><span class="bd '+r.c+'">'+BD[r.c]+'</span></div><small>'+new Date(r.t).toLocaleString('en-IN')+(r.utr?' • Ref '+esc(r.utr):'')+(r.app?' • '+esc(r.app):'')+'</small><small>'+esc(r.reason||'')+'</small></div>').join(''):'<div class="empty">No checks yet</div>'}
+$('hq').oninput=renderHist;
+$('hclr').onclick=()=>{if(confirm('Clear all history?')){vh=[];sv();renderHist()}};
+$('hcsv').onclick=()=>{const q=x=>'"'+String(x==null?'':x).replace(/"/g,'""')+'"';
+ const rows=['Time,Claimed,Verified,Reference,Result,App,Source,Reason'].concat(vh.map(r=>[new Date(r.t).toLocaleString('en-IN'),r.claimed,r.verified,r.utr,BD[r.c],r.app,r.src,r.reason].map(q).join(',')));
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'}));a.download='gk-verifications.csv';a.click()};
+function checkPending(np){let hit=false;
+ np.forEach(i=>{const x=pend.findIndex(p=>Math.abs(p.a-i.a)<.01);if(x>=0){pend.splice(x,1);claimed.push(i.k);hit=true;
+  const src='Bank credit alert received';log({t:Date.now(),c:'ok',claimed:i.a,verified:i.a,utr:'',app:'',src,reason:'Waiting payment arrived'});
+  const v=$('verd');v.className='verd ok';v.innerHTML='<div class="ic">✅</div><div class="tt">PAYMENT VERIFIED — '+rs(i.a)+'</div><div class="sb">Credit alert received just now</div><div class="src">'+src+'</div>'}});
+ if(hit){sv();renderPend()}return hit}
+/* OCR + analysis */
+const MO={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+function ptime(t){const tm=/(\d{1,2})[:.](\d{2})\s?(am|pm)/i.exec(t);if(!tm)return null;
+ const dm=/(\d{1,2})(?:st|nd|rd|th)?\s?(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?,?\s?(\d{4})?/i.exec(t),d=new Date();
+ if(dm){d.setMonth(MO[dm[2].toLowerCase()],+dm[1]);if(dm[3])d.setFullYear(+dm[3])}
+ let h=+tm[1]%12;if(/pm/i.test(tm[3]))h+=12;d.setHours(h,+tm[2],0,0);return d.getTime()}
+function loadT(){return new Promise((ok,no)=>{if(window.Tesseract)return ok();const x=document.createElement('script');x.src='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';x.onload=ok;x.onerror=no;document.head.appendChild(x)})}
+async function analyze(file){
+ await loadT();const r=await Tesseract.recognize(file,'eng'),t=r.data.text||'',low=t.toLowerCase(),fl=flat(t),now=Date.now();
+ const d={hard:[],soft:[],text:fl,conf:r.data.confidence||0};
+ d.status=/fail|declin|cancel|revers|unsuccess|could not|not complete|bank server/.test(low)?'Failed':/pending|processing|in progress/.test(low)?'Pending':/success|completed|paid to|sent to|credited/.test(low)?'Success':'Unknown';
+ if(d.status!=='Success'&&/success|completed/.test(low)&&d.status!=='Unknown')d.hard.push('Screen shows conflicting status words (success and '+d.status.toLowerCase()+')');
+ const am=[...t.matchAll(/[₹€]\s?(\d[\d,]*(?:\.\d{1,2})?)/g),...t.matchAll(/(?:rs|inr)\.?\s?(\d[\d,]*(?:\.\d{1,2})?)/gi)].map(x=>parseFloat(x[1].replace(/,/g,'')));
+ const uq=[...new Set(am)];d.amt=uq.length?uq[0]:null;
+ if(uq.length>1)d.soft.push('Different amounts visible: '+uq.slice(0,3).map(rs).join(', ')+' — confirm which was paid');
+ const u=/\b\d{12}\b/.exec(t.replace(/(\d)\s(?=\d)/g,'$1'));d.utr=u?u[0]:(/\bT\d{18,}\b/.exec(t)||[null])[0];
+ if(d.status==='Success'&&!d.utr)d.soft.push('No transaction ID could be read');
+ d.when=ptime(t);
+ if(d.when){const df=(now-d.when)/6e4;if(df>15||df<-5)d.hard.push('Time on screen is not recent ('+Math.round(df)+' min difference)')}else d.soft.push('Date/time could not be read');
+ const rm=/(?:paid to|sent to|to)\s*[:\-]?\s*([A-Za-z][A-Za-z .&']{2,34})/i.exec(t),sm=/(?:debited from|paid by|from)\s*[:\-]?\s*([A-Za-z][A-Za-z .&']{2,34})/i.exec(t);
+ d.recv=rm?rm[1].trim():'';d.sender=sm?sm[1].trim():'';
+ const ids=t.match(/[\w.\-]{2,}@[a-z]{2,}/gi)||[];d.rid=ids[0]||'';
+ d.app=/google\s?pay|gpay|g\s?pay/.test(low)?'Google Pay':/phonepe|phone\s?pe/.test(low)?'PhonePe':/paytm/.test(low)?'Paytm':/bhim/.test(low)?'BHIM UPI':'Other / unknown';
+ const rn=ls.get('gk_rn')||'',rid=ls.get('gk_rid')||'';
+ d.recvOk=(rn||rid)?((rn&&fl.includes(flat(rn)))||(rid&&fl.includes(flat(rid)))):null;
+ try{const b=new TextDecoder('latin1').decode(await file.slice(0,131072).arrayBuffer());
+  const m=/photoshop|canva|picsart|snapseed|lightroom|gimp|pixlr|photoroom|adobe|faceapp|inshot|picsay/i.exec(b);if(m)d.hard.push('Image editing software found in file data ('+m[0]+')')}catch(e){}
+ const fa=(now-(file.lastModified||now))/6e4;if(fa>15)d.hard.push('Image file is old ('+Math.round(fa)+' min) — ask to show the live screen on camera');
+ if(d.conf<55)d.soft.push('Low text-read quality — retake a clear photo');
+ return d}
+function showDet(d){const R=[['Amount',d.amt!=null?rs(d.amt):'—'],['Status',d.status],['Transaction ID',d.utr||'—'],['Date & time',d.when?new Date(d.when).toLocaleString('en-IN'):'—'],['Receiver name',d.recv||'—'],['Receiver UPI ID',d.rid?mask(d.rid):'—'],['Sender',d.sender||'—'],['Payment app (estimate)',d.app],['Suspicious signs',d.hard.length?d.hard.length+' found':'None detected']];
+ $('det').hidden=false;$('det').innerHTML='<h2>Screenshot details<em>unverified</em></h2>'+R.map(r=>'<div class="kv"><span>'+r[0]+'</span><b>'+esc(r[1])+'</b></div>').join('')}
+/* official provider check (server) */
+async function official(utr,amt){
+ const api=ls.get('gk_api');if(!api)return null;
+ try{const r=await fetch(api.replace(/\/$/,'')+'/api/verify',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+(ls.get('gk_tok')||'')},body:JSON.stringify({utr,amount:amt})});
+  if(!r.ok)return{error:true};return await r.json()}catch(e){return{error:true}}}
+/* decision */
+async function decide(d,amt){
+ const SO='Screenshot analysis only — payment not independently verified.',L=[];
+ d.hard.forEach(x=>L.push('⚠ '+x));d.soft.forEach(x=>L.push('• '+x));
+ if(d.recvOk===false)L.push('⚠ Your receiver name/UPI ID was not found on this screen');
+ await load();
+ const now=Date.now(),win=(+$('ckwin').value||30)*6e4;
+ const rec=(c,v,tt,sb,ta,en,src,why)=>{log({t:now,c,claimed:amt,verified:v,utr:d.utr||'',app:d.app!=='Other / unknown'?d.app:'',src,reason:why||tt});return show({c,ic:{ok:'✅',no:'❌',or:'⚠️',wn:'🚩'}[c],tt,sb,ta,en,src,lines:L})};
+ if(d.utr&&utrs.includes(d.utr))return rec('wn',null,'POSSIBLE FAKE SCREENSHOT','This transaction ID was already used for an earlier claim.','சந்தேகம். இந்த transaction ID ஏற்கனவே பயன்படுத்தப்பட்டது.','Suspicious. This transaction ID was already used.',SO,'Duplicate transaction ID');
+ let ver=null;
+ const o=d.utr?await official(d.utr,amt):null;
+ if(o&&o.configured&&o.found&&o.status==='success'&&Math.abs(o.amount-amt)<.01)ver={v:o.amount,src:'Verified by payment provider API',ref:o.ref||d.utr};
+ if(!ver){const al=items.filter(i=>i.a!=null&&!claimed.includes(i.k)&&Math.abs(i.a-amt)<.01&&i.t>=now-win);
+  const st=d.utr&&al.find(i=>String(i.m).includes(d.utr));
+  if(st)ver={v:st.a,src:'Verified by bank credit alert (reference matched)',key:st.k,ref:d.utr};
+  else if(al.length)ver={v:amt,src:'Bank credit alert matched by amount & time — reference not in alert',key:al[al.length-1].k,ref:d.utr||'',weak:true}}
+ if(ver){if(ver.key)claimed.push(ver.key);if(d.utr)utrs.push(d.utr);sv();
+  if(ver.weak)L.push('• Match is by amount & time only. Confirm in your bank app if the amount is large.');
+  return rec('ok',ver.v,'PAYMENT VERIFIED','Verified amount '+rs(ver.v)+(ver.ref?' • Ref '+ver.ref:''),'பணம் உறுதியானது. '+spoken(ver.v)+' ரூபாய்.','Payment verified. '+spoken(ver.v)+' rupees.',ver.src,'Verified')}
+ if(d.status==='Failed'||(o&&o.configured&&o.found===false))
+  return rec('no',null,'PAYMENT NOT VERIFIED','Payment not verified. Do not hand over goods until you confirm receipt.','பணம் உறுதியாகவில்லை. பணம் உறுதி செய்யும் வரை பொருள் கொடுக்க வேண்டாம்.','Payment not verified. Do not hand over goods.',d.status==='Failed'?'Screen shows the payment failed':(o.configured?'Provider found no matching transaction':SO),d.status==='Failed'?'Screen shows failed':'No matching transaction at provider');
+ if(d.hard.length)return rec('wn',null,'POSSIBLE FAKE SCREENSHOT',d.hard[0],'சந்தேகமான screenshot. '+d.hard[0],'Suspicious screenshot. '+d.hard[0],SO,d.hard.join('; '));
+ if(amt>0&&!pend.some(p=>Math.abs(p.a-amt)<.01)){pend.push({a:amt,t:now});sv();renderPend()}
+ const why=d.status==='Pending'?'Payment is pending':d.recvOk===false?'Receiver details do not match':'No credit alert found yet';
+ return rec('or',null,'VERIFICATION REQUIRED','Unable to confirm payment. Check your official bank or UPI app.','பணத்தை உறுதி செய்ய முடியவில்லை. வங்கி அல்லது UPI app-ஐ சரிபார்க்கவும்.','Unable to confirm payment. Check your bank or UPI app.',SO+' I will alert you if a matching credit arrives.',why)}
+async function onFile(f){if(!f)return;$('pick').hidden=true;$('ckst').textContent='Reading screenshot…';
+ try{const d=await analyze(f);lastD=d;showDet(d);$('ckst').textContent='';
+  if(d.amt==null){$('ckst').textContent='Amount not readable — type the claimed amount, then tap Check again';$('ckamt').focus();return}
+  $('ckamt').value=d.amt;await decide(d,d.amt)}
+ catch(e){$('ckst').textContent='⚠ Scan failed (internet needed first time). Type the amount and tap Check again.'}}
+$('fcam').onchange=e=>{onFile(e.target.files[0]);e.target.value=''};
+$('fgal').onchange=e=>{onFile(e.target.files[0]);e.target.value=''};
+$('ckgo').onclick=()=>{const a=parseFloat($('ckamt').value);if(!(a>0)){alert('Enter claimed amount');return}
+ decide(lastD||{hard:[],soft:['No screenshot — checked by amount only'],status:'Unknown',app:'Other / unknown',recvOk:null},a)};
+renderPend();renderHist();
 
+/* Permissions + background alerts */
+const b64u=b=>{const p='='.repeat((4-b.length%4)%4),r=atob((b+p).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(r,c=>c.charCodeAt(0))};
+const pq=async n=>{try{return (await navigator.permissions.query({name:n})).state==='granted'}catch(e){return ls.get('gk_p_'+n)==='1'}};
+async function gm(c,n){try{const st=await navigator.mediaDevices.getUserMedia(c);st.getTracks().forEach(t=>t.stop());ls.set('gk_p_'+n,'1');return true}catch(e){return false}}
+async function notifyPay(i){if(!('Notification' in window)||Notification.permission!=='granted')return;
+ try{const reg=await navigator.serviceWorker.ready;reg.showNotification('💰 '+rs(i.a)+' பணம் வந்தது',{body:'GK Textiles • '+fmtTime(i.t),tag:i.k,renotify:true,vibrate:[300,150,300],icon:'icon-192.png',badge:'icon-192.png'})}catch(e){}}
+async function pushOn(){
+ const api=(ls.get('gk_api')||'').replace(/\/$/,'');if(!api)throw new Error('Server URL இல்லை / Enter server URL');
+ if(!('PushManager' in window))throw new Error('இந்த browser-ல் push இல்லை / Use Chrome');
+ const reg=await navigator.serviceWorker.ready,k=await (await fetch(api+'/api/vapid')).json();
+ const sub=(await reg.pushManager.getSubscription())||await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(k.key)});
+ const r=await fetch(api+'/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+(ls.get('gk_tok')||'')},body:JSON.stringify(sub)});
+ if(!r.ok)throw new Error('Server token தவறு / Wrong token');ls.set('gk_push','1')}
+const PI=[['notif','🔔','Notifications','பணம் வந்ததும் அறிவிப்பு'],['mic','🎤','Microphone','Hindi ↔ Tamil பேச'],['cam','📷','Camera','Payment scan'],['snd','🔊','Sound & screen','குரல் அறிவிப்பு, screen off ஆகாது'],['push','📡','Background alerts','App மூடியிருந்தாலும் notification']];
+async function pst(k){return k==='notif'?('Notification' in window&&Notification.permission==='granted'):k==='mic'?pq('microphone'):k==='cam'?pq('camera'):k==='snd'?soundOn:ls.get('gk_push')==='1'}
+async function prender(){let h='';for(const [k,ic,t,d] of PI){const ok=await pst(k);h+='<div class="pi"><span>'+ic+'</span><div class="t">'+t+'<small>'+d+'</small></div>'+(ok?'<b class="okk">✔ Allowed</b>':'<button data-a="'+k+'">Allow</button>')+'</div>'}$('plist').innerHTML=h}
+async function allow(k){$('pmsg').textContent='';
+ try{
+  if(k==='notif'){if(!('Notification' in window))throw new Error('Notification இல்லை');await Notification.requestPermission()}
+  else if(k==='mic'){if(!await gm({audio:true},'microphone'))throw new Error('Mic blocked — browser settings-ல் allow செய்யவும்')}
+  else if(k==='cam'){if(!await gm({video:{facingMode:'environment'}},'camera'))throw new Error('Camera blocked — browser settings-ல் allow செய்யவும்')}
+  else if(k==='snd'){await initAudio()}
+  else if(k==='push'){if(Notification.permission!=='granted')await Notification.requestPermission();if(Notification.permission!=='granted')throw new Error('முதலில் Notifications Allow செய்யவும்');await pushOn()}
+ }catch(e){$('pmsg').textContent='⚠ '+e.message}
+ prender()}
+function openPerms(){$('perms').hidden=false;prender()}
+function closePerms(){$('perms').hidden=true;ls.set('gk_pseen','1')}
+$('perm').onclick=openPerms;$('pclose').onclick=closePerms;
+$('plist').onclick=e=>{const b=e.target.closest('button[data-a]');if(b)allow(b.dataset.a)};
+$('pall').onclick=async()=>{for(const [k] of PI){if(!await pst(k))await allow(k)}};
+if(ls.get('gk_push')==='1')setTimeout(()=>pushOn().catch(()=>{}),2500);
+
+/* PWA */
+let dp=null;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;$('inst').style.display='block'});
+$('inst').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$('inst').style.display='none'};
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+refreshTools();render();load();setInterval(load,POLL);setInterval(render,30000);
+</script></body></html>
