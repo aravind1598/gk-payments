@@ -60,7 +60,7 @@ nav button.on{background:var(--mar);color:#fff}
 .ph{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:8px;font-weight:700;font-size:18px}.ph small{display:block;color:var(--mar);font-size:18px}
 .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.keys button{height:66px;border:0;border-radius:20px;background:var(--card);font-size:26px;font-weight:700;box-shadow:var(--sh);border:1px solid var(--line)}.keys .op{color:var(--mar);background:var(--soft)}.keys .eq{background:var(--mar);color:#fff}
 .disp{text-align:right}.disp .e{color:var(--mute);min-height:26px;word-break:break-all}.disp .r{font-family:Fraunces,serif;font-size:48px;font-weight:800;color:var(--mar)}
-.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px}.menu button{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px 10px;font-weight:800;font-size:17px;box-shadow:var(--sh)}.menu b{display:block;font-size:30px;font-weight:400;margin-bottom:4px}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.menu button{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px 4px;font-weight:700;font-size:14px;box-shadow:var(--sh);line-height:1.2}.menu b{display:block;font-size:28px;font-weight:400;margin-bottom:4px}
 .pi{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.pi small{display:block;color:var(--mute);font-size:13px}.ok{color:var(--grn);font-weight:800}
 .back{margin-bottom:10px}[hidden]{display:none!important}
 @media print{nav,.top,.noprint{display:none!important}body{background:#fff}.card{box-shadow:none}}
@@ -105,16 +105,60 @@ nav button.on{transform:translateY(-7px);box-shadow:0 12px 20px rgba(0,0,0,.28)}
 .menu button{transition:transform .2s,box-shadow .2s;box-shadow:0 5px 0 var(--line),0 12px 18px rgba(0,0,0,.08)}.menu button:active{transform:translateY(4px);box-shadow:0 1px 0 var(--line)}
 #gate .coin3.big{margin-bottom:6px}
 @media(prefers-reduced-motion:reduce){.orb,.cn3,.hero::before{animation:none!important}.hero{transform:none!important}}
+
+/* ===== PREMIUM LOOKS: royal (black+gold) & aurora (violet glass) ===== */
+html[data-look=royal],html[data-look=aurora]{--bg:#09090f;--card:#14141f;--ink:#f6f0e1;--mute:#9d97ab;--line:#2a2740;--soft:#1c1b2c;--sh:0 14px 36px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05);--gold:#d9b44a}
+html[data-look=royal]{background:radial-gradient(900px 520px at 50% -12%,rgba(217,180,74,.17),transparent 62%),#09090f;background-attachment:fixed}
+html[data-look=aurora]{--gold:#22d3ee;background:radial-gradient(800px 520px at 8% -8%,rgba(139,92,246,.35),transparent 60%),radial-gradient(700px 480px at 100% 20%,rgba(34,211,238,.18),transparent 60%),#07061a;background-attachment:fixed}
+html[data-look=royal] .o1{background:#d9b44a;opacity:.14}html[data-look=royal] .o2{background:#5b3fd1;opacity:.16}
+html[data-look=aurora] .o1{background:#8b5cf6;opacity:.35}html[data-look=aurora] .o2{background:#22d3ee;opacity:.22}
+html[data-look=royal] .top small,html[data-look=aurora] .top small{letter-spacing:.2em;color:var(--mar2)}
+html[data-look=royal] h1{background:linear-gradient(90deg,#fff6d8,#e8c968);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-look=aurora] h1{background:linear-gradient(90deg,#fff,#a5f3fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-look=royal] .card,html[data-look=royal] .stat,html[data-look=royal] .menu button,html[data-look=royal] .bub,html[data-look=royal] .ph{background:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.015));border:1px solid rgba(217,180,74,.22);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+html[data-look=aurora] .card,html[data-look=aurora] .stat,html[data-look=aurora] .menu button,html[data-look=aurora] .bub,html[data-look=aurora] .ph{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+html[data-look=royal] .hero{background:radial-gradient(520px 240px at 88% -20%,rgba(217,180,74,.4),transparent 60%),repeating-linear-gradient(45deg,rgba(217,180,74,.05) 0 2px,transparent 2px 8px),linear-gradient(150deg,#1d1b33,#0f0e1b 60%,#06060c);border:1px solid rgba(217,180,74,.4);box-shadow:0 26px 60px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.1)}
+html[data-look=aurora] .hero{background:radial-gradient(520px 260px at 90% -20%,rgba(34,211,238,.45),transparent 60%),linear-gradient(140deg,#5b21b6,#3b1d8f 55%,#0e3a5c);border:1px solid rgba(255,255,255,.2);box-shadow:0 26px 60px rgba(40,10,120,.55),inset 0 1px 0 rgba(255,255,255,.25)}
+html[data-look=royal] .hero .a{background:linear-gradient(180deg,#fff4c9,#e0b94e 60%,#a8801f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 18px rgba(217,180,74,.35))}
+html[data-look=aurora] .hero .a{background:linear-gradient(180deg,#fff,#a5f3fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-look=royal] .btn,html[data-look=royal] #gate .btn{background:linear-gradient(180deg,#f0d884,#c9a02e);color:#1b1405;box-shadow:0 6px 0 #7a5c0c,0 14px 26px rgba(0,0,0,.5)}
+html[data-look=royal] .btn:active{box-shadow:0 1px 0 #7a5c0c,0 5px 10px rgba(0,0,0,.4)}
+html[data-look=aurora] .btn,html[data-look=aurora] #gate .btn{background:linear-gradient(135deg,#8b5cf6,#22d3ee);color:#fff;box-shadow:0 6px 0 #3b1d8f,0 14px 26px rgba(0,0,0,.45)}
+html[data-look=aurora] .btn:active{box-shadow:0 1px 0 #3b1d8f}
+html[data-look=royal] .btn.sec,html[data-look=aurora] .btn.sec{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid rgba(255,255,255,.14);box-shadow:0 5px 0 rgba(0,0,0,.45)}
+html[data-look=royal] .btn.sec{border-color:rgba(217,180,74,.28)}
+html[data-look=royal] .btn.gold{background:linear-gradient(180deg,#f0d884,#c9a02e);color:#1b1405}
+html[data-look=royal] .chip.on{background:linear-gradient(180deg,#f0d884,#c9a02e);color:#1b1405;border-color:transparent}
+html[data-look=aurora] .chip.on{background:linear-gradient(135deg,#8b5cf6,#22d3ee);color:#fff;border-color:transparent}
+html[data-look=royal] .chip,html[data-look=aurora] .chip{background:rgba(255,255,255,.05);color:var(--ink);border-color:rgba(255,255,255,.14)}
+html[data-look=royal] .fld,html[data-look=aurora] .fld{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:var(--ink)}
+html[data-look=royal] .fld:focus{border-color:#d9b44a;box-shadow:0 0 0 4px rgba(217,180,74,.18)}html[data-look=aurora] .fld:focus{border-color:#22d3ee;box-shadow:0 0 0 4px rgba(34,211,238,.18)}
+html[data-look=royal] nav,html[data-look=aurora] nav{background:rgba(16,16,28,.8);border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+html[data-look=royal] nav{border-color:rgba(217,180,74,.3)}
+html[data-look=royal] nav button.on{background:linear-gradient(180deg,#f0d884,#c9a02e);color:#1b1405}
+html[data-look=aurora] nav button.on{background:linear-gradient(135deg,#8b5cf6,#22d3ee);color:#fff}
+html[data-look=royal] .stat .v,html[data-look=royal] .tot.big,html[data-look=royal] .disp .r{color:#e8c968}
+html[data-look=aurora] .stat .v,html[data-look=aurora] .tot.big,html[data-look=aurora] .disp .r{color:#a5f3fc}
+html[data-look=royal] .bar i{background:linear-gradient(180deg,#f3d98b,#a8801f)}html[data-look=aurora] .bar i{background:linear-gradient(180deg,#22d3ee,#8b5cf6)}
+html[data-look=royal] .keys button,html[data-look=aurora] .keys button{background:linear-gradient(180deg,#232238,#17162a);border:1px solid rgba(255,255,255,.1);box-shadow:0 5px 0 #07070f,0 10px 16px rgba(0,0,0,.4);color:var(--ink)}
+html[data-look=royal] .keys .op{color:#e8c968}html[data-look=aurora] .keys .op{color:#a5f3fc}
+html[data-look=royal] .keys .eq{background:linear-gradient(180deg,#f0d884,#c9a02e);color:#1b1405;box-shadow:0 5px 0 #7a5c0c}html[data-look=aurora] .keys .eq{background:linear-gradient(135deg,#8b5cf6,#22d3ee);color:#fff;box-shadow:0 5px 0 #3b1d8f}
+html[data-look=royal] #gate{background:radial-gradient(700px 420px at 50% 0,rgba(217,180,74,.3),transparent 65%),#09090f}
+html[data-look=aurora] #gate{background:radial-gradient(700px 440px at 50% 0,rgba(139,92,246,.5),transparent 65%),#07061a}
+html[data-look=royal] .sheet,html[data-look=aurora] .sheet{background:#101019;border:1px solid rgba(255,255,255,.12)}
+html[data-look=royal] .x,html[data-look=aurora] .x{background:rgba(255,255,255,.07);color:var(--mute)}
+html[data-look=royal] .menu button,html[data-look=aurora] .menu button{box-shadow:0 5px 0 rgba(0,0,0,.45),0 14px 24px rgba(0,0,0,.35)}
+html[data-look=royal] .row,html[data-look=aurora] .row{border-color:rgba(255,255,255,.07)}
 </style></head><body>
 <div id="gate"><h2>GK Textiles</h2><p>பணம் வந்ததும் குரலில் சொல்ல அனுமதி தரவும்.<br><small>Allow voice alerts for new payments.</small></p>
 <button class="btn" id="go">தொடங்கு / Start</button><button class="btn skip" id="skip">ஒலி இல்லாமல் / Without sound</button></div>
 <div id="toast"></div><canvas id="cf"></canvas>
-<header class="top"><div><small>GK TEXTILES</small><h1 id="ttl"></h1></div><div class="lv"><i id="dot"></i><span id="lv">Live</span><button class="x" id="lk" style="margin-left:6px">🔓</button></div></header>
+<header class="top"><div><small>GK TEXTILES</small><h1 id="ttl"></h1></div><div class="lv"><i id="dot"></i><span id="lv">Live</span><button class="x" id="lkt" aria-label="Look" style="margin-left:6px">🎨</button><button class="x" id="bell" style="margin-left:6px;position:relative">🔔<b id="bellc" hidden style="position:absolute;top:-6px;right:-6px;background:var(--red);color:#fff;border-radius:10px;font-size:11px;min-width:18px;padding:1px 4px"></b></button><button class="x" id="lk" style="margin-left:6px">🔓</button></div></header>
 <main>
 <section class="pg on" id="pg-home">
  <div id="greet" style="margin:2px 4px 10px;color:var(--mute);font-weight:700"></div><div class="hero" id="hero"><div class="l">கடைசி பணம் / Last payment</div><div class="a" id="amt">—</div><div class="g" id="ago"></div><div class="t" id="at"></div></div>
  <div class="card" id="goalc" hidden style="display:flex;align-items:center;gap:14px"><svg width="86" height="86" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--soft)" stroke-width="3.6"/><circle id="gr" cx="18" cy="18" r="15.9155" fill="none" stroke="var(--gold)" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="0 100" transform="rotate(-90 18 18)" style="transition:stroke-dasharray .8s"/></svg><div><div style="color:var(--mute);font-size:14px">இன்றைய இலக்கு / Daily goal</div><b id="gt" style="font-size:21px"></b></div></div>
- <div id="nudge"></div><div id="fest"></div><div id="lowst"></div>
+ <div id="nudge"></div><div id="fest"></div><div id="bcbn"></div><div id="lowst"></div>
  <div class="grid2"><button class="btn gold" id="say">🔊 Repeat</button><button class="btn sec" id="myqr">▣ My QR</button></div>
  <div class="card mt"><h2>"அனுப்பிட்டேன்" என்றால் · WAIT FOR PAYMENT</h2><div class="grid2"><input class="fld" id="wamt" type="number" inputmode="decimal" placeholder="₹ தொகை"><button class="btn" id="wbtn">⏳ காத்திரு</button></div><div id="pw"></div></div>
  <div class="grid2 mt"><div class="card stat"><div class="k">இன்று / Today</div><div class="v" id="today">₹0</div></div><div class="card stat"><div class="k">இந்த மாதம் / Month</div><div class="v" id="month">₹0</div></div></div>
@@ -122,7 +166,7 @@ nav button.on{transform:translateY(-7px);box-shadow:0 12px 20px rgba(0,0,0,.28)}
  <div class="card"><h2>சமீபத்திய / RECENT</h2><div id="recent"></div></div>
 </section>
 <section class="pg" id="pg-sell">
- <div class="card"><div class="chips" id="cchips"></div><input class="fld" id="bc" placeholder="வாடிக்கையாளர் / Customer"><input class="fld mt" id="bph" type="tel" inputmode="numeric" placeholder="📱 WhatsApp number"></div>
+ <button class="btn sm sec" id="bkind" style="margin-bottom:12px"></button><div class="card"><div class="chips" id="cchips"></div><input class="fld" id="bc" placeholder="வாடிக்கையாளர் / Customer"><input class="fld mt" id="bph" type="tel" inputmode="numeric" placeholder="📱 WhatsApp number"></div>
  <div class="card"><h2>RATE CARD · தொட்டால் சேரும்</h2><div class="chips" id="rchips"></div>
   <input class="fld" id="bn" placeholder="பொருள் / Item"><div class="grid2 mt"><input class="fld" id="bq" type="number" inputmode="decimal" placeholder="அளவு Qty (m)"><input class="fld" id="bp" type="number" inputmode="decimal" placeholder="விலை Rate ₹"></div>
   <div class="grid2 mt"><button class="btn" id="badd">+ சேர் / Add</button><button class="btn sec" id="bvo">🎤 Voice</button></div></div>
@@ -165,11 +209,11 @@ const dL=t=>dK(t)===dK(Date.now())?'இன்று':dK(t)===dK(Date.now()-864e5
 function ago(t,l){const m=Math.max(0,Math.floor((Date.now()-t)/6e4));
  if(l==='ta')return m<1?'இப்போது':m<60?m+' நிமிடத்திற்கு முன்':m<1440?Math.floor(m/60)+' மணி நேரத்திற்கு முன்':Math.floor(m/1440)+' நாட்களுக்கு முன்';
  return m<1?'just now':m<60?m+' min ago':m<1440?Math.floor(m/60)+' h ago':Math.floor(m/1440)+' d ago'}
-function toast(t,bad){const e=$('toast');e.textContent=t;e.style.background=bad?'#c0392b':'';e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),3500)}
+function toast(t,bad){const e=$('toast');e.textContent=t;e.style.background=bad?'#c0392b':'';e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),Math.max(3500,String(t).length*70))}
 let hid=J('gk3_hid',[]),owner=0;
 const DEFPH='328a5f043cdc882c234d53138f329e2f3b4eb5db296553a6984e49646859555d';
 const sha=async s=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('gk3|'+s)))].map(b=>b.toString(16).padStart(2,'0')).join('');
-const isOwner=()=>Date.now()<owner,OWN=['set','close','bills','rates','rep','exp'];
+const isOwner=()=>Date.now()<owner,OWN=['set','close','bills','rates','rep','exp','bc'];
 function pinPad(title){return new Promise(res=>{let v='',done=false;
  const m=modal('<h2 style="font-family:Fraunces,serif;text-align:center">'+title+'</h2><div class="dots" id="pd"></div><div class="pk" id="pk">'+[1,2,3,4,5,6,7,8,9,'⌫',0,'✔'].map(k=>'<button data-k="'+k+'">'+k+'</button>').join('')+'</div>');
  const dr=()=>{m.querySelector('#pd').innerHTML=Array.from({length:6},(_,i)=>'<i class="'+(i<v.length?'f':'')+'"></i>').join('')};dr();
@@ -210,8 +254,8 @@ function home0(){const p=paid(),l=p[p.length-1],now=Date.now();
  p.forEach(i=>{if(dK(i.t)===td)t+=i.a;const d=new Date(i.t);if(d.getFullYear()+'-'+d.getMonth()===mo)m+=i.a});$('today').textContent=rs(t);$('month').textContent=rs(m);
  const days=[];for(let k=6;k>=0;k--){const x=now-k*864e5;days.push({x,s:p.filter(i=>dK(i.t)===dK(x)).reduce((s,i)=>s+i.a,0)})}const mx=Math.max(1,...days.map(d=>d.s));
  $('bars').innerHTML=days.map(d=>'<div class="bar"><b>'+(d.s?Math.round(d.s/100)/10+'k':'')+'</b><i style="height:'+Math.round(d.s/mx*78)+'%"></i>'+new Date(d.x).toLocaleDateString('en-IN',{weekday:'short'})+'</div>').join('');
- $('recent').innerHTML=items.slice(-10).reverse().map(i=>'<div class="row"><div class="n"><b>'+(i.a!=null?rs(i.a):'?')+'</b><small>'+dL(i.t)+' · '+fT(i.t)+'</small></div><button class="x" data-k="'+i.k+'">✕</button></div>').join('')||'<div class="empty">இன்னும் பணம் வரவில்லை</div>'}
-function home(){home0();pwr();nudge();lowst();ring();greet();fest()}
+ $('recent').innerHTML=paid().slice(-10).reverse().map(i=>'<div class="row"><div class="n"><b>'+(i.a!=null?rs(i.a):'?')+'</b><small>'+dL(i.t)+' · '+fT(i.t)+'</small></div><button class="x" data-k="'+i.k+'">✕</button></div>').join('')||'<div class="empty">இன்னும் பணம் வரவில்லை</div>'}
+function home(){home0();pwr();nudge();lowst();ring();greet();fest();bcbanner()}
 $('recent').onclick=async e=>{const b=e.target.closest('button[data-k]');if(!b||!(await auth())||!confirm('இந்த பதிவை மறைக்கவா? / Hide this entry?'))return;
  hid.push(b.dataset.k);W('gk3_hid',hid);items=items.filter(i=>i.k!==b.dataset.k);home()};
 async function load(){try{
@@ -223,7 +267,7 @@ async function load(){try{
   fresh.forEach(i=>{const x=pend.findIndex(p=>Math.abs(p.a-i.a)<.01);if(x>=0){pend.splice(x,1);cf=true}});W('gk2_pend',pend);
   const h=$('hero');h.classList.remove('pulse');void h.offsetWidth;h.classList.add('pulse');chime();burst();
   setTimeout(()=>spk('புதிய பணம், '+sp(tot)+' ரூபாய் வந்தது.'+(cf?' காத்திருந்த பணம் உறுதியானது.':''),'New payment, '+sp(tot)+' rupees.'+(cf?' Waiting payment confirmed.':'')),700);
-  toast((cf?'✅ உறுதி / Verified ':'💰 ')+rs(tot));if(navigator.vibrate)navigator.vibrate([250,120,250]);
+  toast((cf?'✅ உறுதி / Verified ':'💰 ')+rs(tot));addN('pay',(cf?'✅ Verified · ':'')+rs(tot)+' payment வந்தது','pay-'+fresh[0].k);if(navigator.vibrate)navigator.vibrate([250,120,250]);
   if(document.hidden&&'Notification' in window&&Notification.permission==='granted')navigator.serviceWorker.ready.then(r=>r.showNotification('💰 '+rs(tot),{body:'GK Textiles',icon:'icon-192.png',tag:'pay',renotify:true})).catch(()=>{})}
  }catch(e){$('dot').className='off';$('lv').textContent='Offline'}}
 
@@ -246,9 +290,9 @@ function addItem(n,q,p){bill.i.push({n:n||'Item',q,p});sb();srender()}
 $('badd').onclick=()=>{const q=parseFloat($('bq').value),p=parseFloat($('bp').value);if(!(q>0)||!(p>=0)){toast('அளவு, விலை உள்ளிடவும்',1);return}
  addItem($('bn').value.trim(),q,p);$('bn').value=$('bq').value=$('bp').value=''};
 $('rchips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;const x=rc[+b.dataset.i],q=parseFloat(prompt(x.n+' — எத்தனை மீட்டர்?','1'));if(q>0)addItem(x.n,q,x.r)};
-function srender(){srender0();cch()}
+function srender(){srender0();cch();kind()}
 $('bl').onclick=e=>{const b=e.target.closest('button[data-n]');if(b){bill.i.splice(+b.dataset.n,1);sb();srender()}};
-function vparse(t){const T=t.replace(/,/g,''),nums=[...T.matchAll(/\d+(?:\.\d+)?/g)].map(x=>+x[0]);let q=null,p=null,m;
+function vparse(t){const T=tamNum(t).replace(/,/g,''),nums=[...T.matchAll(/\d+(?:\.\d+)?/g)].map(x=>+x[0]);let q=null,p=null,m;
  m=/(\d+(?:\.\d+)?)\s*(?:meters?|metres?|மீட்டர்|m\b)/i.exec(T);if(m)q=+m[1];
  m=/(\d+(?:\.\d+)?)\s*(?:rupees?|rs|ரூபாய்|ரூ)/i.exec(T)||/(?:rs\.?|₹)\s*(\d+(?:\.\d+)?)/i.exec(T);if(m)p=+m[1];
  if(q==null&&nums.length)q=nums[0];if(p==null&&nums.length>1)p=nums[nums.length-1];
@@ -257,13 +301,19 @@ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let vr=null;
 $('bvo').onclick=()=>{if(!SR)return toast('Chrome பயன்படுத்தவும்',1);if(vr){vr.stop();return}
  const r=new SR();vr=r;r.lang='ta-IN';$('bvo').classList.add('on');
  r.onresult=e=>{const t=e.results[0][0].transcript,v=vparse(t);$('bn').value=v.n||t;$('bq').value=v.q??'';$('bp').value=v.p??'';if(v.q>0&&v.p!=null)$('badd').click()};
- r.onerror=()=>toast('Mic allow pannunga / மீண்டும் முயற்சி',1);r.onend=()=>{vr=null;$('bvo').classList.remove('on')};try{r.start()}catch(e){vr=null}};
+ r.onerror=e=>{if(e.error==='no-speech'||e.error==='aborted')return;srErr(e.error)};r.onend=()=>{vr=null;$('bvo').classList.remove('on')};try{r.start()}catch(e){vr=null}};
 $('bhi').onclick=()=>{const t=totals().tot;if(t>0)say('कुल '+Math.round(t)+' रुपये हुए। धन्यवाद, फिर आइए।','hi')};
 function billText(b){const sub=b.i.reduce((s,x)=>s+x.q*x.p,0),tot=Math.max(0,sub-(+b.d||0))*(1+(+b.g||0)/100);
  return '*GK Textiles*'+(b.no?' #'+b.no:'')+'\n'+new Date(b.t||Date.now()).toLocaleDateString('en-IN')+(b.c?'\nCustomer: '+b.c:'')+'\n\n'+b.i.map((x,n)=>(n+1)+'. '+x.n+'  '+x.q+' × ₹'+x.p+' = '+rs(x.q*x.p)).join('\n')+'\n\nSubtotal: '+rs(sub)+(b.d?'\nDiscount: -'+rs(+b.d):'')+(b.g?'\nGST '+b.g+'%':'')+'\n*Total: '+rs(Math.round(tot*100)/100)+'*\n\nநன்றி! Thank you!'}
 $('btx').onclick=()=>{if(!bill.i.length)return;const n=(bill.ph||'').replace(/\D/g,'');if(n&&n.length<10)return toast('சரியான எண் உள்ளிடவும்',1);wa(bill.ph,billText(bill))};
-$('bsave').onclick=()=>{if(!bill.i.length)return;deduct(bill);bills.unshift(Object.assign({},bill,{t:Date.now(),no:(bills[0]?bills[0].no:0)+1}));W('gk2_bills',bills.slice(0,300));
- bill={c:'',ph:'',d:0,g:0,i:[]};sb();$('bc').value=$('bph').value=$('bd').value=$('bg').value='';srender();toast('💾 Saved')};
+$('bsave').onclick=async()=>{if(!bill.i.length)return toast('Bill காலி',1);
+ let mode='est';if(!bill.est){mode=await payMode(bill);if(!mode)return;if(mode==='udhaar'&&!(bill.c||'').trim())return toast('உதார்-க்கு Customer பெயர் வேண்டும்',1)}
+ const b=Object.assign({},bill,{t:Date.now(),no:bills.reduce((m,x)=>Math.max(m,x.no||0),0)+1,mode});
+ if(!bill.est){deduct(b);const tot=totOf(b);
+  if(mode==='udhaar'){const n=b.c.trim();let x=ud.find(u=>u.n.toLowerCase()===n.toLowerCase());if(!x){x={n,ph:b.ph||'',b:0,log:[]};ud.push(x)}x.b=Math.round((x.b+tot)*100)/100;(x.log=x.log||[]).push({t:b.t,a:tot,bill:b.no});if(b.ph)x.ph=b.ph;W('gk2_ud',ud)}
+  else if(mode==='upi'&&!pend.some(p=>Math.abs(p.a-tot)<.01)){pend.push({a:tot,t:Date.now()});W('gk2_pend',pend)}}
+ bills.unshift(b);W('gk2_bills',bills.slice(0,300));
+ bill={c:'',ph:'',d:0,g:0,i:[],est:0};sb();$('bc').value=$('bph').value=$('bd').value=$('bg').value='';srender();home();toast('💾 Saved')};
 const loadQR=()=>new Promise((ok,no)=>{if(window.qrcode)return ok();const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)});
 $('bqr').onclick=async()=>{const t=totals().tot;if(!(t>0))return toast('Bill காலி',1);
  if(!cfg.upi){const v=(prompt('உங்கள் UPI ID (Eg: gk@oksbi)')||'').trim();if(!v)return;cfg.upi=v;sc()}
@@ -274,15 +324,17 @@ $('bqr').onclick=async()=>{const t=totals().tot;if(!(t>0))return toast('Bill க
 
 /* ===== khata ===== */
 function urender(){$('utot').textContent=rs(ud.reduce((s,x)=>s+x.b,0));
- $('ul').innerHTML=ud.length?ud.map((x,i)=>'<div class="row"><div class="n"><b>'+esc(x.n)+'</b><small>'+esc(x.ph||'')+'</small></div><span class="v" style="color:var(--mar)">'+rs(x.b)+'</span><button class="x" data-u="pay" data-i="'+i+'">₹</button><button class="x" data-u="wa" data-i="'+i+'">💬</button><button class="x" data-u="del" data-i="'+i+'">✕</button></div>').join(''):'<div class="empty">உதார் எதுவும் இல்லை</div>'}
+ $('ul').innerHTML=ud.length?ud.map((x,i)=>'<div class="row"><div class="n"><b>'+esc(x.n)+'</b><small>'+esc(x.ph||'')+'</small></div><span class="v" style="color:var(--mar)">'+rs(x.b)+'</span><button class="x" data-u="info" data-i="'+i+'">📜</button><button class="x" data-u="pay" data-i="'+i+'">₹</button><button class="x" data-u="wa" data-i="'+i+'">💬</button><button class="x" data-u="del" data-i="'+i+'">✕</button></div>').join(''):'<div class="empty">உதார் எதுவும் இல்லை</div>'}
 $('uadd').onclick=()=>{const n=$('un').value.trim(),a=parseFloat($('ua').value);if(!n||!(a>0))return toast('பெயர், தொகை உள்ளிடவும்',1);
- const x=ud.find(u=>u.n.toLowerCase()===n.toLowerCase());if(x){x.b=Math.round((x.b+a)*100)/100;if($('up').value)x.ph=$('up').value}else ud.push({n,ph:$('up').value.trim(),b:a});W('gk2_ud',ud);$('un').value=$('ua').value=$('up').value='';urender()};
+ const x=ud.find(u=>u.n.toLowerCase()===n.toLowerCase());if(x){x.b=Math.round((x.b+a)*100)/100;(x.log=x.log||[]).push({t:Date.now(),a});if($('up').value)x.ph=$('up').value}else ud.push({n,ph:$('up').value.trim(),b:a,log:[{t:Date.now(),a}]});W('gk2_ud',ud);$('un').value=$('ua').value=$('up').value='';urender()};
 $('ul').onclick=async e=>{const b=e.target.closest('button[data-u]');if(!b)return;const i=+b.dataset.i,x=ud[i];
- if(b.dataset.u==='pay'){const a=parseFloat(prompt(x.n+' — எவ்வளவு கொடுத்தார்? ₹'));if(a>0){x.b=Math.round((x.b-a)*100)/100;if(x.b<=0)ud.splice(i,1);W('gk2_ud',ud);urender()}}
+ if(b.dataset.u==='pay'){const a=parseFloat(prompt(x.n+' — எவ்வளவு கொடுத்தார்? ₹'));if(a>0){x.b=Math.round((x.b-a)*100)/100;(x.log=x.log||[]).push({t:Date.now(),a:-a});if(x.b<=0)ud.splice(i,1);W('gk2_ud',ud);urender()}}
  else if(b.dataset.u==='wa')wa(x.ph,'வணக்கம் '+x.n+', GK Textiles-ல் உங்கள் பாக்கி '+rs(x.b)+'. வசதிப்படும்போது கொடுங்கள். நன்றி!\n\nनमस्ते '+x.n+', GK Textiles में आपका बकाया '+rs(x.b)+' है। कृपया जल्द चुका दें। धन्यवाद!');
- else if((await auth())&&confirm(x.n+' நீக்கவா?')){ud.splice(i,1);W('gk2_ud',ud);urender()}};
+ else if(b.dataset.u==='del'&&(await auth())&&confirm(x.n+' நீக்கவா?')){ud.splice(i,1);W('gk2_ud',ud);urender()}};
 
 /* ===== translator ===== */
+const IOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+function srErr(er){const m={'service-not-allowed':'⚠ iPhone: Settings → General → Keyboard → Enable Dictation ON செய்யவும் (Siri & Dictation இயங்க வேண்டும்)','not-allowed':IOS?'⚠ Settings → Privacy & Security → Microphone மற்றும் Speech Recognition → Safari ON செய்யவும். பிறகு page refresh செய்யவும்':'⚠ Chrome: 🔒 → Permissions → Microphone → Allow, பிறகு page reload','audio-capture':'⚠ Mic வேறொரு app-ல் பயன்பாட்டில் உள்ளது','language-not-supported':'⚠ இந்த மொழி Dictation-ல் ON இல்லை (Settings → General → Keyboard → Dictation Languages)','network':'⚠ Internet சரிபார்க்கவும்'};toast(m[er]||'Mic பிழை: '+er,1)}
 let rec=null,live=null,busy=false,tlog=[];const IDLE='மைக் அழுத்தி பேசுங்கள்';
 async function tr(text,f,t){try{const r=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl='+f+'&tl='+t+'&dt=t&q='+encodeURIComponent(text));const j=await r.json(),o=j[0].map(x=>x[0]).join('');if(o)return o}catch(e){}
  try{const r=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text)+'&langpair='+f+'|'+t);return (await r.json()).responseData.translatedText||null}catch(e){return null}}
@@ -292,9 +344,9 @@ async function handle(text,f,t){$('trs').textContent='மொழிபெயர�
  if(live){busy=true;try{rec&&rec.stop()}catch(e){}say(o,t,()=>{busy=false;startRec()})}else say(o,t)}
 function btns(){$('mhi').classList.toggle('live',!!live&&live.f==='hi');$('mta').classList.toggle('live',!!live&&live.f==='ta')}
 function stopLive(){live=null;busy=false;try{rec&&rec.stop()}catch(e){}rec=null;btns();$('tri').textContent='';$('trs').textContent=IDLE}
-function startRec(){if(!live||busy||rec)return;const r=new SR();rec=r;r.lang=LC[live.f];r.continuous=true;r.interimResults=true;
+function startRec(){if(!live||busy||rec)return;const r=new SR();rec=r;r.lang=LC[live.f];r.continuous=!IOS;r.interimResults=true;
  r.onresult=e=>{let im='';for(let i=e.resultIndex;i<e.results.length;i++){const x=e.results[i];if(x.isFinal){const t=x[0].transcript.trim();if(t&&live){$('tri').textContent='';handle(t,live.f,live.t)}}else im+=x[0].transcript}if(im)$('tri').textContent=im};
- r.onerror=e=>{if(/not-allowed|service-not-allowed/.test(e.error)){toast('Mic அனுமதி தரவும்',1);stopLive()}};r.onend=()=>{if(rec===r)rec=null;if(live&&!busy)setTimeout(startRec,300)};
+ r.onerror=e=>{const er=e.error;if(er==='no-speech'||er==='aborted')return;srErr(er);stopLive()};r.onend=()=>{if(rec===r)rec=null;if(live&&!busy){if(IOS)stopLive();else setTimeout(startRec,300)}};
  try{r.start();$('trs').textContent='கேட்கிறேன்… பேசுங்கள்'}catch(e){rec=null}}
 function tg(f,t){if(!SR)return toast('Chrome பயன்படுத்தவும்',1);if(live&&live.f===f)return stopLive();stopLive();speechSynthesis.cancel();live={f,t};btns();startRec()}
 $('mhi').onclick=()=>tg('hi','ta');$('mta').onclick=()=>tg('ta','hi');
@@ -312,20 +364,20 @@ let mview='menu',ce='';const cashK=()=>'gk2_cash_'+dK(Date.now());
 function calc(e){const x=e.replace(/[+×÷−.]+$/,'').replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');if(!x||!/^[\d+\-*/.() ]+$/.test(x))return null;try{const v=Function('"use strict";return ('+x+')')();return isFinite(v)?Math.round(v*1e6)/1e6:null}catch(e){return null}}
 const BK='<button class="btn sec sm back" data-m="menu">← பின்</button>';
 function mrender(){const V=$('mv');
- if(mview==='menu')V.innerHTML='<div class="menu"><button data-m="calc"><b>🧮</b>கணக்கு</button><button data-m="close"><b>📊</b>Closing</button><button data-m="bills"><b>🗂</b>Bills</button><button data-m="rates"><b>🏷</b>Rate card</button><button data-m="perm"><b>🔐</b>Permissions</button><button data-m="pay"><b>🧾</b>Payments</button><button data-m="stock"><b>📦</b>Stock</button><button data-m="exp"><b>💸</b>செலவு</button><button data-m="rep"><b>📈</b>Reports</button><button data-m="cloth"><b>📏</b>Meter calc</button><button data-m="todo"><b>📝</b>Notes</button><button data-m="theme"><b>🎨</b>Theme</button><button data-m="guide"><b>🧭</b>Setup guide</button><button data-m="set"><b>⚙</b>Settings</button></div><button class="btn mt" id="inst">📲 App download</button>';
+ if(mview==='menu')V.innerHTML='<div class="menu"><button data-m="calc"><b>🧮</b>கணக்கு</button><button data-m="close"><b>📊</b>Closing</button><button data-m="bills"><b>🗂</b>Bills</button><button data-m="rates"><b>🏷</b>Rate card</button><button data-m="perm"><b>🔐</b>Permissions</button><button data-m="pay"><b>🧾</b>Payments</button><button data-m="bc"><b>📣</b>Broadcast</button><button data-m="stock"><b>📦</b>Stock</button><button data-m="exp"><b>💸</b>செலவு</button><button data-m="rep"><b>📈</b>Reports</button><button data-m="cloth"><b>📏</b>Meter calc</button><button data-m="todo"><b>📝</b>Notes</button><button data-m="theme"><b>🎨</b>Theme</button><button data-m="guide"><b>🧭</b>Setup guide</button><button data-m="set"><b>⚙</b>Settings</button></div><button class="btn mt" id="inst">📲 App download</button>';
  else if(mview==='calc'){V.innerHTML=BK+'<div class="card disp"><div class="e" id="ce"></div><div class="r" id="cr">0</div></div><div class="keys" id="ck"></div>';
   [['C','⌫','%','÷'],['7','8','9','×'],['4','5','6','−'],['1','2','3','+'],['00','0','.','=']].flat().forEach(k=>{const b=document.createElement('button');b.textContent=k;b.className=k==='='?'eq':'÷×−+%'.includes(k)?'op':'';b.onclick=()=>{
    if(k==='C')ce='';else if(k==='⌫')ce=ce.slice(0,-1);else if(k==='='){const v=calc(ce);if(v!=null)ce=String(v)}else{if('+×÷−'.includes(k)&&/[+×÷−]$/.test(ce))ce=ce.slice(0,-1);if(ce===''&&'×÷%'.includes(k))return;ce+=k}
    $('ce').textContent=ce;const v=calc(ce);$('cr').textContent=v==null?'0':v.toLocaleString('en-IN')};$('ck').appendChild(b)})}
- else if(mview==='close'){const up=paid().filter(i=>dK(i.t)===dK(Date.now())).reduce((s,i)=>s+i.a,0),cash=+ls.g(cashK())||0;
-  V.innerHTML=BK+'<div class="grid2"><div class="card stat"><div class="k">UPI (auto)</div><div class="v">'+rs(up)+'</div></div><div class="card stat"><div class="k">Cash</div><div class="v" id="cv">'+rs(cash)+'</div></div></div><div class="card"><input class="fld" id="cc" type="number" inputmode="decimal" placeholder="இன்றைய Cash ₹" value="'+(cash||'')+'"><div class="tot big"><span>Total</span><b id="ct">'+rs(up+cash)+'</b></div></div><div class="grid2"><button class="btn" id="cw">WhatsApp</button><button class="btn sec" id="ccs">⬇ CSV</button><button class="btn sec" id="cim" style="grid-column:1/3">🖼 Closing Image</button></div>';
-  $('cc').oninput=e=>{ls.s(cashK(),e.target.value);const c=+e.target.value||0;$('cv').textContent=rs(c);$('ct').textContent=rs(up+c)};
-  $('cw').onclick=()=>wa('','*GK Textiles — '+new Date().toLocaleDateString('en-IN')+'*\nUPI: '+rs(up)+'\nCash: '+rs(+ls.g(cashK())||0)+'\n*Total: '+rs(up+(+ls.g(cashK())||0))+'*\nஉதார்: '+rs(ud.reduce((s,x)=>s+x.b,0)));
+ else if(mview==='close'){const up=paid().filter(i=>dK(i.t)===dK(Date.now())).reduce((s,i)=>s+i.a,0),cash=cashT();
+  V.innerHTML=BK+'<div class="grid2"><div class="card stat"><div class="k">UPI (auto)</div><div class="v">'+rs(up)+'</div></div><div class="card stat"><div class="k">Cash</div><div class="v" id="cv">'+rs(cash)+'</div></div></div><div class="card"><input class="fld" id="cc" type="number" inputmode="decimal" placeholder="கூடுதல் Cash ₹ (Bill-ல் இல்லாதது)" value="'+(ls.g(cashK())||'')+'"><div class="tot big"><span>Total</span><b id="ct">'+rs(up+cash)+'</b></div></div><div class="grid2"><button class="btn" id="cw">WhatsApp</button><button class="btn sec" id="ccs">⬇ CSV</button><button class="btn sec" id="cim" style="grid-column:1/3">🖼 Closing Image</button></div>';
+  $('cc').oninput=e=>{ls.s(cashK(),e.target.value);const c=cashT();$('cv').textContent=rs(c);$('ct').textContent=rs(up+c)};
+  $('cw').onclick=()=>wa('','*GK Textiles — '+new Date().toLocaleDateString('en-IN')+'*\nUPI: '+rs(up)+'\nCash: '+rs(cashT())+'\n*Total: '+rs(up+(cashT()))+'*\nஉதார்: '+rs(ud.reduce((s,x)=>s+x.b,0)));
   $('ccs').onclick=()=>dl('gk-payments.csv',['Date,Time,Amount'].concat(paid().map(i=>new Date(i.t).toLocaleDateString('en-IN')+','+fT(i.t)+','+i.a)))}
  else if(mview==='bills')bv();else if(mview==='rates'){V.innerHTML=BK+'<div class="card"><div class="grid2"><input class="fld" id="rn" placeholder="பொருள் (தமிழ்)"><input class="fld" id="rr" type="number" inputmode="decimal" placeholder="விலை ₹/m"></div><button class="btn mt" id="radd">+ சேர்</button></div><div class="card">'+(rc.length?rc.map((x,i)=>'<div class="row"><div class="n"><b>'+esc(x.n)+'</b></div><span class="v">'+rs(x.r)+'</span><button class="x" data-r="'+i+'">✕</button></div>').join(''):'<div class="empty">காலி</div>')+'</div>';
   $('radd').onclick=()=>{const n=$('rn').value.trim(),r=parseFloat($('rr').value);if(!n||!(r>=0))return toast('பொருள், விலை உள்ளிடவும்',1);rc.push({n,r});W('gk2_rc',rc);mrender()}}
  else if(mview==='perm')prender();
- else if(mview==='set')setv();else if(mview==='rep')repv();else if(mview==='stock')stv();else if(mview==='exp')expv();else if(mview==='theme')thv();else if(mview==='guide')gdv();else if(mview==='pay')pyv();else if(mview==='cloth')clv();else if(mview==='todo')tdv()}
+ else if(mview==='set')setv();else if(mview==='rep')repv();else if(mview==='stock')stv();else if(mview==='exp')expv();else if(mview==='theme')thv();else if(mview==='guide')gdv();else if(mview==='pay')pyv();else if(mview==='cloth')clv();else if(mview==='todo')tdv();else if(mview==='bc')bcv()}
 $('mv').onclick=async e=>{const m=e.target.closest('[data-m]');if(m){const v=m.dataset.m;if(OWN.includes(v)&&!(await auth()))return;mview=v;mrender();return}
  const r=e.target.closest('[data-r]');if(r&&(await auth())){rc.splice(+r.dataset.r,1);W('gk2_rc',rc);mrender()}
  const b=e.target.closest('[data-b]');if(b)shareBill(bills[+b.dataset.b],b.dataset.k)
@@ -355,9 +407,12 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(soundO
 /* ===== v4: theme, stock, expenses, customers, guide, effects ===== */
 let stock=J('gk4_stock',[]),exp=J('gk4_exp',[]);const WS=()=>W('gk4_stock',stock),WE=()=>W('gk4_exp',exp);
 const ACC={maroon:['#7d1d3f','#a32a55','#4d1228'],emerald:['#0f7b5f','#16a37d','#074f3c'],indigo:['#3b3fb8','#5559d9','#1d1f66'],saffron:['#c2570c','#e57a1f','#7a3205']};
-function applyTheme(){const r=document.documentElement,a=ACC[cfg.th]||ACC.maroon,dk=cfg.mode==='dark'||(cfg.mode!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches);
- r.style.setProperty('--mar',dk?a[1]:a[0]);r.style.setProperty('--mar2',a[1]);r.style.setProperty('--mar3',a[2]);if(cfg.mode&&cfg.mode!=='auto')r.dataset.mode=cfg.mode;else delete r.dataset.mode;
- const m=document.querySelector('meta[name=theme-color]');if(m)m.content=a[0]}
+const LOOKS={royal:{acc:['#d9b44a','#e8c968','#7a5c0c']},aurora:{acc:['#8b5cf6','#22d3ee','#2e1065']}},ROYALB=['#1b1a2e','#2c2a4a','#0b0a16'],AURB=['#4c1d95','#6d28d9','#1e1b4b'];
+const lookOf=()=>cfg.look==null?'royal':cfg.look,billAcc=()=>lookOf()==='royal'?ROYALB:lookOf()==='aurora'?AURB:(ACC[cfg.th]||ACC.maroon);
+function applyTheme(){const r=document.documentElement,lk=lookOf(),LK=LOOKS[lk],a=LK?LK.acc:(ACC[cfg.th]||ACC.maroon),dk=!!LK||cfg.mode==='dark'||(cfg.mode!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches);
+ r.style.setProperty('--mar',dk?a[1]:a[0]);r.style.setProperty('--mar2',a[1]);r.style.setProperty('--mar3',a[2]);r.dataset.look=LK?lk:'silk';
+ if(LK)r.dataset.mode='dark';else if(cfg.mode&&cfg.mode!=='auto')r.dataset.mode=cfg.mode;else delete r.dataset.mode;
+ const m=document.querySelector('meta[name=theme-color]');if(m)m.content=LK?'#09090f':a[0]}
 function cnt(el,v){if(v==null){el.textContent='—';el._v=null;return}const from=el._v||0;el._v=v;if(from===v){el.textContent=rs(v);return}
  const t0=performance.now(),st=n=>{const p=Math.min(1,(n-t0)/700),e=1-Math.pow(1-p,3);el.textContent=rs(Math.round((from+(v-from)*e)*100)/100);if(p<1)requestAnimationFrame(st)};requestAnimationFrame(st)}
 function burst(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const c=$('cf'),g=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;const cols=['#ffc83d','#ff6b4a','#3ddc97','#6ea8ff','#ff4fa3'];
@@ -366,15 +421,15 @@ function burst(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return
 function greet(){const h=new Date().getHours();$('greet').textContent=(h<12?'நல்ல காலை ☀':h<16?'நல்ல மதியம் 🌤':h<20?'நல்ல மாலை 🌇':'நல்ல இரவு 🌙')+' · '+(cfg.rn||'GK Textiles')}
 function ring(){const g=+cfg.goal||0,c=$('goalc');c.hidden=!g;if(!g)return;const t=paid().filter(i=>dK(i.t)===dK(Date.now())).reduce((s,i)=>s+i.a,0),p=Math.min(100,Math.round(t/g*100));
  $('gr').setAttribute('stroke-dasharray',p+' 100');$('gt').textContent=rs(t)+' / '+rs(g)+' · '+p+'%'}
-function lowst(){const L=stock.filter(s=>s.q<=s.min);$('lowst').innerHTML=L.length?'<div class="card" style="border-color:var(--red)"><h2 style="color:var(--red)">⚠ STOCK குறைவு</h2>'+L.map(s=>'<div class="row"><div class="n"><b>'+esc(s.n)+'</b></div><span class="v" style="color:var(--red)">'+s.q+' m</span></div>').join('')+'</div>':''}
-function deduct(b){const low=[];b.i.forEach(x=>{const s=stock.find(y=>y.n.trim().toLowerCase()===String(x.n).trim().toLowerCase());if(s){s.q=Math.round((s.q-x.q)*100)/100;if(s.q<=s.min)low.push(s.n)}});WS();if(low.length)toast('⚠ Stock குறைவு: '+low.join(', '),1);lowst()}
+function lowst(){const L=stock.filter(s=>s.min>0&&s.q<=s.min);$('lowst').innerHTML=L.length?'<div class="card" style="border-color:var(--red)"><h2 style="color:var(--red)">⚠ STOCK குறைவு</h2>'+L.map(s=>'<div class="row"><div class="n"><b>'+esc(s.n)+'</b></div><span class="v" style="color:var(--red)">'+s.q+' m</span></div>').join('')+'</div>':''}
+function deduct(b){const low=[];b.i.forEach(x=>{const s=stock.find(y=>y.n.trim().toLowerCase()===String(x.n).trim().toLowerCase());if(s){s.q=Math.round((s.q-x.q)*100)/100;if(s.min>0&&s.q<=s.min)low.push(s.n)}});WS();if(low.length)toast('⚠ Stock குறைவு: '+low.join(', '),1);low.forEach(n=>addN('stock',n+' stock குறைவு','low-'+n+'-'+dK(Date.now())));lowst()}
 function cch(){const m=new Map();bills.forEach(b=>{if(b.c)m.set(b.c.toLowerCase(),{n:b.c,ph:b.ph||''})});ud.forEach(u=>m.set(u.n.toLowerCase(),{n:u.n,ph:u.ph||''}));
  const L=[...m.values()].slice(0,12);cch.L=L;$('cchips').innerHTML=L.map((c,i)=>'<button class="chip" data-i="'+i+'">'+esc(c.n)+'</button>').join('')}
 $('cchips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;const c=cch.L[+b.dataset.i];bill.c=c.n;bill.ph=c.ph;sb();$('bc').value=c.n;$('bph').value=c.ph};
-function stv(){$('mv').innerHTML=BK+'<div class="card"><input class="fld" id="sn" placeholder="பொருள் (Rate card பெயர் போலவே)"><div class="grid2 mt"><input class="fld" id="sq" type="number" inputmode="decimal" placeholder="இருப்பு m"><input class="fld" id="sm" type="number" inputmode="decimal" placeholder="குறைந்தபட்சம் m"></div><button class="btn mt" id="stadd">+ சேர்</button></div><div class="card">'+(stock.length?stock.map((s,i)=>'<div class="row"><div class="n"><b>'+esc(s.n)+'</b><small>min '+s.min+' m</small></div><span class="v" style="color:'+(s.q<=s.min?'var(--red)':'var(--grn)')+'">'+s.q+' m</span><button class="x" data-st="add" data-i="'+i+'">＋</button><button class="x" data-st="del" data-i="'+i+'">✕</button></div>').join(''):'<div class="empty">Stock காலி. Bill save செய்தால் பெயர் பொருந்தினால் தானாக குறையும்.</div>')+'</div>'}
+function stv(){$('mv').innerHTML=BK+'<div class="card"><input class="fld" id="sn" placeholder="பொருள் (Rate card பெயர் போலவே)"><div class="grid2 mt"><input class="fld" id="sq" type="number" inputmode="decimal" placeholder="இருப்பு m"><input class="fld" id="sm" type="number" inputmode="decimal" placeholder="குறைந்தபட்சம் m"></div><button class="btn mt" id="stadd">+ சேர்</button><div class="grid2 mt"><button class="btn sec sm" id="stimp">↻ Rate card items</button><button class="btn sec sm" id="stsh">📤 Stock share</button></div></div><div class="card">'+(stock.length?stock.map((s,i)=>'<div class="row"><div class="n"><b>'+esc(s.n)+'</b><small>min '+s.min+' m</small></div><span class="v" style="color:'+(s.q<=s.min?'var(--red)':'var(--grn)')+'">'+s.q+' m</span><button class="x" data-st="add" data-i="'+i+'">＋</button><button class="x" data-st="del" data-i="'+i+'">✕</button></div>').join(''):'<div class="empty">Stock காலி. Bill save செய்தால் பெயர் பொருந்தினால் தானாக குறையும்.</div>')+'</div>'}
 function expv(){const now=Date.now(),td=exp.filter(x=>dK(x.t)===dK(now)).reduce((s,x)=>s+x.a,0),m30=exp.filter(x=>x.t>now-30*864e5).reduce((s,x)=>s+x.a,0);
  $('mv').innerHTML=BK+'<div class="grid2"><div class="card stat"><div class="k">இன்று</div><div class="v">'+rs(td)+'</div></div><div class="card stat"><div class="k">30 நாள்</div><div class="v">'+rs(m30)+'</div></div></div><div class="card"><div class="grid2"><input class="fld" id="en" placeholder="செலவு (Tea, Rent…)"><input class="fld" id="ea" type="number" inputmode="decimal" placeholder="₹"></div><button class="btn mt" id="exadd">+ சேர்</button></div><div class="card">'+(exp.length?exp.slice().reverse().slice(0,40).map(x=>{const i=exp.indexOf(x);return '<div class="row"><div class="n"><b>'+esc(x.n)+'</b><small>'+dL(x.t)+' · '+fT(x.t)+'</small></div><span class="v" style="color:var(--mar)">'+rs(x.a)+'</span><button class="x" data-ex="'+i+'">✕</button></div>'}).join(''):'<div class="empty">செலவு இல்லை</div>')+'</div>'}
-function thv(){const cm=cfg.mode||'auto',ct=cfg.th||'maroon';$('mv').innerHTML=BK+'<div class="card"><h2>MODE</h2><div class="grid3">'+[['auto','🌗 Auto'],['light','☀ Light'],['dark','🌙 Dark']].map(m=>'<button class="btn sm'+(cm===m[0]?'':' sec')+'" data-md="'+m[0]+'">'+m[1]+'</button>').join('')+'</div></div><div class="card"><h2>COLOUR</h2><div class="grid2">'+Object.keys(ACC).map(k=>'<button class="btn sm'+(ct===k?'':' sec')+'" data-th="'+k+'"><i style="width:18px;height:18px;border-radius:50%;background:'+ACC[k][1]+';display:inline-block"></i>'+k+'</button>').join('')+'</div></div>'}
+function thv(){const cm=cfg.mode||'auto',ct=cfg.th||'maroon';$('mv').innerHTML=BK+'<div class="card"><h2>LOOK · தோற்றம்</h2><div class="grid3">'+[['royal','👑 Royal'],['aurora','🔮 Aurora'],['silk','🌸 Silk']].map(m=>'<button class="btn sm'+(lookOf()===m[0]?'':' sec')+'" data-lk="'+m[0]+'">'+m[1]+'</button>').join('')+'</div><p style="color:var(--mute);font-size:13px;margin-top:10px">Mode / Colour கீழே Silk look-க்கு மட்டும்.</p></div><div class="card"><h2>MODE</h2><div class="grid3">'+[['auto','🌗 Auto'],['light','☀ Light'],['dark','🌙 Dark']].map(m=>'<button class="btn sm'+(cm===m[0]?'':' sec')+'" data-md="'+m[0]+'">'+m[1]+'</button>').join('')+'</div></div><div class="card"><h2>COLOUR</h2><div class="grid2">'+Object.keys(ACC).map(k=>'<button class="btn sm'+(ct===k?'':' sec')+'" data-th="'+k+'"><i style="width:18px;height:18px;border-radius:50%;background:'+ACC[k][1]+';display:inline-block"></i>'+k+'</button>').join('')+'</div></div>'}
 const CP=[DB+'.json?auth=YOUR_SECRET','{"msg":"[not_text]"}'];
 function gdv(){$('mv').innerHTML=BK+'<div class="card"><h2>📱 ANDROID · INSTANT (MacroDroid)</h2><ol style="padding-left:20px;line-height:1.7"><li>Shop Android phone-ல் MacroDroid install</li><li>Trigger: Notification Received → PhonePe Business / Paytm / GPay → text contains <b>received</b> / <b>paid you</b></li><li>Action: HTTP Request → POST → URL → Content-Type application/json → Body</li><li>Battery → Unrestricted, Notification access → Allow</li></ol><button class="btn sm sec" data-cp="0">📋 URL copy</button><button class="btn sm sec mt" data-cp="1">📋 Body copy</button></div><div class="card"><h2>🍎 IPHONE · BANK SMS</h2><ol style="padding-left:20px;line-height:1.7"><li>Shortcuts → Automation → Message contains <b>credited</b> → Run Immediately</li><li>Get contents of URL → POST → JSON → msg = Message</li><li>URL கடைசியில் <b>?auth=YOUR_SECRET</b></li></ol></div><div class="card"><h2>🔒 FIREBASE LOCK</h2><p style="color:var(--mute)">Rules → <b>{"rules":{".read":true,".write":false}}</b>. Database secret-ஐ யாருக்கும் / GitHub-ல் பகிர வேண்டாம்.</p></div>'}
 $('mv').addEventListener('click',async e=>{const t=e.target;
@@ -399,7 +454,7 @@ function pyl(){const now=Date.now(),d=+pyf;let L=paid().filter(i=>!d||(d===1?dK(
 let bq='';
 function bv(){$('mv').innerHTML=BK+'<input class="fld" id="bsq" placeholder="🔎 பெயர் / எண் / பில் #" value="'+esc(bq)+'"><div class="card mt" id="bvl"></div>';bvl()}
 function bvl(){const q=bq.toLowerCase(),L=bills.map((b,i)=>({b,i})).filter(({b})=>!q||(b.c||'').toLowerCase().includes(q)||String(b.no).includes(q)||(b.ph||'').includes(q)).slice(0,60);
- $('bvl').innerHTML=L.length?L.map(({b,i})=>{const t=b.i.reduce((s,x)=>s+x.q*x.p,0),n=Math.round(Math.max(0,t-(+b.d||0))*(1+(+b.g||0)/100)*100)/100;return '<div class="row"><div class="n"><b>#'+b.no+' '+esc(b.c||'—')+'</b><small>'+new Date(b.t).toLocaleString('en-IN')+'</small></div><span class="v">'+rs(n)+'</span><button class="x" data-b="'+i+'" data-k="img">🖼</button><button class="x" data-b="'+i+'" data-k="pdf">📄</button></div>'}).join(''):'<div class="empty">Bills இல்லை</div>'}
+ $('bvl').innerHTML=L.length?L.map(({b,i})=>{const t=b.i.reduce((s,x)=>s+x.q*x.p,0),n=Math.round(Math.max(0,t-(+b.d||0))*(1+(+b.g||0)/100)*100)/100;return '<div class="row"><div class="n"><b>#'+b.no+' '+esc(b.c||'—')+'</b><small>'+new Date(b.t).toLocaleString('en-IN')+(b.est?' · Estimate':b.mode?' · '+({cash:'💵',upi:'📲',udhaar:'📒'}[b.mode]):'')+'</small></div><span class="v">'+rs(n)+'</span><button class="x" data-re="'+i+'">🔁</button><button class="x" data-b="'+i+'" data-k="img">🖼</button><button class="x" data-b="'+i+'" data-k="pdf">📄</button></div>'}).join(''):'<div class="empty">Bills இல்லை</div>'}
 /* meter calculator */
 const GM=[['சட்டை Shirt',2.2],['பேன்ட் Pant',1.3],['குர்தா Kurta',2.5],['புடவை Saree',5.5],['ரவிக்கை Blouse',1],['வேட்டி Dhoti',4.5],['சுடிதார் Set',4.5],['குழந்தை சட்டை',1.5]];let cl={i:0,n:'',r:''};
 function clv(){const g=GM[cl.i];$('mv').innerHTML=BK+'<div class="chips">'+GM.map((x,i)=>'<button class="chip'+(cl.i===i?' on':'')+'" data-gm="'+i+'">'+x[0]+'</button>').join('')+'</div><div class="card"><div class="grid2"><input class="fld" id="cln" type="number" inputmode="numeric" placeholder="எண்ணிக்கை Qty" value="'+cl.n+'"><input class="fld" id="clr" type="number" inputmode="decimal" placeholder="விலை ₹/m" value="'+cl.r+'"></div><div class="tot big"><span id="clm"></span><b id="clc"></b></div><button class="btn" id="clgo">+ Bill-ல் சேர்</button><p style="color:var(--mute);font-size:13px;margin-top:10px">≈ 44" அகல துணி, ஒரு piece-க்கு '+g[1]+' m. தையல் அளவுக்கு ஏற்ப மாறலாம்.</p></div>';clu()}
@@ -408,7 +463,7 @@ function clu(){const g=GM[cl.i],m=Math.round(g[1]*(+cl.n||0)*100)/100;$('clm').t
 let todo=J('gk4_todo',[]);const WT=()=>W('gk4_todo',todo);
 function tdv(){$('mv').innerHTML=BK+'<div class="card"><input class="fld" id="tdi" placeholder="குறிப்பு / Task"><button class="btn mt" id="tdadd">+ சேர்</button></div><div class="card">'+(todo.length?todo.map((x,i)=>'<div class="row"><button class="x" data-td="'+i+'">'+(x.d?'✅':'⬜')+'</button><div class="n"><b style="'+(x.d?'text-decoration:line-through;color:var(--mute)':'')+'">'+esc(x.s)+'</b></div><button class="x" data-tx="'+i+'">✕</button></div>').join(''):'<div class="empty">குறிப்பு இல்லை</div>')+'</div>'}
 /* closing image */
-async function closeImg(){const T=Date.now(),up=paid().filter(i=>dK(i.t)===dK(T)).reduce((s,i)=>s+i.a,0),cash=+ls.g(cashK())||0,ex=exp.filter(x=>dK(x.t)===dK(T)).reduce((s,x)=>s+x.a,0),pd=ud.reduce((s,x)=>s+x.b,0);
+async function closeImg(){const T=Date.now(),up=paid().filter(i=>dK(i.t)===dK(T)).reduce((s,i)=>s+i.a,0),cash=cashT(),ex=exp.filter(x=>dK(x.t)===dK(T)).reduce((s,x)=>s+x.a,0),pd=ud.reduce((s,x)=>s+x.b,0);
  try{await document.fonts.load('700 30px "Mukta Malar"')}catch(e){}
  const W=800,H=820,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d'),F='"Mukta Malar","Noto Sans Devanagari",sans-serif';
  g.fillStyle='#fff';g.fillRect(0,0,W,H);const gr=g.createLinearGradient(0,0,W,170);gr.addColorStop(0,'#a32a55');gr.addColorStop(1,'#4d1228');g.fillStyle=gr;g.fillRect(0,0,W,170);
@@ -420,6 +475,7 @@ async function closeImg(){const T=Date.now(),up=paid().filter(i=>dK(i.t)===dK(T)
  const bl=await new Promise(r=>c.toBlob(r,'image/png')),f=new File([bl],'GK-Closing-'+new Date(T).toISOString().slice(0,10)+'.png',{type:'image/png'}),data={files:[f],title:'Closing'};
  if(navigator.canShare&&navigator.canShare(data)){try{await navigator.share(data)}catch(e){if(!e||e.name!=='AbortError')dlFile(f)}}else dlFile(f)}
 /* delegated handlers for new views */
+$('mv').addEventListener('click',e=>{const x=e.target.closest('[data-lk]');if(x){cfg.look=x.dataset.lk;sc();applyTheme();thv()}});
 $('mv').addEventListener('click',async e=>{const t=e.target;let x;
  if(t.closest('#cim'))return closeImg();
  if(x=t.closest('[data-pf]')){pyf=x.dataset.pf;return pyv()}
@@ -442,18 +498,126 @@ $('gate').insertAdjacentHTML('afterbegin',COIN.replace('CLS','big'));
  ['pointerleave','pointerup','pointercancel'].forEach(t=>hero.addEventListener(t,()=>{touch=false;hero.classList.remove('tt');apply(0,0)}));
  addEventListener('deviceorientation',e=>{if(touch||tab!=='home'||document.hidden)return;apply(Math.max(-.5,Math.min(.5,(e.gamma||0)/60)),Math.max(-.5,Math.min(.5,((e.beta||0)-50)/60)))},{passive:true});
  new MutationObserver(()=>{if(hero.classList.contains('pulse')){coin.classList.add('fast');setTimeout(()=>coin.classList.remove('fast'),3200)}}).observe(hero,{attributes:true,attributeFilter:['class']})})();
-function setv(){$('mv').innerHTML=BK+'<div class="card"><h2>SHOP</h2><input class="fld" id="s1" placeholder="Shop name" value="'+esc(cfg.rn)+'"><input class="fld mt" id="s2" placeholder="UPI ID (gk@oksbi)" value="'+esc(cfg.upi)+'"><input class="fld mt" id="s5" type="number" inputmode="decimal" placeholder="இன்றைய இலக்கு ₹ (Daily goal)" value="'+(cfg.goal||'')+'"></div><div class="card"><h2>OWNER PIN '+(cfg.ph?'✔':'— இல்லை')+'</h2><input class="fld" id="s3" type="password" inputmode="numeric" maxlength="6" placeholder="புதிய PIN (4-6 இலக்கம்)"><input class="fld mt" id="s4" type="password" inputmode="numeric" maxlength="6" placeholder="PIN உறுதி செய்"></div><div class="grid2"><button class="btn sec" id="sl">'+(cfg.lang==='ta'?'தமிழ் ✔':'English ✔')+'</button><button class="btn" id="ss">💾 Save</button></div><div class="grid2 mt"><button class="btn sec" id="bk">⬇ Backup</button><label class="btn sec" style="cursor:pointer">⬆ Restore<input type="file" id="rf" accept="application/json" hidden></label></div>';
+
+/* ===== V3 big update ===== */
+const billCash=()=>bills.filter(b=>b.mode==='cash'&&dK(b.t)===dK(Date.now())).reduce((s,b)=>s+totOf(b),0);
+const cashT=()=>(+ls.g(cashK())||0)+billCash();
+function kind(){const e=$('bkind');e.textContent=bill.est?'📝 ESTIMATE (தொட்டால் Bill ஆக)':'🧾 BILL (தொட்டால் Estimate ஆக)';e.classList.toggle('sec',!bill.est)}
+$('bkind').onclick=()=>{bill.est=bill.est?0:1;sb();kind()};
+function payMode(b){return new Promise(res=>{const m=modal('<h2 style="font-family:Fraunces,serif">'+rs(totOf(b))+' — பணம் எப்படி?</h2><div class="grid2 mt"><button class="btn" data-pm="cash" style="grid-column:1/3">💵 Cash</button><button class="btn" data-pm="upi">📲 UPI (காத்திரு)</button><button class="btn sec" data-pm="udhaar">📒 உதார்</button></div>');let d=false;
+ const f=v=>{if(!d){d=true;m.remove();res(v)}};m.addEventListener('click',e=>{const x=e.target.closest('[data-pm]');if(x)f(x.dataset.pm);else if(e.target===m)f(null)})})}
+const TN={'ஒன்பது':9,'தொள்ளாயிரம்':900,'ஆயிரம்':1000,'எண்ணூறு':800,'எழுநூறு':700,'அறுநூறு':600,'ஐநூறு':500,'நானூறு':400,'முன்னூறு':300,'இருநூறு':200,'தொண்ணூறு':90,'எண்பது':80,'எழுபது':70,'அறுபது':60,'ஐம்பது':50,'நாற்பது':40,'முப்பது':30,'இருபது':20,'நூறு':100,'பத்து':10,'எட்டு':8,'ஏழு':7,'ஆறு':6,'ஐந்து':5,'நான்கு':4,'மூன்று':3,'இரண்டு':2,'ஒன்று':1,'ஒரு':1};
+const tamNum=t=>Object.keys(TN).reduce((s,k)=>s.split(k).join(' '+TN[k]+' '),String(t));
+function hrs(){const H=Array(24).fill(0);paid().forEach(i=>H[new Date(i.t).getHours()]+=i.a);const mx=Math.max(1,...H);
+ return '<div class="card"><h2>பிஸி நேரம் / PEAK HOURS</h2><div class="bars">'+H.slice(7,23).map((v,k)=>'<div class="bar"><i style="height:'+Math.round(v/mx*78)+'%"></i>'+((k+7)%2?'':(k+7))+'</div>').join('')+'</div></div>'}
+$('ul').addEventListener('click',e=>{const b=e.target.closest('[data-u="info"]');if(!b)return;const x=ud[+b.dataset.i],L=(x.log||[]).slice().reverse();
+ const m=modal('<h2 style="font-family:Fraunces,serif">'+esc(x.n)+'</h2><div class="tot big"><span>பாக்கி</span><b>'+rs(x.b)+'</b></div>'+(L.length?L.map(l=>'<div class="row"><div class="n"><small>'+new Date(l.t).toLocaleString('en-IN')+(l.bill?' · Bill #'+l.bill:'')+'</small></div><span class="v" style="color:'+(l.a<0?'var(--grn)':'var(--mar)')+'">'+(l.a<0?'-':'+')+rs(Math.abs(l.a))+'</span></div>').join(''):'<div class="empty">History இல்லை</div>')+'<button class="btn mt" id="stw">💬 Statement</button>');
+ m.querySelector('#stw').onclick=()=>wa(x.ph,'*GK Textiles — கணக்கு / Statement*\n'+x.n+'\n\n'+L.slice(0,15).reverse().map(l=>new Date(l.t).toLocaleDateString('en-IN')+'  '+(l.a<0?'செலுத்தியது -':'உதார் +')+rs(Math.abs(l.a))).join('\n')+'\n\n*பாக்கி: '+rs(x.b)+'*')});
+$('mv').addEventListener('click',e=>{const x=e.target.closest('[data-re]');if(!x)return;const b=bills[+x.dataset.re];
+ bill={c:b.c||'',ph:b.ph||'',d:b.d||0,g:b.g||0,i:JSON.parse(JSON.stringify(b.i)),est:0};sb();$('bc').value=bill.c;$('bph').value=bill.ph;$('bd').value=bill.d||'';$('bg').value=bill.g||'';srender();go('sell');toast('🔁 Bill load ஆனது')});
+const wnT=setInterval(()=>{if(!$('gate').hidden)return;clearInterval(wnT);
+ if(bills.length&&Date.now()-(+ls.g('gk_lastbk')||0)>6048e5&&ls.g('gk_bkn')!==dK(Date.now())){ls.s('gk_bkn',dK(Date.now()));toast('💾 Backup எடுங்கள் (More → Settings → Backup)')}
+ if(!ls.g('gk_v3seen')){ls.s('gk_v3seen','1');const m=modal('<h2 style="font-family:Fraunces,serif">🚀 V3 — பெரிய Update</h2><ul style="padding-left:20px;line-height:1.7;margin:8px 0"><li>Bill save-ல் <b>Cash / UPI / உதார்</b> தேர்வு (உதார் தானாக கணக்கில்)</li><li><b>Estimate</b> mode, பழைய Bill 🔁 மீண்டும் பயன்படுத்த</li><li>உதார் <b>History + Statement</b> 📜</li><li>Closing-ல் Cash தானாக, <b>Peak hours</b> chart</li><li>Voice bill-ல் தமிழ் எண்கள் (மூன்று, இருநூறு…)</li><li>Backup <b>WhatsApp / Drive</b>-க்கு share</li></ul><button class="btn" id="wn">சரி 👍</button>');m.querySelector('#wn').onclick=()=>m.remove()}},900);
+
+/* ===== V4: notification center, weekly broadcast, stock card ===== */
+const DEFTPL='வணக்கம் {NAME}! 🙏\n{SHOP}-ல் புதிய stock வந்துள்ளது ✨\n{STOCK}\n\nகடைக்கு வந்து பார்க்கவும். நன்றி 🙏',DEFHI='नमस्ते {NAME}! 🙏\n{SHOP} में नया स्टॉक आया है ✨\n{STOCK}\n\nदुकान पर आकर देखें। धन्यवाद 🙏';
+let cust=J('gk5_cust',[]),bcs=J('gk5_bcs',{}),nlog=J('gk5_nlog',[]),tpl=ls.g('gk5_tpl')||DEFTPL,tplHi=ls.g('gk5_tplh')||DEFHI,pendBc='',bcf='all',bcq='';
+const WC=()=>W('gk5_cust',cust),WB=()=>W('gk5_bcs',bcs),WN=()=>W('gk5_nlog',nlog.slice(0,100));
+const wk=t=>{const d=new Date(t);d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));return dK(d)};
+const DN=['ஞாயிறு','திங்கள்','செவ்வாய்','புதன்','வியாழன்','வெள்ளி','சனி'],bd=()=>cfg.bd==null?6:+cfg.bd;
+function addN(k,txt,id){id=id||k+txt;if(nlog.some(n=>n.id===id))return;nlog.unshift({t:Date.now(),k,txt,id});nlog=nlog.slice(0,100);WN();bell()}
+function bell(){const u=nlog.filter(n=>n.t>(+ls.g('gk5_nread')||0)).length,e=$('bellc');e.textContent=u>9?'9+':u;e.hidden=!u}
+$('bell').onclick=()=>{const IC={pay:'💰',stock:'⚠️',udhaar:'📒',bc:'📣',sys:'💾'};
+ const m=modal('<h2 style="font-family:Fraunces,serif">🔔 Notifications</h2>'+(nlog.length?nlog.slice(0,50).map(n=>'<div class="row"><div style="font-size:26px">'+(IC[n.k]||'🔔')+'</div><div class="n"><b style="font-size:17px">'+esc(n.txt)+'</b><small>'+dL(n.t)+' · '+fT(n.t)+'</small></div></div>').join(''):'<div class="empty">அறிவிப்பு இல்லை</div>')+(nlog.length?'<button class="btn sec mt" id="ncl">🗑 Clear</button>':''));
+ ls.s('gk5_nread',String(Date.now()));bell();const c=m.querySelector('#ncl');if(c)c.onclick=()=>{nlog=[];WN();m.remove();bell()}};
+const bcSent=()=>new Set(bcs[wk(Date.now())]||[]);
+function bcDue(){const di=(new Date().getDay()+6)%7,si=(bd()+6)%7;return di>=si&&allCust().some(c=>!c.stop)&&bcSent().size===0}
+function checkAlerts(){const now=Date.now();
+ stock.forEach(s=>{if(s.min>0&&s.q<=s.min)addN('stock',s.n+' stock குறைவு ('+s.q+' m)','low-'+s.n+'-'+dK(now))});
+ ud.forEach(x=>{const lp=(x.log||[]).filter(l=>l.a>0).slice(-1)[0];if(x.b>0&&lp&&now-lp.t>15*864e5)addN('udhaar',x.n+' — '+rs(x.b)+' பாக்கி (15+ நாள்)','ud-'+x.n+'-'+wk(now))});
+ if(bcDue())addN('bc','📣 Weekly message அனுப்பும் நேரம் ('+DN[bd()]+')','bc-'+wk(now))}
+function bcbanner(){$('bcbn').innerHTML=bcDue()?'<div class="card" style="border-color:var(--gold)"><b>📣 Weekly message அனுப்பும் நேரம்</b><div class="mt"><button class="btn sm" data-gobc="1">Broadcast திற</button></div></div>':''}
+$('bcbn').onclick=async e=>{if(e.target.closest('[data-gobc]')&&await auth()){mview='bc';go('more')}};
+function allCust(){const m=new Map();const add=(n,p,man)=>{const k=waNum(p);if(!k)return;const o=m.get(k)||{n:n||k,ph:k,stop:0,lg:'ta'};if(n&&(!o.n||o.n===k))o.n=n;if(man){o.n=man.n||o.n;o.stop=man.stop||0;o.lg=man.lg||'ta'}m.set(k,o)};
+ bills.forEach(b=>add(b.c,b.ph));ud.forEach(u=>add(u.n,u.ph));cust.forEach(c=>add(c.n,c.ph,c));return [...m.values()]}
+function stockItems(){const rr=n=>{const r=rc.find(x=>x.n.toLowerCase()===String(n).toLowerCase());return r?r.r:null};
+ const L=stock.filter(s=>s.q>0).map(s=>({n:s.n,r:rr(s.n),q:s.q}));return L.length?L:rc.map(x=>({n:x.n,r:x.r,q:null}))}
+const stockText=()=>stockItems().slice(0,20).map(x=>'• '+x.n+(x.r!=null?' — ₹'+x.r+'/m':'')).join('\n');
+const bcMsg=c=>(c.lg==='hi'?tplHi:tpl).split('{NAME}').join(c.n).split('{SHOP}').join(cfg.rn||'GK Textiles').split('{STOCK}').join(stockText());
+function markSent(p){const k=wk(Date.now()),S=new Set(bcs[k]||[]);S.add(p);bcs[k]=[...S];WB();pendBc='';ls.s('gk5_pend','')}
+function bcOpen(c){pendBc=c.ph;ls.s('gk5_pend',c.ph+':'+Date.now());location.href='https://wa.me/'+c.ph+'?text='+encodeURIComponent(bcMsg(c))}
+function bcv(){const L=allCust(),S=bcSent(),ns=L.filter(c=>!c.stop),dn=ns.filter(c=>S.has(c.ph)).length,pd=ns.length-dn,q=bcq.toLowerCase();
+ const V=L.filter(c=>(!q||c.n.toLowerCase().includes(q)||c.ph.includes(q))&&(bcf==='all'||(bcf==='pend'?(!c.stop&&!S.has(c.ph)):S.has(c.ph))));
+ $('mv').innerHTML=BK+'<div class="card" style="border-color:var(--gold)"><h2>⭐ 100 CUSTOMERS-க்கு EASY METHOD</h2><ol style="padding-left:20px;line-height:1.7;margin-bottom:10px"><li><b>📇 Contacts save</b> — எல்லா customers-ஐயும் phone contacts-ல் ஒரே முறையில் சேர்க்கவும் ("GK-" என்று தொடங்கும்)</li><li>WhatsApp → <b>New broadcast</b> → "GK-" contacts எல்லாம் select செய்யவும் (256 வரை)</li><li><b>📤 Stock card</b> ஒரே முறை send ✅ — ஒவ்வொருவருக்கும் தனி message ஆக போகும்</li></ol><div class="grid2"><button class="btn sm" id="bcvcf">📇 Contacts save</button><button class="btn sm" id="bcsh">📤 Stock card</button></div></div>'
+ +'<div class="card stat"><div class="k">தனித்தனி message · இந்த வாரம்</div><div class="v">'+dn+' / '+ns.length+'</div></div>'
+ +'<button class="btn" id="bcnx" style="position:sticky;top:8px;z-index:3;margin-bottom:12px">▶ அடுத்த customer ('+pd+' மீதி)</button>'
+ +'<div class="chips">'+[['all','அனைவரும் '+L.length],['pend','மீதி '+pd],['sent','அனுப்பியது '+dn]].map(f=>'<button class="chip'+(bcf===f[0]?' on':'')+'" data-bf="'+f[0]+'">'+f[1]+'</button>').join('')+'</div>'
+ +'<input class="fld" id="bcq" placeholder="🔎 பெயர் / எண்" value="'+esc(bcq)+'"><div class="card mt" id="bcl">'+bcRows(V,S)+'</div>'
+ +'<div class="card"><h2>CUSTOMERS சேர்க்க</h2><div class="grid2"><button class="btn sec sm" id="bcimp">📥 Paste / CSV</button><button class="btn sec sm" id="bcpick">📱 Phone contacts</button></div><div class="grid2 mt"><input class="fld" id="bcn" placeholder="பெயர்"><input class="fld" id="bcp" type="tel" placeholder="📱 Mobile"></div><button class="btn sm mt" id="bcad">+ ஒருவரை சேர்</button></div>'
+ +'<div class="card"><h2>MESSAGE · {NAME} {SHOP} {STOCK}</h2><label style="color:var(--mute);font-size:14px">தமிழ்</label><textarea class="fld" id="bct" rows="6" style="height:auto;padding:12px;line-height:1.5">'+esc(tpl)+'</textarea><label style="color:var(--mute);font-size:14px">हिंदी (customer பெயர் கீழே "தமிழ்" தட்டினால் मாறும்)</label><textarea class="fld" id="bch" rows="6" style="height:auto;padding:12px;line-height:1.5">'+esc(tplHi)+'</textarea><div class="grid2 mt"><select class="fld" id="bcd">'+DN.map((d,i)=>'<option value="'+i+'"'+(bd()===i?' selected':'')+'>'+d+' · weekly</option>').join('')+'</select><button class="btn sec" id="bcre">↺ Default</button></div></div>'}
+function bcRows(V,S){return V.length?V.map(c=>'<div class="row"><button class="x" data-bm="'+c.ph+'">'+(S.has(c.ph)?'✅':'⬜')+'</button><div class="n"><b style="'+(c.stop?'color:var(--mute);text-decoration:line-through':'')+'">'+esc(c.n)+'</b><small>+'+c.ph+' · <u data-bl="'+c.ph+'" style="cursor:pointer;color:var(--mar)">'+(c.lg==='hi'?'हिंदी':'தமிழ்')+'</u></small></div><button class="x" data-bs="'+c.ph+'">💬</button><button class="x" data-bx="'+c.ph+'">'+(c.stop?'🔕':'⛔')+'</button></div>').join(''):'<div class="empty">Customer இல்லை. Bill-ல் number போட்டால் தானாக சேரும் / கீழே import செய்யவும்.</div>'}
+function parseImport(t){const out=[];t.split(/\n|;/).forEach(line=>{line=line.trim();const m=line.match(/(\+?\d[\d\s\-]{8,}\d)/);if(!m)return;const ph=waNum(m[1]);if(!ph)return;out.push({n:line.replace(m[1],'').replace(/[,\t|]+/g,' ').trim()||ph,ph,stop:0})});return out}
+function addCust(arr){let n=0;arr.forEach(c=>{const i=cust.findIndex(x=>waNum(x.ph)===c.ph);if(i>=0){if(c.n&&c.n!==c.ph)cust[i].n=c.n}else{cust.push({n:c.n,ph:c.ph,stop:0});n++}});WC();return n}
+async function exportVcf(){const L=allCust().filter(c=>!c.stop);if(!L.length)return toast('Customer இல்லை',1);
+ const v=L.map(c=>'BEGIN:VCARD\nVERSION:3.0\nFN:GK-'+c.n.replace(/[\n;,]/g,' ')+'\nTEL;TYPE=CELL:+'+c.ph+'\nEND:VCARD').join('\n'),f=new File([v],'gk-customers.vcf',{type:'text/vcard'}),data={files:[f],title:'GK customers'},can=!!(navigator.canShare&&navigator.canShare(data));
+ const m=modal('<h2 style="font-family:Fraunces,serif">📇 '+L.length+' Contacts தயார்</h2><ol style="padding-left:20px;line-height:1.7;margin:8px 0 12px"><li>கீழே தட்டி file-ஐ திறக்கவும்</li><li><b>Add all contacts</b> / Import தட்டவும்</li><li>WhatsApp → New broadcast → "GK-" select → Send</li></ol>'+(can?'<button class="btn" id="v1">📤 Contacts-ல் திற / Share</button>':'')+'<button class="btn sec mt" id="v2">⬇ Download .vcf</button><button class="btn sec mt" id="v3">✕ Close</button>');
+ const q=s=>m.querySelector(s);if(q('#v1'))q('#v1').onclick=async()=>{try{await navigator.share(data);m.remove()}catch(e){if(!e||e.name!=='AbortError')toast('Share ஆகவில்லை — Download பயன்படுத்தவும்',1)}};q('#v2').onclick=()=>{dlFile(f);m.remove()};q('#v3').onclick=()=>m.remove()}
+$('mv').addEventListener('click',async e=>{const t=e.target;let x;
+ if(t.closest('#bcvcf'))return exportVcf();
+ if(x=t.closest('[data-bf]')){bcf=x.dataset.bf;return bcv()}
+ if(x=t.closest('[data-bl]')){const p=x.dataset.bl,c=allCust().find(c=>c.ph===p),i=cust.findIndex(c=>waNum(c.ph)===p),lg=c.lg==='hi'?'ta':'hi';if(i>=0)cust[i].lg=lg;else cust.push({n:c.n,ph:p,stop:c.stop,lg});WC();return bcv()}
+ if(t.closest('#bcimp')){const m=modal('<h2 style="font-family:Fraunces,serif">📥 Customers import</h2><p style="color:var(--mute);margin:6px 0 10px">ஒரு வரிக்கு ஒருவர்: <b>பெயர், number</b> (Excel/CSV-ல் இருந்து copy-paste செய்யலாம்)</p><textarea class="fld" id="imt" rows="8" style="height:auto;padding:12px" placeholder="Ravi, 9876543210&#10;Mani 9123456780"></textarea><label class="btn sec mt" style="cursor:pointer">📄 CSV / TXT file<input type="file" id="imf" accept=".csv,.txt,text/plain,text/csv" hidden></label><button class="btn mt" id="imo">✔ சேர்</button>');
+  m.querySelector('#imf').onchange=ev=>{const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{m.querySelector('#imt').value=r.result};r.readAsText(f)};
+  m.querySelector('#imo').onclick=()=>{const arr=parseImport(m.querySelector('#imt').value);if(!arr.length)return toast('சரியான numbers இல்லை',1);const n=addCust(arr);m.remove();toast('✅ '+n+' புதிய customers · '+(arr.length-n)+' ஏற்கனவே இருந்தவை');bcv()};return}
+ if(t.closest('#bcpick')){if(!(navigator.contacts&&navigator.contacts.select))return toast('இந்த phone-ல் contacts picker இல்லை — Paste / CSV பயன்படுத்தவும்',1);
+  try{const r=await navigator.contacts.select(['name','tel'],{multiple:true});const n=addCust(r.map(c=>({n:(c.name||[])[0]||'',ph:waNum((c.tel||[])[0])})).filter(c=>c.ph).map(c=>({n:c.n||c.ph,ph:c.ph})));toast('✅ '+n+' புதிய customers');bcv()}catch(err){toast('ரத்து செய்யப்பட்டது',1)}}});
+$('mv').addEventListener('input',e=>{if(e.target.id==='bch'){tplHi=e.target.value;ls.s('gk5_tplh',tplHi)}else if(e.target.id==='bcq'){bcq=e.target.value;const S=bcSent(),q=bcq.toLowerCase();$('bcl').innerHTML=bcRows(allCust().filter(c=>(!q||c.n.toLowerCase().includes(q)||c.ph.includes(q))&&(bcf==='all'||(bcf==='pend'?(!c.stop&&!S.has(c.ph)):S.has(c.ph)))),S)}});
+{const pp=(ls.g('gk5_pend')||'').split(':');if(pp[0]&&Date.now()-(+pp[1]||0)<18e5){pendBc=pp[0];setTimeout(()=>{if(pendBc){markSent(pendBc);if(tab==='more'&&mview==='bc')bcv()}},2000)}else ls.s('gk5_pend','')}
+async function stockCard(){try{await document.fonts.load('800 40px Fraunces');await document.fonts.load('700 30px "Mukta Malar"')}catch(e){}
+ const S=2,W=900,A=billAcc(),L=stockItems().slice(0,14),H=Math.max(900,330+L.length*56+170),c=document.createElement('canvas');c.width=W*S;c.height=H*S;const g=c.getContext('2d');g.scale(S,S);
+ const F='"Mukta Malar","Noto Sans Devanagari",Arial,sans-serif',FS='Fraunces,"Mukta Malar",serif',T=(t,x,y,f,col,al)=>{g.font=f;g.fillStyle=col||'#1d1a1c';g.textAlign=al||'left';g.fillText(t,x,y);g.textAlign='left'};
+ g.fillStyle='#fffaf1';g.fillRect(0,0,W,H);let gr=g.createLinearGradient(0,0,W,230);gr.addColorStop(0,A[1]);gr.addColorStop(1,A[2]);g.fillStyle=gr;g.fillRect(0,0,W,230);g.fillStyle='#c8922a';g.fillRect(0,230,W,6);
+ T(cfg.rn||'GK Textiles',W/2,90,'800 50px '+FS,'#ffe3a3','center');T('🆕 இந்த வார Stock & Rates',W/2,150,'700 30px '+F,'#fff','center');T(new Date().toLocaleDateString('en-GB'),W/2,196,'600 22px '+F,'#ffd98a','center');
+ L.forEach((x,i)=>{const y=270+i*56;if(i%2===0){g.fillStyle='#f6eddd';g.fillRect(36,y,W-72,52)}T(String(i+1),56,y+36,'700 20px '+F,'#999');
+  let n=String(x.n);g.font='700 25px '+F;while(g.measureText(n).width>440&&n.length>1)n=n.slice(0,-2)+'…';T(n,100,y+36,'700 25px '+F);
+  if(x.q!=null)T(x.q+' m',W-250,y+36,'600 20px '+F,'#0f7b5f','right');if(x.r!=null)T('₹'+x.r+' / m',W-56,y+36,'800 25px '+F,A[0],'right')});
+ const fy=270+L.length*56+40;T('நேரில் வாருங்கள்! 🙏  धन्यवाद, पधारें',W/2,fy+20,'700 24px '+F,'#0f7b5f','center');
+ [cfg.addr,cfg.mob?'📞 '+cfg.mob:''].filter(Boolean).forEach((t,i)=>T(t,W/2,fy+66+i*32,'600 20px '+F,'#555','center'));
+ for(let x=0,i=0;x<W;x+=30,i++){g.fillStyle=['#ffb627','#e4572e','#17bebb',A[2]][i%4];g.fillRect(x,H-12,30,12)}return c}
+async function shareStockCard(){let f;try{toast('⏳ தயாராகிறது…');const c=await stockCard(),bl=await new Promise(r=>c.toBlob(r,'image/png'));f=new File([bl],'GK-Stock-'+new Date().toISOString().slice(0,10)+'.png',{type:'image/png'})}catch(e){return toast('உருவாக்க முடியவில்லை',1)}
+ const txt='*'+(cfg.rn||'GK Textiles')+'* — இந்த வார Stock\n'+stockText(),data={files:[f],title:'Stock',text:txt},can=!!(navigator.canShare&&navigator.canShare(data));
+ const m=modal('<h2 style="font-family:Fraunces,serif">Stock card தயார் ✔</h2><p style="color:var(--mute);margin:6px 0 12px">WhatsApp-ல் <b>Broadcast list</b>-ஐ தேர்வு செய்தால் எல்லா customer-க்கும் ஒரே முறையில் போகும்.</p>'+(can?'<button class="btn" id="k1">📤 Image + text share</button>':'')+'<button class="btn sec mt" id="k2">📋 Text copy</button><button class="btn sec mt" id="k3">⬇ Download</button><button class="btn sec mt" id="k4">✕ Close</button>');
+ const q=s=>m.querySelector(s);if(q('#k1'))q('#k1').onclick=async()=>{try{await navigator.share(data);m.remove()}catch(e){if(!e||e.name!=='AbortError')toast('Share ஆகவில்லை',1)}};
+ q('#k2').onclick=async()=>{try{await navigator.clipboard.writeText(txt);toast('📋 Copied')}catch(e){toast('Copy ஆகவில்லை',1)}};q('#k3').onclick=()=>{dlFile(f);m.remove()};q('#k4').onclick=()=>m.remove()}
+$('mv').addEventListener('input',e=>{if(e.target.id==='bct'){tpl=e.target.value;ls.s('gk5_tpl',tpl)}});
+$('mv').addEventListener('change',e=>{if(e.target.id==='bcd'){cfg.bd=+e.target.value;sc()}});
+$('mv').addEventListener('click',e=>{const t=e.target;let x;
+ if(t.closest('#bcre')){tpl=DEFTPL;tplHi=DEFHI;ls.s('gk5_tpl',tpl);ls.s('gk5_tplh',tplHi);return bcv()}
+ if(t.closest('#bcad')){const n=$('bcn').value.trim(),p=waNum($('bcp').value);if(!n||!p)return toast('பெயர், சரியான எண் உள்ளிடவும்',1);cust=cust.filter(c=>waNum(c.ph)!==p);cust.push({n,ph:p,stop:0});WC();return bcv()}
+ if(t.closest('#bcnx')){const S=bcSent(),c=allCust().find(c=>!c.stop&&!S.has(c.ph));if(!c)return toast('✅ எல்லோருக்கும் அனுப்பியாச்சு');return bcOpen(c)}
+ if(t.closest('#bcsh')||t.closest('#stsh'))return shareStockCard();
+ if(x=t.closest('[data-bs]')){const c=allCust().find(c=>c.ph===x.dataset.bs);return c&&bcOpen(c)}
+ if(x=t.closest('[data-bm]')){const k=wk(Date.now()),S=new Set(bcs[k]||[]);S.has(x.dataset.bm)?S.delete(x.dataset.bm):S.add(x.dataset.bm);bcs[k]=[...S];WB();return bcv()}
+ if(x=t.closest('[data-bx]')){const p=x.dataset.bx,c=allCust().find(c=>c.ph===p),i=cust.findIndex(c=>waNum(c.ph)===p);if(i>=0)cust[i].stop=cust[i].stop?0:1;else cust.push({n:c.n,ph:p,stop:1});WC();return bcv()}
+ if(t.closest('#stimp')){let n=0;rc.forEach(r=>{if(!stock.some(s=>s.n.toLowerCase()===r.n.toLowerCase())){stock.push({n:r.n,q:0,min:0});n++}});WS();toast('+'+n+' items');stv()}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)return;if(pendBc){markSent(pendBc);toast('✅ Marked sent — ▶ அடுத்தது?');if(tab==='more'&&mview==='bc')bcv()}checkAlerts();bell();bcbanner()});
+bell();setTimeout(()=>{checkAlerts();bcbanner()},2500);setInterval(checkAlerts,18e5);
+function setv(){$('mv').innerHTML=BK+'<div class="card"><h2>SHOP</h2><input class="fld" id="s1" placeholder="Shop name" value="'+esc(cfg.rn)+'"><input class="fld mt" id="s2" placeholder="UPI ID (gk@oksbi)" value="'+esc(cfg.upi)+'"><input class="fld mt" id="s5" type="number" inputmode="decimal" placeholder="இன்றைய இலக்கு ₹ (Daily goal)" value="'+(cfg.goal||'')+'"></div><div class="card"><h2>LOGO</h2><div class="grid2"><label class="btn sec" style="cursor:pointer">🖼 Logo upload<input type="file" id="lgf" accept="image/*" hidden></label><button class="btn sec" id="lgx">✕ Remove</button></div><div id="lgp" style="text-align:center;margin-top:10px"></div></div><div class="card"><h2>BILL HEADER · பில் தலைப்பு</h2><input class="fld" id="s6" placeholder="Tagline (Eg: All Textiles Sales)" value="'+esc(cfg.tag||'')+'"><input class="fld mt" id="s7" placeholder="முகவரி / Address" value="'+esc(cfg.addr||'')+'"><input class="fld mt" id="s8" type="tel" placeholder="Mobile No" value="'+esc(cfg.mob||'')+'"><input class="fld mt" id="s9" placeholder="GST No (optional)" value="'+esc(cfg.gst||'')+'"><input class="fld mt" id="s10" maxlength="6" placeholder="Invoice prefix (GK)" value="'+esc(cfg.pre||'')+'"><input class="fld mt" id="s11" placeholder="Bill footer note (optional)" value="'+esc(cfg.terms||'')+'"></div><div class="card"><h2>OWNER PIN '+(cfg.ph?'✔':'— இல்லை')+'</h2><input class="fld" id="s3" type="password" inputmode="numeric" maxlength="6" placeholder="புதிய PIN (4-6 இலக்கம்)"><input class="fld mt" id="s4" type="password" inputmode="numeric" maxlength="6" placeholder="PIN உறுதி செய்"></div><div class="grid2"><button class="btn sec" id="sl">'+(cfg.lang==='ta'?'தமிழ் ✔':'English ✔')+'</button><button class="btn" id="ss">💾 Save</button></div><div class="grid2 mt"><button class="btn sec" id="bk">⬇ Backup</button><label class="btn sec" style="cursor:pointer">⬆ Restore<input type="file" id="rf" accept="application/json" hidden></label></div>';
  $('sl').onclick=()=>{cfg.lang=cfg.lang==='ta'?'en':'ta';sc();setv()};
- $('ss').onclick=async()=>{cfg.rn=$('s1').value.trim()||'GK Textiles';cfg.upi=$('s2').value.trim();cfg.goal=+$('s5').value||0;const np=$('s3').value,cp=$('s4').value;
+ const lp=()=>{const s=ls.g('gk_logo');$('lgp').innerHTML=s?'<img src="'+s+'" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--gold)">':'<span style="color:var(--mute);font-size:14px">Logo இல்லை — default GK emblem பயன்படும்</span>'};lp();
+ $('lgx').onclick=()=>{try{localStorage.removeItem('gk_logo')}catch(e){}lp();toast('Logo நீக்கப்பட்டது')};
+ $('lgf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d'),s=Math.max(256/im.width,256/im.height);g.drawImage(im,128-im.width*s/2,128-im.height*s/2,im.width*s,im.height*s);ls.s('gk_logo',c.toDataURL('image/png'));lp();toast('✔ Logo சேர்ந்தது')};im.onerror=()=>toast('Image படிக்க முடியவில்லை',1);im.src=r.result};r.readAsDataURL(f)};
+ $('ss').onclick=async()=>{cfg.rn=$('s1').value.trim()||'GK Textiles';cfg.upi=$('s2').value.trim();cfg.goal=+$('s5').value||0;cfg.tag=$('s6').value.trim();cfg.addr=$('s7').value.trim();cfg.mob=$('s8').value.trim();cfg.gst=$('s9').value.trim().toUpperCase();cfg.pre=($('s10').value.trim()||'GK').toUpperCase();cfg.terms=$('s11').value.trim();const np=$('s3').value,cp=$('s4').value;
   if(np||cp){const cur=await pinPad('தற்போதைய PIN');if(cur==null||await sha(cur)!==cfg.ph)return toast('தவறான PIN',1);if(!/^\d{4,6}$/.test(np))return toast('PIN 4-6 இலக்கம்',1);if(np!==cp)return toast('PIN பொருந்தவில்லை',1);cfg.ph=await sha(np);owner=Date.now()+1.8e6}
   sc();lockUI();toast('💾 Saved');setv()};
- const BKK=['gk2_cfg','gk2_bills','gk2_rc','gk2_ud','gk3_hid','gk4_stock','gk4_exp','gk4_todo'];
- $('bk').onclick=()=>{const o={};BKK.forEach(k=>o[k]=ls.g(k));const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(o)],{type:'application/json'}));a.download='gk-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click()};
+ const BKK=['gk2_cfg','gk2_bills','gk2_rc','gk2_ud','gk3_hid','gk4_stock','gk4_exp','gk4_todo','gk_logo','gk5_cust','gk5_bcs','gk5_nlog','gk5_tpl','gk5_tplh'];
+ $('bk').onclick=async()=>{const o={};BKK.forEach(k=>o[k]=ls.g(k));const f=new File([JSON.stringify(o)],'gk-backup-'+new Date().toISOString().slice(0,10)+'.json',{type:'application/json'});ls.s('gk_lastbk',String(Date.now()));
+  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:'GK backup'});return}catch(e){if(e&&e.name==='AbortError')return}}dlFile(f)};
  $('rf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!confirm('Restore செய்தால் தற்போதைய data மாறும். தொடரவா?'))return;BKK.forEach(k=>{if(typeof o[k]==='string')ls.s(k,o[k])});location.reload()}catch(x){toast('Invalid backup file',1)}};r.readAsText(f)};
  if($('rp'))$('rp').onclick=()=>{if(confirm('PIN நீக்கினால் யாரும் settings மாற்றலாம். நீக்கவா?')){cfg.ph='';sc();lockUI();setv()}}}
 function repv(){const E30=exp.filter(x=>x.t>Date.now()-30*864e5).reduce((s,x)=>s+x.a,0),now=Date.now(),P=paid(),sum=d=>P.filter(i=>i.t>now-d*864e5).reduce((s,i)=>s+i.a,0),B=bills.filter(b=>b.t>now-30*864e5),bt=b=>Math.max(0,b.i.reduce((s,x)=>s+x.q*x.p,0)-(+b.d||0))*(1+(+b.g||0)/100);
  const top={};B.forEach(b=>b.i.forEach(x=>top[x.n]=(top[x.n]||0)+x.q*x.p));const T=Object.entries(top).sort((a,b)=>b[1]-a[1]).slice(0,6);
- $('mv').innerHTML=BK+'<div class="grid2"><div class="card stat"><div class="k">UPI · 7 நாள்</div><div class="v">'+rs(sum(7))+'</div></div><div class="card stat"><div class="k">UPI · 30 நாள்</div><div class="v">'+rs(sum(30))+'</div></div><div class="card stat"><div class="k">Bills · 30 நாள்</div><div class="v">'+rs(B.reduce((s,b)=>s+bt(b),0))+'</div></div><div class="card stat"><div class="k">உதார் பாக்கி</div><div class="v">'+rs(ud.reduce((s,x)=>s+x.b,0))+'</div></div><div class="card stat"><div class="k">செலவு · 30 நாள்</div><div class="v">'+rs(E30)+'</div></div><div class="card stat"><div class="k">Net (UPI−செலவு)</div><div class="v">'+rs(sum(30)-E30)+'</div></div></div><div class="card"><h2>TOP ITEMS · 30 நாள்</h2>'+(T.length?T.map(t=>'<div class="row"><div class="n"><b>'+esc(t[0])+'</b></div><span class="v">'+rs(t[1])+'</span></div>').join(''):'<div class="empty">Bills save செய்தால் இங்கே தெரியும்</div>')+'</div>'}
+ $('mv').innerHTML=BK+'<div class="grid2"><div class="card stat"><div class="k">UPI · 7 நாள்</div><div class="v">'+rs(sum(7))+'</div></div><div class="card stat"><div class="k">UPI · 30 நாள்</div><div class="v">'+rs(sum(30))+'</div></div><div class="card stat"><div class="k">Bills · 30 நாள்</div><div class="v">'+rs(B.reduce((s,b)=>s+bt(b),0))+'</div></div><div class="card stat"><div class="k">உதார் பாக்கி</div><div class="v">'+rs(ud.reduce((s,x)=>s+x.b,0))+'</div></div><div class="card stat"><div class="k">செலவு · 30 நாள்</div><div class="v">'+rs(E30)+'</div></div><div class="card stat"><div class="k">Net (UPI−செலவு)</div><div class="v">'+rs(sum(30)-E30)+'</div></div></div>'+hrs()+'<div class="card"><h2>TOP ITEMS · 30 நாள்</h2>'+(T.length?T.map(t=>'<div class="row"><div class="n"><b>'+esc(t[0])+'</b></div><span class="v">'+rs(t[1])+'</span></div>').join(''):'<div class="empty">Bills save செய்தால் இங்கே தெரியும்</div>')+'</div>'}
 function pwr(){const now=Date.now();pend=pend.filter(p=>now-p.t<36e5);$('pw').innerHTML=pend.map((p,i)=>'<div class="row"><div class="n"><b>'+rs(p.a)+'</b><small>⏳ '+Math.floor((now-p.t)/6e4)+' min · காத்திருக்கிறது</small></div><button class="x" data-x="'+i+'">✕</button></div>').join('')}
 $('wbtn').onclick=()=>{const a=parseFloat($('wamt').value);if(!(a>0))return toast('தொகை உள்ளிடவும்',1);pend.push({a,t:Date.now()});W('gk2_pend',pend);$('wamt').value='';pwr();toast('⏳ '+rs(a)+' காத்திருக்கிறேன்')};
 $('pw').onclick=e=>{const b=e.target.closest('[data-x]');if(b){pend.splice(+b.dataset.x,1);W('gk2_pend',pend);pwr()}};
@@ -462,53 +626,94 @@ $('nudge').onclick=()=>{mview='set';go('more')};
 async function showQR(url,label){try{await loadQR()}catch(e){return toast('QR-க்கு internet வேண்டும்',1)}const q=qrcode(0,'M');q.addData(url);q.make();
  const m=modal('<div class="qr">'+q.createSvgTag(6)+'<b>'+esc(label)+'</b>Scan with any UPI app</div><button class="btn mt" id="qx2">✔ மூடு</button>');m.querySelector('#qx2').onclick=()=>m.remove()}
 $('myqr').onclick=()=>{if(!cfg.upi)return toast('Settings-ல் UPI ID சேர்க்கவும்',1);showQR('upi://pay?pa='+encodeURIComponent(cfg.upi)+'&pn='+encodeURIComponent(cfg.rn)+'&cu=INR',cfg.rn)};
+$('lkt').onclick=()=>{cfg.look=lookOf()==='silk'?'royal':'silk';sc();applyTheme();if(tab==='more'&&mview==='theme')thv();toast(cfg.look==='silk'?'🌸 பழைய Silk look':'👑 புதிய Royal look')};
 $('lk').onclick=async()=>{if(!cfg.ph)return toast('Settings-ல் PIN அமைக்கவும்',1);if(isOwner()){owner=0;lockUI();toast('🔒 Locked')}else if(await auth())toast('🔓 Owner mode')};
 setInterval(lockUI,10000);
 (async()=>{if(cfg.pin&&!cfg.ph){cfg.ph=await sha(String(cfg.pin))}delete cfg.pin;if(!cfg.ph||!cfg.pinReset){cfg.ph=DEFPH;cfg.pinReset=1}sc();lockUI();home()})();
 
 /* ===== bill as image / PDF ===== */
 const loadPDF=()=>new Promise((ok,no)=>{if(window.jspdf)return ok();const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)});
+function inWords(n){n=Math.round(n);const a=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'],b=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+ const two=x=>x<20?a[x]:b[x/10|0]+(x%10?' '+a[x%10]:''),three=x=>(x>99?a[x/100|0]+' Hundred'+(x%100?' ':''):'')+(x%100?two(x%100):'');
+ if(!n)return 'Zero';let s='';const cr=n/1e7|0,lk=(n/1e5|0)%100,th=(n/1e3|0)%100,rest=n%1000;
+ if(cr)s+=three(cr)+' Crore ';if(lk)s+=two(lk)+' Lakh ';if(th)s+=two(th)+' Thousand ';if(rest)s+=three(rest);return s.trim()}
 async function billCanvas(b){
- try{await document.fonts.load('700 30px "Mukta Malar"');await document.fonts.load('700 30px "Noto Sans Devanagari"')}catch(e){}
- const W=800,P=40,RH=84,I=b.i,sub=I.reduce((s,x)=>s+x.q*x.p,0),dc=+b.d||0,gs=+b.g||0,tot=Math.round(Math.max(0,sub-dc)*(1+gs/100)*100)/100;
- const H=190+60+60+I.length*RH+30+(60+(dc?46:0)+(gs?46:0)+90)+130;
- const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d'),F='"Mukta Malar","Noto Sans Devanagari",sans-serif';
+ try{await document.fonts.load('800 40px Fraunces');await document.fonts.load('700 30px "Mukta Malar"');await document.fonts.load('700 30px "Noto Sans Devanagari"')}catch(e){}
+ const S=2,W=900,PX=36,I=b.i,sub=I.reduce((s,x)=>s+x.q*x.p,0),dc=+b.d||0,gs=+b.g||0,net=Math.max(0,sub-dc),gv=net*gs/100,tot=Math.round((net+gv)*100)/100;
+ const no=b.no||(bills.reduce((m,x)=>Math.max(m,x.no||0),0)+1),dt=new Date(b.t||Date.now()),yy=dt.getFullYear()%100,fy=dt.getMonth()>=3?yy+'-'+(yy+1):(yy-1)+'-'+yy,inv=(cfg.pre||'GK')+'/'+String(no).padStart(4,'0')+'/'+fy;
+ const A=billAcc(),GOLD='#c8922a',mono=(cfg.pre||'GK').slice(0,2).toUpperCase();
+ const src=ls.g('gk_logo');let li=null;if(src)li=await new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src});
+ let qr=null;if(cfg.upi&&!b.est&&b.mode!=='cash'&&tot>0){try{await loadQR();const q=qrcode(0,'M');q.addData('upi://pay?pa='+encodeURIComponent(cfg.upi)+'&pn='+encodeURIComponent(cfg.rn||'GK Textiles')+'&am='+tot.toFixed(2)+'&cu=INR&tn='+encodeURIComponent('Bill '+inv));q.make();qr=q}catch(e){}}
+ const hl=[cfg.tag,cfg.addr,(cfg.mob?'Mobile: '+cfg.mob:'')+(cfg.mob&&cfg.gst?'    |    ':'')+(cfg.gst?'GST: '+cfg.gst:'')].filter(Boolean),hb=130+hl.length*28;
+ const RH=50,rows=Math.max(I.length,8),tabH=rows*RH,yc=hb+34,yh=yc+132,yb=yh+46,yt=yb+tabH+24,rightH=40*(1+(dc?1:0)+(gs?1:0))+80,th=Math.max(rightH,qr?260:116),yf=yt+th+30,H=Math.max(1273,yf+190);
+ const c=document.createElement('canvas');c.width=W*S;c.height=H*S;const g=c.getContext('2d');g.scale(S,S);
+ const FS='Fraunces,"Mukta Malar","Noto Sans Devanagari",serif',F='"Mukta Malar","Noto Sans Devanagari",Arial,sans-serif';
  const fit=(t,w)=>{t=String(t);while(g.measureText(t).width>w&&t.length>1)t=t.slice(0,-2)+'…';return t};
+ const T=(t,x,y,f,col,al)=>{g.font=f;g.fillStyle=col||'#1d1a1c';g.textAlign=al||'left';g.fillText(t,x,y);g.textAlign='left'};
+ const L=(x1,y1,x2,y2)=>{g.beginPath();g.moveTo(x1,y1);g.lineTo(x2,y2);g.stroke()};
+ const RR=(x,y,w,h2,r)=>{g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h2,r);g.arcTo(x+w,y+h2,x,y+h2,r);g.arcTo(x,y+h2,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()};
+ const money=n=>n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const logo=(cx,cy,r)=>{g.save();g.fillStyle='#fff';g.beginPath();g.arc(cx,cy,r,0,7);g.fill();g.clip();
+  if(li){const s=Math.max(2*r/li.width,2*r/li.height);g.drawImage(li,cx-li.width*s/2,cy-li.height*s/2,li.width*s,li.height*s)}
+  else{const gg=g.createLinearGradient(cx-r,cy-r,cx+r,cy+r);gg.addColorStop(0,'#ffe9b0');gg.addColorStop(1,GOLD);g.fillStyle=gg;g.fillRect(cx-r,cy-r,2*r,2*r);T(mono,cx,cy+r*.3,'800 '+Math.round(r*.9)+'px '+FS,A[2],'center')}
+  g.restore()};
  g.fillStyle='#fff';g.fillRect(0,0,W,H);
- const gr=g.createLinearGradient(0,0,W,150);gr.addColorStop(0,'#a32a55');gr.addColorStop(1,'#4d1228');g.fillStyle=gr;g.fillRect(0,0,W,150);
- g.fillStyle='#ffe3a3';g.font='800 54px '+F;g.fillText(fit(cfg.rn||'GK Textiles',W-2*P),P,80);
- g.fillStyle='#fff';g.font='600 26px '+F;g.fillText('BILL'+(b.no?' #'+b.no:'')+'   ·   '+new Date(b.t||Date.now()).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),P,124);
- let y=210;g.fillStyle='#221b1f';g.font='700 32px '+F;g.fillText(fit('Customer: '+(b.c||'—'),W-2*P),P,y);
- if(b.ph){g.fillStyle='#7b7077';g.font='600 24px '+F;g.fillText('📱 '+b.ph,P,y+34)}
- y+=60;g.fillStyle='#f3eadb';g.fillRect(P,y,W-2*P,50);g.fillStyle='#7d1d3f';g.font='700 24px '+F;g.fillText('பொருள் / Item',P+14,y+34);g.textAlign='right';g.fillText('Amount',W-P-14,y+34);g.textAlign='left';y+=50;
- I.forEach(x=>{g.fillStyle='#221b1f';g.font='700 30px '+F;g.fillText(fit(x.n,W-2*P-240),P+14,y+38);
-  g.fillStyle='#7b7077';g.font='600 24px '+F;g.fillText(x.q+' × ₹'+x.p,P+14,y+68);
-  g.fillStyle='#221b1f';g.font='800 30px '+F;g.textAlign='right';g.fillText('₹'+(Math.round(x.q*x.p*100)/100).toLocaleString('en-IN'),W-P-14,y+48);g.textAlign='left';
-  y+=RH;g.fillStyle='#eadfd0';g.fillRect(P,y-2,W-2*P,2)});
- y+=30;const line=(l,v,big)=>{g.fillStyle=big?'#7d1d3f':'#221b1f';g.font=(big?'800 44px ':'600 28px ')+F;g.fillText(l,P+14,y);g.textAlign='right';g.fillText(v,W-P-14,y);g.textAlign='left'};
- line('Subtotal','₹'+sub.toLocaleString('en-IN'));y+=46;if(dc){line('Discount','-₹'+dc);y+=46}if(gs){line('GST '+gs+'%','+'+gs+'%');y+=46}
- y+=14;g.fillStyle='#fbefe0';g.fillRect(P,y-52,W-2*P,84);y+=6;line('Total','₹'+tot.toLocaleString('en-IN'),1);y+=86;
- g.fillStyle='#0f7b5f';g.font='700 28px '+F;g.textAlign='center';g.fillText('நன்றி! Thank you! धन्यवाद 🙏',W/2,y);
- if(cfg.upi){g.fillStyle='#7b7077';g.font='600 22px '+F;g.fillText('UPI: '+cfg.upi,W/2,y+40)}g.textAlign='left';
+ let gr=g.createLinearGradient(0,0,W,hb);gr.addColorStop(0,A[1]);gr.addColorStop(1,A[2]);g.fillStyle=gr;g.fillRect(0,0,W,hb);
+ g.strokeStyle='rgba(255,255,255,.07)';g.lineWidth=2;for(let i=-hb;i<W;i+=16)L(i,hb,i+hb,0);
+ gr=g.createLinearGradient(0,0,W,0);gr.addColorStop(0,'#ffe3a3');gr.addColorStop(.5,GOLD);gr.addColorStop(1,'#ffe3a3');g.fillStyle=gr;g.fillRect(0,hb,W,6);
+ logo(PX+58,hb/2,56);g.strokeStyle=GOLD;g.lineWidth=4;g.beginPath();g.arc(PX+58,hb/2,56,0,7);g.stroke();
+ const tx=PX+142,tw=W-tx-PX;let y=hb/2-hl.length*14+(hl.length?0:12);
+ g.font='800 44px '+FS;T(fit(cfg.rn||'GK Textiles',tw),tx,y+4,'800 44px '+FS,'#ffe3a3');y+=34;
+ hl.forEach((t,i)=>{g.font=(i===0&&cfg.tag?'600 21px ':'500 19px ')+F;T(fit(t,tw),tx,y,(i===0&&cfg.tag?'600 21px ':i===hl.length-1?'700 19px ':'500 19px ')+F,i===0&&cfg.tag?'#ffd98a':'#fff');y+=28});
+ /* info cards */
+ const cw=(W-2*PX-20)/2;g.fillStyle='#fffaf1';g.strokeStyle='#eadfd0';g.lineWidth=1.5;
+ [PX,PX+cw+20].forEach(x=>{RR(x,yc,cw,120,16);g.fill();g.stroke()});
+ T('BILLED TO',PX+18,yc+30,'700 15px '+F,GOLD);T(fit(b.c||'—',cw-36),PX+18,yc+68,'700 27px '+F);if(b.ph)T('Mobile: '+b.ph,PX+18,yc+100,'500 19px '+F,'#555');
+ const rx=PX+cw+38;T(b.est?'ESTIMATE':(cfg.gst?'TAX INVOICE':'INVOICE'),rx,yc+30,'700 15px '+F,GOLD);T(fit(inv,cw-36),rx,yc+66,'800 25px '+F,A[0]);
+ T('Date: '+dt.toLocaleDateString('en-GB'),rx,yc+96,'600 19px '+F,'#333');const pm={cash:'Cash',upi:'UPI',udhaar:'Credit'}[b.mode];if(pm)T(pm,W-PX-18,yc+96,'700 19px '+F,A[0],'right');
+ /* table */
+ const X=[PX,PX+62,W-PX-350,W-PX-260,W-PX-140,W-PX];
+ g.fillStyle=A[0];RR(PX,yh,W-2*PX,46,10);g.fill();
+ [['No.',PX+16,'left'],['Particulars',X[1]+12,'left'],['Qty',X[3]-14,'right'],['Rate (₹)',X[4]-14,'right'],['Amount (₹)',X[5]-14,'right']].forEach(t=>T(t[0],t[1],yh+31,'700 20px '+F,'#fff',t[2]));
+ for(let i=0;i<rows;i++){if(i%2===0){g.fillStyle='#faf5ec';g.fillRect(PX,yb+i*RH,W-2*PX,RH)}}
+ g.save();g.globalAlpha=.06;logo(W/2,yb+tabH/2,170);g.restore();
+ I.forEach((x,i)=>{const ry=yb+i*RH+32;T(String(i+1),PX+16,ry,'700 20px '+F,'#777');T(fit(x.n,X[2]-X[1]-24),X[1]+12,ry,'600 22px '+F);
+  T(String(Math.round(x.q*100)/100),X[3]-14,ry,'600 21px '+F,'#222','right');T(money(x.p),X[4]-14,ry,'600 21px '+F,'#222','right');T(money(x.q*x.p),X[5]-14,ry,'700 21px '+F,'#111','right')});
+ g.strokeStyle='#e5d8c3';g.lineWidth=1.5;L(PX,yb+tabH,W-PX,yb+tabH);
+ /* totals */
+ const bx=W-PX-300;let ry=yt+30;const R=(l,v)=>{T(l,bx+6,ry,'600 21px '+F,'#444');T(v,W-PX-6,ry,'700 22px '+F,'#111','right');ry+=40;g.strokeStyle='#eadfd0';g.lineWidth=1;L(bx,ry-26,W-PX,ry-26)};
+ R('Sub Total',money(sub));if(dc)R('Discount','-'+money(dc));if(gs)R('GST '+gs+'%','+'+money(gv));
+ g.fillStyle=A[0];RR(bx,ry-14,300,66,14);g.fill();T('BALANCE',bx+16,ry+12,'700 15px '+F,'#ffd98a');T('₹ '+money(tot),W-PX-16,ry+38,'800 32px '+FS,'#ffe3a3','right');
+ g.fillStyle='#fffaf1';g.strokeStyle='#eadfd0';g.lineWidth=1.5;RR(PX,yt+4,bx-PX-24,104,14);g.fill();g.stroke();
+ T('AMOUNT IN WORDS',PX+16,yt+32,'700 15px '+F,GOLD);
+ const words=inWords(tot)+(Math.round((tot%1)*100)?' and '+inWords(Math.round((tot%1)*100))+' Paise':'')+' Only';g.font='italic 600 20px '+F;
+ let ln='',ly=yt+62;words.split(' ').forEach(w=>{const n=ln?ln+' '+w:w;if(g.measureText(n).width>bx-PX-24-32&&ln){T(ln,PX+16,ly,'italic 600 20px '+F);ly+=26;ln=w}else ln=n});if(ln)T(ln,PX+16,ly,'italic 600 20px '+F);
+ if(qr){const n=qr.getModuleCount(),qs=132,qx=PX,qy=yt+124,cs=(qs-8)/n;g.fillStyle='#fff';g.strokeStyle='#eadfd0';RR(qx,qy,qs,qs,10);g.fill();g.stroke();g.fillStyle='#000';
+  for(let r=0;r<n;r++)for(let q=0;q<n;q++)if(qr.isDark(r,q))g.fillRect(qx+4+q*cs,qy+4+r*cs,cs+.4,cs+.4);
+  T('SCAN & PAY',qx+qs+18,qy+40,'800 22px '+F,A[0]);T('₹ '+money(tot),qx+qs+18,qy+72,'700 22px '+F);T(fit('UPI: '+cfg.upi,bx-qx-qs-60),qx+qs+18,qy+102,'500 17px '+F,'#555')}
+ /* footer */
+ g.strokeStyle='#e5d8c3';g.lineWidth=1.5;L(PX,yf,W-PX,yf);
+ T('நன்றி! Thank you! धन्यवाद — மீண்டும் வருக',PX,yf+44,'700 20px '+F,'#0f7b5f');
+ if(cfg.terms){g.font='500 16px '+F;let tl='',tyy=yf+78;cfg.terms.split(' ').forEach(w=>{const n=tl?tl+' '+w:w;if(g.measureText(n).width>440&&tl){T(tl,PX,tyy,'500 16px '+F,'#666');tyy+=22;tl=w}else tl=n});if(tl)T(tl,PX,tyy,'500 16px '+F,'#666')}
+ T('For '+(cfg.rn||'GK Textiles'),W-PX,yf+44,'800 22px '+FS,A[0],'right');g.strokeStyle='#999';g.lineWidth=1;L(W-PX-230,yf+120,W-PX,yf+120);T('Authorised Signatory',W-PX,yf+142,'500 16px '+F,'#666','right');
+ [ '#ffb627','#e4572e','#17bebb',A[2]].forEach((col,i)=>{});for(let x=0,i=0;x<W;x+=30,i++){g.fillStyle=['#ffb627','#e4572e','#17bebb',A[2]][i%4];g.fillRect(x,H-12,30,12)}
+ g.strokeStyle='#e8dcc6';g.lineWidth=1;g.strokeRect(.5,.5,W-1,H-1);
  return c}
 async function billFile(b,kind){const c=await billCanvas(b),nm='GK-Bill'+(b.no?'-'+b.no:'')+'-'+String(Date.now()).slice(-5);
- if(kind==='pdf'){await loadPDF();const p=new window.jspdf.jsPDF({unit:'px',format:[c.width,c.height],orientation:'portrait',hotfixes:['px_scaling']});
-  p.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,c.width,c.height);return new File([p.output('blob')],nm+'.pdf',{type:'application/pdf'})}
- const bl=await new Promise(r=>c.toBlob(r,'image/png'));return new File([bl],nm+'.png',{type:'image/png'})}
+ if(kind==='pdf'){await loadPDF();const p=new window.jspdf.jsPDF({unit:'mm',format:[210,210*c.height/c.width],orientation:'portrait'});
+  p.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,210,210*c.height/c.width);const pf=new File([p.output('blob')],nm+'.pdf',{type:'application/pdf'});pf.prev=c.toDataURL('image/jpeg',.7);return pf}
+ const bl=await new Promise(r=>c.toBlob(r,'image/png'));const nf=new File([bl],nm+'.png',{type:'image/png'});nf.prev=URL.createObjectURL(nf);return nf}
 function dlFile(f,q){const a=document.createElement('a');a.href=URL.createObjectURL(f);a.download=f.name;document.body.appendChild(a);a.click();a.remove();if(!q)toast('⬇ Download ஆனது — WhatsApp-ல் attach செய்யவும்')}
-const waNum=p=>{let n=String(p||'').replace(/\D/g,'').replace(/^0+/,'');if(n.length===10)n='91'+n;return n.length>=11&&n.length<=15?n:''};
-const totOf=b=>Math.round(Math.max(0,b.i.reduce((s,x)=>s+x.q*x.p,0)-(+b.d||0))*(1+(+b.g||0)/100)*100)/100;
+function waNum(p){let n=String(p||'').replace(/\D/g,'').replace(/^0+/,'');if(n.length===10)n='91'+n;return n.length>=11&&n.length<=15?n:''}
+function totOf(b){return Math.round(Math.max(0,b.i.reduce((s,x)=>s+x.q*x.p,0)-(+b.d||0))*(1+(+b.g||0)/100)*100)/100}
 async function shareBill(b,kind,force){if(!b||!b.i.length)return toast('Bill காலி',1);
  let f;try{toast('⏳ Bill தயாராகிறது…');f=await billFile(b,kind)}catch(e){return toast('Bill உருவாக்க முடியவில்லை (PDF-க்கு internet வேண்டும்)',1)}
- const wn=waNum(b.ph);
- if(wn&&!force){dlFile(f,1);toast('⬇ File save ஆனது. Chat-ல் 📎 → Document → '+f.name);
-  setTimeout(()=>{location.href='https://wa.me/'+wn+'?text='+encodeURIComponent('வணக்கம்'+(b.c?' '+b.c:'')+', GK Textiles bill'+(b.no?' #'+b.no:'')+' — மொத்தம் '+rs(totOf(b))+'. நன்றி! 🙏')},1300);return}
- const data={files:[f],title:'GK Textiles Bill',text:(b.c?b.c+' — ':'')+'GK Textiles'};
- if(!(navigator.canShare&&navigator.canShare(data)))return dlFile(f);
- try{await navigator.share(data);if(b.ph)toast('WhatsApp-ல் '+b.ph+' தேர்வு செய்யவும்')}
- catch(e){if(e&&e.name==='AbortError')return;
-  const m=modal('<h2 style="font-family:Fraunces,serif">Bill தயார் ✔</h2><p style="margin:8px 0;color:var(--mute)">கீழே தட்டி WhatsApp-ல் அனுப்பவும்</p><button class="btn" id="shn">📤 Share</button><button class="btn sec mt" id="shd">⬇ Download</button>');
-  m.querySelector('#shn').onclick=async()=>{try{await navigator.share(data);m.remove()}catch(x){if(!x||x.name!=='AbortError')dlFile(f)}};m.querySelector('#shd').onclick=()=>{dlFile(f);m.remove()}}}
+ const wn=waNum(b.ph),data={files:[f],title:'GK Textiles Bill',text:(b.c?b.c+' — ':'')+'GK Textiles'},can=!!(navigator.canShare&&navigator.canShare(data));
+ const m=modal('<h2 style="font-family:Fraunces,serif">Bill தயார் ✔</h2><p style="margin:6px 0 12px;color:var(--mute)">'+esc(b.c||'')+(wn?' · +'+wn:'')+' · '+rs(totOf(b))+'</p>'+(f.prev?'<img src="'+f.prev+'" style="width:100%;max-height:42vh;object-fit:contain;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:#fff">':'')+(!can&&/iPhone|iPad/.test(navigator.userAgent)?'<p style="color:#c0392b;font-size:14px;margin-bottom:10px">⚠ இந்த view-ல் Share வேலை செய்யாது. Safari-ல் (அல்லது Home Screen app-ல்) திறக்கவும். படத்தை நீண்ட நேரம் அழுத்தினால் Save / Share வரும்.</p>':'')+(can?'<button class="btn" id="sh1">📤 '+(kind==='pdf'?'PDF':'Image')+' WhatsApp-ல் அனுப்பு</button>':'')+(wn&&!force?'<button class="btn sec mt" id="sh2">💬 +'+wn+' Chat திற</button>':'')+'<button class="btn sec mt" id="sh3">⬇ Download</button><button class="btn sec mt" id="shx">✕ மூடு / Close</button>'+(can?'<p style="color:var(--mute);font-size:13px;margin-top:10px">WhatsApp-ஐ தேர்வு செய்து, customer-ஐ தட்டினால் file தானாக இணையும்.</p>':''));
+ const q=s=>m.querySelector(s);
+ if(q('#sh1'))q('#sh1').onclick=async()=>{try{await navigator.share(data);m.remove()}catch(e){if(!e||e.name!=='AbortError')toast('Share ஆகவில்லை — Download பயன்படுத்தவும்',1)}};
+ if(q('#sh2'))q('#sh2').onclick=()=>{dlFile(f,1);m.remove();toast('⬇ File save ஆனது. Chat-ல் 📎 → Document → '+f.name);setTimeout(()=>{location.href='https://wa.me/'+wn+'?text='+encodeURIComponent('வணக்கம்'+(b.c?' '+b.c:'')+', GK Textiles bill'+(b.no?' #'+b.no:'')+' — மொத்தம் '+rs(totOf(b))+'. நன்றி! 🙏')},1300)};
+ q('#sh3').onclick=()=>{dlFile(f);m.remove()};q('#shx').onclick=()=>m.remove()}
 $('bshr').onclick=()=>shareBill(bill,'pdf',true);$('bimg').onclick=()=>shareBill(bill,'img');$('bpdf').onclick=()=>shareBill(bill,'pdf');
 setTimeout(()=>loadPDF().catch(()=>{}),3000);
 $('ttl').textContent=TT.home;home();srender();load();setInterval(()=>{if(!document.hidden)load()},POLL);setInterval(home,30000);
